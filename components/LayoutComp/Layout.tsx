@@ -2,6 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 import Head from "next/head";
 import { BottomNavigation, BottomNavigationAction } from "@material-ui/core";
+import * as style from "./Layout.scss";
 
 type Props = {
   children?: React.ReactNode;
@@ -26,7 +27,11 @@ const Layout: React.FC<Props> = ({ children, title = "title" }) => {
       <header></header>
       {children}
       <footer>
-        <BottomNavigation value={value} onChange={handleChange}>
+        <BottomNavigation
+          value={value}
+          onChange={handleChange}
+          className={style.bottomNavigation}
+        >
           <Link href="/works" passHref>
             <BottomNavigationAction label="作品" showLabel={true} />
           </Link>
