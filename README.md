@@ -7,6 +7,9 @@ Built in:
 - TypeScript
 - Material-UI
 
+## prototype
+https://github.com/Kurogoma4D/portfolio_proto
+
 Generated README by template below.
 
 --- 
