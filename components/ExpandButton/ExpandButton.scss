@@ -1,0 +1,16 @@
+.expandButton {
+  background-color: #ffffff;
+  width: 100px;
+  min-height: 100px;
+  transition: width 250ms ease-out;
+  border-style: none;
+  border-radius: 8px;
+}
+
+.opened {
+  width: 600px;
+}
+
+.expandButton p {
+  text-align: center;
+}
