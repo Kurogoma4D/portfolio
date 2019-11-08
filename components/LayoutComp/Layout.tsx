@@ -36,7 +36,7 @@ const Layout: NextPage<Props & WithRouterProps> = ({
   ];
 
   const menuItems = menuItemProps.map(item => (
-    <Link prefetch href={item.linkTo} passHref>
+    <Link href={item.linkTo} passHref>
       <BottomNavigationAction
         label={item.label}
         value={item.linkTo}
