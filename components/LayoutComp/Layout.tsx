@@ -20,7 +20,7 @@ const Layout: NextPage<Props & WithRouterProps> = ({
 }) => {
   const [value, setValue] = React.useState("/");
 
-  const menuItems = [
+  const menuItemProps = [
     {
       linkTo: "/works",
       label: "作品",
@@ -34,6 +34,16 @@ const Layout: NextPage<Props & WithRouterProps> = ({
       label: "技術",
     },
   ];
+
+  const menuItems = menuItemProps.map(item => (
+    <Link prefetch href={item.linkTo} passHref>
+      <BottomNavigationAction
+        label={item.label}
+        value={item.linkTo}
+        showLabel={true}
+      />
+    </Link>
+  ));
 
   React.useEffect(() => {
     if (router.pathname !== "/") {
@@ -55,15 +65,7 @@ const Layout: NextPage<Props & WithRouterProps> = ({
       {children}
       <footer>
         <BottomNavigation value={value} className={style.bottomNavigation}>
-          {menuItems.map(item => (
-            <Link href={item.linkTo} passHref>
-              <BottomNavigationAction
-                label={item.label}
-                value={item.linkTo}
-                showLabel={true}
-              />
-            </Link>
-          ))}
+          {menuItems}
         </BottomNavigation>
       </footer>
     </div>
