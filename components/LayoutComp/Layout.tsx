@@ -1,25 +1,16 @@
 import * as React from "react";
-import Link from "next/link";
+// import Link from "next/link";
 import Head from "next/head";
-import { BottomNavigation, BottomNavigationAction } from "@material-ui/core";
-import * as style from "./Layout.scss";
-import { withRouter, NextRouter } from "next/router";
 import { NextPage } from "next";
-import { WithRouterProps } from "next/dist/client/with-router";
+
+import BottomFloatingMenu from "../BottomFloatingMenu/BottomFloatingMenu";
 
 type Props = {
   children?: React.ReactNode;
   title?: string;
-  router: NextRouter;
 };
 
-const Layout: NextPage<Props & WithRouterProps> = ({
-  children,
-  title = "title",
-  router,
-}) => {
-  const [value, setValue] = React.useState("/");
-
+const Layout: NextPage<Props> = ({ children, title = "title" }) => {
   const menuItemProps = [
     {
       linkTo: "/works",
@@ -35,25 +26,6 @@ const Layout: NextPage<Props & WithRouterProps> = ({
     },
   ];
 
-  const menuItems = menuItemProps.map(item => (
-    <Link href={item.linkTo} passHref>
-      <BottomNavigationAction
-        label={item.label}
-        value={item.linkTo}
-        showLabel={true}
-      />
-    </Link>
-  ));
-
-  React.useEffect(() => {
-    if (router.pathname !== "/") {
-      setValue(router.pathname);
-    }
-    return () => {
-      console.log(value);
-    };
-  });
-
   return (
     <div>
       <Head>
@@ -63,13 +35,10 @@ const Layout: NextPage<Props & WithRouterProps> = ({
       </Head>
       <header></header>
       {children}
-      <footer>
-        <BottomNavigation value={value} className={style.bottomNavigation}>
-          {menuItems}
-        </BottomNavigation>
-      </footer>
+      <BottomFloatingMenu menuItem={menuItemProps} />
+      <footer></footer>
     </div>
   );
 };
 
-export default withRouter(Layout);
+export default Layout;
