@@ -11,8 +11,10 @@ const Header: React.FC<Props> = ({ menuItem }) => {
   const [isOpened, setIsOpened] = React.useState(false);
 
   React.useEffect(() => {
-    Router.events.on("routeChangeComplete", () => setIsOpened(false));
-    return () => {};
+    Router.events.on("routeChangeStart", () => setIsOpened(false));
+    return () => {
+      Router.events.off("routeChangeStart", () => setIsOpened(false));
+    };
   }, [setIsOpened]);
 
   function handleClick() {

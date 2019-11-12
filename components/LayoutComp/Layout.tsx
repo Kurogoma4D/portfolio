@@ -47,8 +47,8 @@ const Layout: NextPage<Props> = ({ children, title = "title" }) => {
         ></link>
       </Head>
       <header></header>
-      <Header menuItem={menuItemProps} />
       <div className={style.spacer}>{children}</div>
+      <Header menuItem={menuItemProps} />
       <footer></footer>
     </div>
   );
