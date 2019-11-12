@@ -19,14 +19,14 @@ const Layout: NextPage<Props> = ({ children, title = "title" }) => {
       labelEn: ""
     },
     {
-      linkTo: "/works",
-      label: "作品",
-      labelEn: "works"
-    },
-    {
       linkTo: "/about",
       label: "人",
       labelEn: "about"
+    },
+    {
+      linkTo: "/works",
+      label: "作品",
+      labelEn: "works"
     },
     {
       linkTo: "/skills",
