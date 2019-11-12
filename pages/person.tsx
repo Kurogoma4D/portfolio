@@ -1,6 +1,7 @@
 import { NextPage } from "next";
 import * as style from "../styles/person.scss";
 import ExpandButton from "../components/ExpandButton/ExpandButton";
+import Layout from "../components/LayoutComp/Layout";
 
 const Person: NextPage = () => {
   const buttons = [
@@ -10,26 +11,28 @@ const Person: NextPage = () => {
     "forth",
     "fifth",
     "sixth",
-    "seventh heaven",
+    "seventh heaven"
   ];
 
   return (
-    <div className={style.wrap}>
-      <div className={style.avatar}>
-        <img src="https://www.gravatar.com/avatar/2a56039e69ff01ccaed212c455d06003" />
+    <Layout title="About | Kurogoma4D">
+      <div className={style.wrap}>
+        <div className={style.avatar}>
+          <img src="https://www.gravatar.com/avatar/2a56039e69ff01ccaed212c455d06003" />
+        </div>
+        <h2 className={style.name}>Kurogoma4D</h2>
+        <div className={style.flexContainer}>
+          {buttons.map(text => {
+            return (
+              <>
+                <ExpandButton text={text} />
+                <div className={style.spacer} />
+              </>
+            );
+          })}
+        </div>
       </div>
-      <h2 className={style.name}>Kurogoma4D</h2>
-      <div className={style.flexContainer}>
-        {buttons.map(text => {
-          return (
-            <>
-              <ExpandButton text={text} />
-              <div className={style.spacer} />
-            </>
-          );
-        })}
-      </div>
-    </div>
+    </Layout>
   );
 };
 
