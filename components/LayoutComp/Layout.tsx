@@ -24,7 +24,7 @@ const Layout: NextPage<Props> = ({ children, title = "title" }) => {
       labelEn: "works"
     },
     {
-      linkTo: "/person",
+      linkTo: "/about",
       label: "人",
       labelEn: "about"
     },

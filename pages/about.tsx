@@ -1,9 +1,9 @@
 import { NextPage } from "next";
-import * as style from "../styles/person.scss";
+import * as style from "../styles/about.scss";
 import ExpandButton from "../components/ExpandButton/ExpandButton";
 import Layout from "../components/LayoutComp/Layout";
 
-const Person: NextPage = () => {
+const About: NextPage = () => {
   const buttons = [
     "first",
     "second",
@@ -36,4 +36,4 @@ const Person: NextPage = () => {
   );
 };
 
-export default Person;
+export default About;
