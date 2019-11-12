@@ -45,6 +45,10 @@ const Layout: NextPage<Props> = ({ children, title = "title" }) => {
           href="https://fonts.googleapis.com/css?family=M+PLUS+1p:400,700&display=swap&subset=japanese"
           rel="stylesheet"
         ></link>
+        <link
+          href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c:300,700&display=swap&subset=japanese"
+          rel="stylesheet"
+        ></link>
       </Head>
       <header></header>
       <div className={style.spacer}>{children}</div>

@@ -1,0 +1,31 @@
+.personalContainer {
+  margin: 32px 0;
+  display: flex;
+  align-items: center;
+}
+
+.personalContainer img {
+  height: 200px;
+  transform: translateX(-20px);
+  clip-path: circle(50%);
+}
+
+.content {
+  padding: 0 24px;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 400;
+}
+
+.content p {
+  line-height: 1.6em;
+}
+
+.carrier {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto;
+}
+
+.carrier p {
+  margin: 4px 0;
+}
