@@ -27,16 +27,16 @@ const Header: React.FC<Props> = ({ menuItem }) => {
 
   function buildMenu() {
     return (
-      <ul className={style.menuList}>
+      <div className={style.menuList}>
         {menuItem.map((item, index) => (
           <Link href={item.linkTo} key={index} passHref>
-            <li className={style.navigation + addOpenedStyle()}>
+            <a className={style.navigation + addOpenedStyle()}>
               {item.label}
               <span className={style.ruby}> {item.labelEn}</span>
-            </li>
+            </a>
           </Link>
         ))}
-      </ul>
+      </div>
     );
   }
 
