@@ -6,9 +6,12 @@ import ImageHeader from "../components/ImageHeader/ImageHeader";
 const About: NextPage = () => {
   return (
     <Layout title="About | Kurogoma4D">
-      <ImageHeader imagePath="/static/images/about-header.jpg" text="人" />
+      <ImageHeader
+        imagePath={require("./images/about-header.webp")}
+        text="人"
+      />
       <div className={style.personalContainer}>
-        <img src="https://www.gravatar.com/avatar/2a56039e69ff01ccaed212c455d06003" />
+        <img src={require("./images/profile.webp")} alt="アイコン" />
         <h2>Kurogoma4D</h2>
       </div>
       <div className={style.content}>

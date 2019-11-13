@@ -11,7 +11,7 @@ const ImageHeader: React.FC<Props> = (props: Props) => {
 
   return (
     <div className={style.headerWrap}>
-      <img src={imagePath}></img>
+      <img src={imagePath} alt="ヘッダー"></img>
       <span>{text}</span>
     </div>
   );
