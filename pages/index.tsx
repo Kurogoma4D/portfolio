@@ -9,7 +9,7 @@ const IndexPage: NextPage = () => {
 
   React.useEffect(() => {
     function handleScroll() {
-      if (window.scrollY - 56 <= window.innerHeight) {
+      if (window.scrollY <= window.innerHeight) {
         state.setAppBarMode("dark");
       } else {
         state.setAppBarMode("light");
