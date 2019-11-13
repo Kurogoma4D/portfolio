@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as style from "./Header.scss";
 import Link from "next/link";
-import { Router } from "next/dist/client/router";
+import { Router, useRouter } from "next/dist/client/router";
 import AppContext from "../../utils/AppContext";
 
 type Props = {
@@ -11,15 +11,18 @@ type Props = {
 const Header: React.FC<Props> = ({ menuItem }) => {
   const [isOpened, setIsOpened] = React.useState(false);
   const { state } = React.useContext(AppContext);
+  const router = useRouter();
 
   React.useEffect(() => {
+    function onChangeRoute() {
+      state.setAppBarMode("light");
+    }
+
     Router.events.on("routeChangeStart", () => setIsOpened(false));
-    Router.events.on("routeChangeComplete", () => state.setAppBarMode("light"));
+    Router.events.on("routeChangeComplete", () => onChangeRoute());
     return () => {
       Router.events.off("routeChangeStart", () => setIsOpened(false));
-      Router.events.off("routeChangeComplete", () =>
-        state.setAppBarMode("light")
-      );
+      Router.events.off("routeChangeComplete", () => onChangeRoute());
     };
   }, [setIsOpened]);
 
@@ -78,8 +81,18 @@ const Header: React.FC<Props> = ({ menuItem }) => {
     );
   }
 
+  function getTitle() {
+    var path = router.pathname.substring(1).toUpperCase();
+    if (path === "") {
+      path = "TOP";
+    }
+    return path;
+  }
+
   const theme = appBarThemeSwitch();
   const iconTheme = iconThemeSwitch();
+
+  const title = getTitle();
 
   return (
     <>
@@ -93,7 +106,7 @@ const Header: React.FC<Props> = ({ menuItem }) => {
           <span style={iconTheme} />
           <span style={iconTheme} />
         </div>
-        <span className={style.title + addOpenedStyle()}>HOGE</span>
+        <span className={style.title + addOpenedStyle()}>{title}</span>
       </div>
     </>
   );
