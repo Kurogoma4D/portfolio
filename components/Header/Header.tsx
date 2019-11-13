@@ -2,6 +2,7 @@ import * as React from "react";
 import * as style from "./Header.scss";
 import Link from "next/link";
 import { Router } from "next/dist/client/router";
+import AppContext from "../../utils/AppContext";
 
 type Props = {
   menuItem: { linkTo: string; label: string; labelEn: string }[];
@@ -9,6 +10,7 @@ type Props = {
 
 const Header: React.FC<Props> = ({ menuItem }) => {
   const [isOpened, setIsOpened] = React.useState(false);
+  const { appBarMode } = React.useContext(AppContext);
 
   React.useEffect(() => {
     Router.events.on("routeChangeStart", () => setIsOpened(false));
@@ -23,6 +25,38 @@ const Header: React.FC<Props> = ({ menuItem }) => {
 
   function addOpenedStyle() {
     return isOpened ? " " + style.opened : "";
+  }
+
+  function appBarThemeSwitch(): React.CSSProperties {
+    switch (appBarMode) {
+      case "dark":
+        return {
+          background: "#242424",
+          color: "#ffffff"
+        };
+      case "light":
+        return {
+          background: "#fffcf4",
+          color: "rgba(32, 32, 32, 0.6)"
+        };
+      default:
+        return {};
+    }
+  }
+
+  function iconThemeSwitch(): React.CSSProperties {
+    switch (appBarMode) {
+      case "dark":
+        return {
+          backgroundColor: "#ffffff"
+        };
+      case "light":
+        return {
+          backgroundColor: "rgba(32, 32, 32, 0.6)"
+        };
+      default:
+        return {};
+    }
   }
 
   function buildMenu() {
@@ -40,17 +74,20 @@ const Header: React.FC<Props> = ({ menuItem }) => {
     );
   }
 
+  const theme = appBarThemeSwitch();
+  const iconTheme = iconThemeSwitch();
+
   return (
     <>
       <nav className={style.menu + addOpenedStyle()}>{buildMenu()}</nav>
-      <div className={style.appBar + addOpenedStyle()}>
+      <div className={style.appBar + addOpenedStyle()} style={theme}>
         <div
           className={style.menuIcon + addOpenedStyle()}
           onClick={handleClick}
         >
-          <span />
-          <span />
-          <span />
+          <span style={iconTheme} />
+          <span style={iconTheme} />
+          <span style={iconTheme} />
         </div>
         <span className={style.title + addOpenedStyle()}>HOGE</span>
       </div>
