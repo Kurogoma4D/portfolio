@@ -10,12 +10,16 @@ type Props = {
 
 const Header: React.FC<Props> = ({ menuItem }) => {
   const [isOpened, setIsOpened] = React.useState(false);
-  const { appBarMode } = React.useContext(AppContext);
+  const { state } = React.useContext(AppContext);
 
   React.useEffect(() => {
     Router.events.on("routeChangeStart", () => setIsOpened(false));
+    Router.events.on("routeChangeComplete", () => state.setAppBarMode("light"));
     return () => {
       Router.events.off("routeChangeStart", () => setIsOpened(false));
+      Router.events.off("routeChangeComplete", () =>
+        state.setAppBarMode("light")
+      );
     };
   }, [setIsOpened]);
 
@@ -28,7 +32,7 @@ const Header: React.FC<Props> = ({ menuItem }) => {
   }
 
   function appBarThemeSwitch(): React.CSSProperties {
-    switch (appBarMode) {
+    switch (state.appBarMode) {
       case "dark":
         return {
           background: "#242424",
@@ -37,7 +41,7 @@ const Header: React.FC<Props> = ({ menuItem }) => {
       case "light":
         return {
           background: "#fffcf4",
-          color: "rgba(32, 32, 32, 0.6)"
+          color: "rgba(32, 32, 32, 1)"
         };
       default:
         return {};
@@ -45,7 +49,7 @@ const Header: React.FC<Props> = ({ menuItem }) => {
   }
 
   function iconThemeSwitch(): React.CSSProperties {
-    switch (appBarMode) {
+    switch (state.appBarMode) {
       case "dark":
         return {
           backgroundColor: "#ffffff"

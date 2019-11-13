@@ -1,11 +1,14 @@
 import { createContext } from "react";
 
 type AppContextProps = {
-  appBarColor?: string;
-  appBarMode?: string;
-  setAppBarColor: (color: string) => void;
+  state: {
+    appBarMode?: string;
+    setAppBarMode: (mode: string) => void;
+  };
 };
 
-const AppContext = createContext<AppContextProps>({ setAppBarColor: () => {} });
+const AppContext = createContext<AppContextProps>({
+  state: { appBarMode: "dark", setAppBarMode: () => {} }
+});
 
 export default AppContext;

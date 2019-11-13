@@ -6,12 +6,13 @@ import AppContext from "../utils/AppContext";
 
 class MyApp extends NextApp {
   state = {
-    appBarMode: "dark",
-    appBarColor: "#fffcf4"
+    appBarMode: "dark"
   };
 
-  setAppBarColor = (color: string) => {
-    this.setState({ appBarColor: color });
+  setAppBarMode = (mode: string) => {
+    if (this.state.appBarMode !== mode) {
+      this.setState({ appBarMode: mode });
+    }
   };
 
   render() {
@@ -20,9 +21,10 @@ class MyApp extends NextApp {
       <>
         <AppContext.Provider
           value={{
-            appBarColor: this.state.appBarColor,
-            setAppBarColor: this.setAppBarColor,
-            appBarMode: this.state.appBarMode
+            state: {
+              appBarMode: this.state.appBarMode,
+              setAppBarMode: this.setAppBarMode
+            }
           }}
         >
           <Component />
