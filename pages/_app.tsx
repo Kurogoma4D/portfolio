@@ -3,6 +3,9 @@ import "../styles/global.scss";
 import Header from "../components/Header/Header";
 import { menuItemProps } from "../utils/menuItemProps";
 import AppContext from "../utils/AppContext";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import { fas } from "@fortawesome/free-solid-svg-icons";
 
 class MyApp extends NextApp {
   state = {
@@ -17,6 +20,9 @@ class MyApp extends NextApp {
 
   render() {
     const { Component } = this.props;
+
+    library.add(fab, fas);
+
     return (
       <>
         <AppContext.Provider

@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as style from "./Header.scss";
 import Link from "next/link";
-import { Router, useRouter } from "next/dist/client/router";
+import { Router, useRouter } from "next/router";
 import AppContext from "../../utils/AppContext";
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 const Header: React.FC<Props> = ({ menuItem }) => {
   const [isOpened, setIsOpened] = React.useState(false);
   const { state } = React.useContext(AppContext);
-  const router = useRouter();
+  const { pathname } = useRouter();
 
   React.useEffect(() => {
     function onChangeRoute() {
@@ -82,7 +82,7 @@ const Header: React.FC<Props> = ({ menuItem }) => {
   }
 
   function getTitle() {
-    var path = router.pathname.substring(1).toUpperCase();
+    var path = pathname.substring(1).toUpperCase();
     if (path === "") {
       path = "TOP";
     }
