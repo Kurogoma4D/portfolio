@@ -46,7 +46,7 @@ const IndexPage: NextPage = () => {
           <a href="mailto:contact&#64;krgm4d.dev" className={style.mail}>
             <FontAwesomeIcon icon={["fas", "envelope"]} size="2x" />
           </a>
-          <span>contact@krgm4d.dev</span>
+          <span>contact&#64;krgm4d.dev</span>
         </section>
       </div>
     </Layout>

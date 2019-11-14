@@ -7,7 +7,7 @@ import * as style from "../styles/works.scss";
 const WorksPage: NextPage = () => (
   <Layout title="Works | Kurogoma4D">
     <h1 className={style.title}>Works</h1>
-    <p>This is the works page</p>
+    <p>準備中…</p>
     <p>
       <Link href="/">
         <a>Go home</a>

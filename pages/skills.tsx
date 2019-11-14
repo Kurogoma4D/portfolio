@@ -7,7 +7,7 @@ import Layout from "../components/LayoutComp/Layout";
 const SkillsPage: NextPage = () => (
   <Layout title="Skills | Kurogoma4D">
     <h1 className={style.title}>Skills</h1>
-    <p>This is the skills page</p>
+    <p>準備中…</p>
     <p>
       <Link href="/">
         <a>Go home</a>
