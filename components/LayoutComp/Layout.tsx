@@ -18,7 +18,9 @@ const Layout: NextPage<Props> = ({ children, title = "title" }) => {
       <header></header>
       <div className={style.spacer}>{children}</div>
 
-      <footer></footer>
+      <footer>
+        <p>Favicon made by Freepik from www.flaticon.com</p>
+      </footer>
     </div>
   );
 };
