@@ -1,4 +1,7 @@
 # Portfolio
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ab9aff86-3cdb-40c5-a541-9231229130c7/deploy-status)](https://app.netlify.com/sites/ecstatic-bose-aa3a74/deploys)
+
 This is my first Portfolio website.
 
 Built in:
@@ -8,11 +11,12 @@ Built in:
 - Material-UI
 
 ## prototype
+
 https://github.com/Kurogoma4D/portfolio_proto
 
 Generated README by template below.
 
---- 
+---
 
 # TypeScript Next.js example
 

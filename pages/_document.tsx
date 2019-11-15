@@ -18,6 +18,12 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c:300,700&display=swap&subset=japanese"
             rel="stylesheet"
           ></link>
+          <link rel="icon" href="static/images/favicon.ico"></link>
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="static/images/sushi.png"
+          ></link>
         </Head>
         <body>
           <Main />
