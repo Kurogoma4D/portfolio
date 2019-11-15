@@ -23,7 +23,6 @@
     "next-compose-plugins": "^2.2.0",
     "next-images": "^1.2.0",
     "node-sass": "^4.13.0",
-    "rc-scroll-anim": "^2.7.1",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "react-svg-loader": "^3.0.3"

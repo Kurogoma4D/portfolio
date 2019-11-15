@@ -5,7 +5,10 @@ const images = require("next-images");
 const nextConfig = {
   exportPathMap: function() {
     return {
-      "/": { page: "/" }
+      "/": { page: "/" },
+      "/about": { page: "/about" },
+      "/skills": { page: "/skills" },
+      "/works": { page: "/works" }
     };
   },
   webpack: (config, {}) => {
