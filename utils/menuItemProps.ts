@@ -1,3 +1,7 @@
+export type menuItems = {
+  menuItem: { linkTo: string; label: string; labelEn: string }[];
+};
+
 export const menuItemProps = [
   {
     linkTo: "/",

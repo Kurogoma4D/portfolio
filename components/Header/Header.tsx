@@ -1,15 +1,11 @@
 import * as React from "react";
 import * as style from "./Header.scss";
-import Link from "next/link";
 import { Router, useRouter } from "next/router";
 import AppContext from "../../utils/AppContext";
+import { menuItemProps } from "../..//utils/menuItemProps";
+import Link from "next/link";
 
-type Props = {
-  menuItem: { linkTo: string; label: string; labelEn: string }[];
-};
-
-const Header: React.FC<Props> = ({ menuItem }) => {
-  const [isOpened, setIsOpened] = React.useState(false);
+const Header: React.FC = () => {
   const { state } = React.useContext(AppContext);
   const { pathname } = useRouter();
 
@@ -18,21 +14,11 @@ const Header: React.FC<Props> = ({ menuItem }) => {
       state.setAppBarMode("light");
     }
 
-    Router.events.on("routeChangeStart", () => setIsOpened(false));
     Router.events.on("routeChangeComplete", () => onChangeRoute());
     return () => {
-      Router.events.off("routeChangeStart", () => setIsOpened(false));
       Router.events.off("routeChangeComplete", () => onChangeRoute());
     };
-  }, [setIsOpened]);
-
-  function handleClick() {
-    setIsOpened(!isOpened);
-  }
-
-  function addOpenedStyle() {
-    return isOpened ? " " + style.opened : "";
-  }
+  }, []);
 
   function appBarThemeSwitch(): React.CSSProperties {
     switch (state.appBarMode) {
@@ -51,36 +37,6 @@ const Header: React.FC<Props> = ({ menuItem }) => {
     }
   }
 
-  function iconThemeSwitch(): React.CSSProperties {
-    switch (state.appBarMode) {
-      case "dark":
-        return {
-          backgroundColor: "#ffffff"
-        };
-      case "light":
-        return {
-          backgroundColor: "rgba(32, 32, 32, 0.6)"
-        };
-      default:
-        return {};
-    }
-  }
-
-  function buildMenu() {
-    return (
-      <div className={style.menuList}>
-        {menuItem.map((item, index) => (
-          <Link href={item.linkTo} key={index} passHref>
-            <a className={style.navigation + addOpenedStyle()}>
-              {item.label}
-              <span className={style.ruby}> {item.labelEn}</span>
-            </a>
-          </Link>
-        ))}
-      </div>
-    );
-  }
-
   function getTitle() {
     var path = pathname.substring(1).toUpperCase();
     if (path === "") {
@@ -90,25 +46,20 @@ const Header: React.FC<Props> = ({ menuItem }) => {
   }
 
   const theme = appBarThemeSwitch();
-  const iconTheme = iconThemeSwitch();
 
   const title = getTitle();
 
   return (
-    <>
-      <nav className={style.menu + addOpenedStyle()}>{buildMenu()}</nav>
-      <div className={style.appBar + addOpenedStyle()} style={theme}>
-        <div
-          className={style.menuIcon + addOpenedStyle()}
-          onClick={handleClick}
-        >
-          <span style={iconTheme} />
-          <span style={iconTheme} />
-          <span style={iconTheme} />
-        </div>
-        <span className={style.title + addOpenedStyle()}>{title}</span>
-      </div>
-    </>
+    <div className={style.appBar} style={theme}>
+      <h1 className={style.title}>{title}</h1>
+      <nav className={style.menuContainer}>
+        {menuItemProps.map((item, index) => (
+          <Link href={item.linkTo} key={index} passHref>
+            <p className={style.navigation}>{item.label}</p>
+          </Link>
+        ))}
+      </nav>
+    </div>
   );
 };
 

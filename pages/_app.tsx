@@ -1,7 +1,6 @@
 import NextApp from "next/app";
 import "../styles/global.scss";
 import Header from "../components/Header/Header";
-import { menuItemProps } from "../utils/menuItemProps";
 import AppContext from "../utils/AppContext";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -34,7 +33,7 @@ class MyApp extends NextApp {
           }}
         >
           <Component />
-          <Header menuItem={menuItemProps} />
+          <Header />
         </AppContext.Provider>
       </>
     );
