@@ -29,7 +29,7 @@ const IndexPage: NextPage = () => {
     <Layout title="Kurogoma4D">
       <div className={style.topWrapper}>
         <p className={style.quote}>
-          ――― It is never too late to be what you might have been.
+          It is never too late to be what you might have been.
         </p>
         <p className={style.author}>George Eliot</p>
         <p>工事中 なんか後ろにアニメーションとかいれたい</p>

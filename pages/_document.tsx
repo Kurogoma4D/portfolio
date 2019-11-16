@@ -11,11 +11,11 @@ class MyDocument extends Document {
             content="initial-scale=1.0, width=device-width"
           />
           <link
-            href="https://fonts.googleapis.com/css?family=M+PLUS+1p:400,700&display=swap&subset=japanese"
+            href="https://fonts.googleapis.com/css?family=M+PLUS+1p:400,700&display=swap&text=%E4%BA%BA%E4%BD%9C%E5%93%81%E6%8A%80%E8%A1%93"
             rel="stylesheet"
           ></link>
           <link
-            href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c:300,700&display=swap&subset=japanese"
+            href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c:300,700&display=swap"
             rel="stylesheet"
           ></link>
           <link rel="icon" href="static/images/favicon.ico"></link>

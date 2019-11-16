@@ -54,8 +54,8 @@ const Header: React.FC = () => {
       <h1 className={style.title}>{title}</h1>
       <nav className={style.menuContainer}>
         {menuItemProps.map((item, index) => (
-          <Link href={item.linkTo} key={index} passHref>
-            <p className={style.navigation}>{item.label}</p>
+          <Link href={item.linkTo} key={index}>
+            <a>{item.label}</a>
           </Link>
         ))}
       </nav>

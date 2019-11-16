@@ -1,6 +1,7 @@
 @font-face {
   font-family: "M PLUS 1p";
-  src: url("https://fonts.googleapis.com/css?family=M+PLUS+1p:400,700&display=swap&subset=japanese");
+  src: local("M PLUS 1p"),
+    url("https://fonts.googleapis.com/css?family=M+PLUS+1p:400,700&display=swap&subset=japanese");
   font-display: swap;
 }
 
@@ -13,7 +14,7 @@
 body {
   margin: 0;
   background-color: #fffcf4;
-  font-family: "M PLUS 1p", "Franklin Gothic Medium", sans-serif;
+  font-family: "M PLUS 1p", "Noto Sans", sans-serif;
 }
 
 footer {
