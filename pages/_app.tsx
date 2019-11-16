@@ -3,8 +3,8 @@ import "../styles/global.scss";
 import Header from "../components/Header/Header";
 import AppContext from "../utils/AppContext";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-import { fas } from "@fortawesome/free-solid-svg-icons";
+import { faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 class MyApp extends NextApp {
   state = {
@@ -20,7 +20,7 @@ class MyApp extends NextApp {
   render() {
     const { Component } = this.props;
 
-    library.add(fab, fas);
+    library.add(faTwitter, faEnvelope);
 
     return (
       <>
