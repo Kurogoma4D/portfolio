@@ -10,13 +10,17 @@ const Header: React.FC = () => {
   const { pathname } = useRouter();
 
   React.useEffect(() => {
-    function onChangeRoute() {
-      state.setAppBarMode("light");
+    function onChangeRoute(url: string) {
+      if (url === "/") {
+        state.setAppBarMode("dark");
+      } else {
+        state.setAppBarMode("light");
+      }
     }
 
-    Router.events.on("routeChangeComplete", () => onChangeRoute());
+    Router.events.on("routeChangeComplete", url => onChangeRoute(url));
     return () => {
-      Router.events.off("routeChangeComplete", () => onChangeRoute());
+      Router.events.off("routeChangeComplete", url => onChangeRoute(url));
     };
   }, []);
 
