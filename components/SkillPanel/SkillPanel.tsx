@@ -13,8 +13,8 @@ const SkillPanel: React.SFC<Props> = (props: Props) => {
       <p className={style.name}>{item.name}</p>
       {item.relation && (
         <>
-          <span>キーワード：</span>
-          <span>{item.relation}</span>
+          <span className={style.relation}>キーワード：</span>
+          <span className={style.relation}>{item.relation}</span>
         </>
       )}
       {item.description && (
