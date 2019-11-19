@@ -36,18 +36,26 @@ const IndexPage: NextPage = () => {
       </div>
       <div className={style.personWrapper}>
         <h2>話し合いましょう</h2>
-        <section>
-          <a href="https://twitter.com/Krgm4D" className={style.twitter}>
-            <FontAwesomeIcon icon={["fab", "twitter"]} size="2x" />
+        <div className={style.contactLink}>
+          <a href="https://twitter.com/Krgm4D">
+            <FontAwesomeIcon
+              icon={["fab", "twitter"]}
+              size="2x"
+              className={style.twitter}
+            />
+            @Krgm4D
           </a>
-          <span>@Krgm4D</span>
-        </section>
-        <section>
-          <a href="mailto:contact&#64;krgm4d.dev" className={style.mail}>
-            <FontAwesomeIcon icon={["fas", "envelope"]} size="2x" />
+        </div>
+        <div className={style.contactLink}>
+          <a href="mailto:contact&#64;krgm4d.dev">
+            <FontAwesomeIcon
+              icon={["fas", "envelope"]}
+              size="2x"
+              className={style.mail}
+            />
+            contact&#64;krgm4d.dev
           </a>
-          <span>contact&#64;krgm4d.dev</span>
-        </section>
+        </div>
       </div>
     </Layout>
   );

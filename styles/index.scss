@@ -32,16 +32,27 @@
 .twitter {
   color: #1da1f2;
   vertical-align: middle;
+  margin-right: 8px;
 }
 
 .mail {
   color: #464646;
   vertical-align: middle;
+  margin-right: 8px;
 }
 
 .personWrapper h2 {
   margin-left: 24px;
   font-family: "M PLUS Rounded 1c", sans-serif;
+}
+
+.contactLink {
+  font-size: 18px;
+  margin: 0 0 24px 24px;
+}
+
+.contactLink a {
+  color: #464646;
 }
 
 .personWrapper section {
