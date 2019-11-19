@@ -1,9 +1,5 @@
-.skillContent {
-  margin: 0 20px;
-}
-
 .titleWrap {
-  margin: 40px 0 20px;
+  margin: 40px 20px 20px;
   padding-bottom: 4px;
   border-bottom: solid 1px rgb(212, 212, 212);
 }
@@ -15,4 +11,14 @@
 .titleWrap h3 {
   display: inline;
   margin-left: 12px;
+}
+
+.skillsWrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+
+  @media screen and (max-width: 900px) {
+    justify-content: center;
+  }
 }

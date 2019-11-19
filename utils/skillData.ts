@@ -24,7 +24,7 @@ export const regularSkills: SkillItem[] = [
   },
   {
     name: "C言語",
-    relation:
+    description:
       "高専一年次より講義で使用．プログラミングの基礎，アルゴリズム，データ構造，組み込みプログラミング，ニューラルネットワークなど"
   }
 ];
