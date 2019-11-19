@@ -1,7 +1,6 @@
 import * as React from "react";
-import Link from "next/link";
 import { NextPage } from "next";
-import * as style from "../styles/works.scss";
+import * as style from "../styles/skills.scss";
 import Layout from "../components/LayoutComp/Layout";
 import ImageHeader from "../components/ImageHeader/ImageHeader";
 
@@ -11,13 +10,20 @@ const SkillsPage: NextPage = () => (
       imagePath={require("./images/about-header.webp")}
       text="技術"
     />
-    <h1 className={style.title}>Skills</h1>
-    <p>準備中…</p>
-    <p>
-      <Link href="/">
-        <a>Go home</a>
-      </Link>
-    </p>
+    <section className={style.skillContent}>
+      <div className={style.titleWrap}>
+        <h2>プログラミング</h2>
+        <h3>そこそこできる</h3>
+      </div>
+
+      <div className={style.titleWrap}>
+        <h2>プログラミング</h2>
+        <h3>さわったことある</h3>
+      </div>
+      <div className={style.titleWrap}>
+        <h2>デザイン</h2>
+      </div>
+    </section>
   </Layout>
 );
 

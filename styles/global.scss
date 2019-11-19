@@ -1,3 +1,5 @@
+@import "./colors.scss";
+
 @font-face {
   font-family: "M PLUS 1p";
   src: local("M PLUS 1p"),
@@ -23,4 +25,10 @@ footer {
   text-align: right;
   font-size: 6px;
   border-top: 1px solid #84848467;
+}
+
+h1,
+h2,
+h3 {
+  color: $title-color;
 }
