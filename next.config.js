@@ -32,7 +32,7 @@ module.exports = withPlugins(
       {
         cssModules: true,
         cssLoderOptions: {
-          importLoaders: 1,
+          importLoaders: 2,
           localIdentName: "[local]___[hash:base64:5]"
         }
       }
