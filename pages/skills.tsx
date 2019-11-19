@@ -28,7 +28,9 @@ const SkillsPage: NextPage = () => (
     </div>
     <div className={style.skillsWrap}>
       {poorSkills.map(item => (
-        <SkillPanel item={item} key={item.name}></SkillPanel>
+        <p className={style.skillChip} key={item.name}>
+          {item.name}
+        </p>
       ))}
     </div>
 
