@@ -15,7 +15,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           ></link>
           <link
-            href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c:300,700&display=swap"
+            href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c:400,700&display=swap"
             rel="stylesheet"
           ></link>
           <link rel="icon" href="static/images/favicon.ico"></link>
