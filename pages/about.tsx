@@ -2,8 +2,41 @@ import { NextPage } from "next";
 import * as style from "../styles/about.scss";
 import Layout from "../components/LayoutComp/Layout";
 import ImageHeader from "../components/ImageHeader/ImageHeader";
+import axios from "axios";
+import { GitHubEvents, Type } from "../interfaces/GitHubEvents";
+import * as React from "react";
 
 const About: NextPage = () => {
+  const [events, setEvents] = React.useState<GitHubEvents[]>([]);
+
+  React.useEffect(() => {
+    const getEvents = async () => {
+      const eventsUrl = "https://api.github.com/users/Kurogoma4D/events";
+      const response = await axios.get<GitHubEvents[]>(eventsUrl);
+      const pushEvents = response.data.filter(
+        item => item.type === Type.PushEvent
+      );
+      setEvents(pushEvents);
+    };
+    getEvents();
+    return () => {};
+  }, []);
+
+  const formatDate = (dateString: string): string => {
+    const options = {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+      hour12: false,
+      timeZone: "Asia/Tokyo"
+    };
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat("ja-JP", options).format(date);
+  };
+
   return (
     <Layout title="About | Kurogoma4D">
       <ImageHeader
@@ -31,6 +64,16 @@ const About: NextPage = () => {
           <p>吉澤研究室(メディアデザイン実験室) 所属</p>
           <p>2018/4~</p>
           <p>木更津工業高等専門学校 制御・情報システム工学専攻</p>
+        </div>
+        <h3>最近の活動</h3>
+        <div className={style.activityWrap}>
+          {events.map(event => (
+            <div className={style.activityContainer} key={event.id}>
+              <p>{formatDate(event.created_at)}</p>
+              <span>{event.payload.size}</span>
+              <span>{event.repo.name}</span>
+            </div>
+          ))}
         </div>
       </div>
     </Layout>
