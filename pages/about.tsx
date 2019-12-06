@@ -5,6 +5,7 @@ import ImageHeader from "../components/ImageHeader/ImageHeader";
 import axios from "axios";
 import { GitHubEvents, Type } from "../interfaces/GitHubEvents";
 import * as React from "react";
+import { normalizeNumber, scaleNumber } from "../utils/functions";
 
 const About: NextPage = () => {
   const [events, setEvents] = React.useState<GitHubEvents[]>([]);
@@ -22,7 +23,7 @@ const About: NextPage = () => {
     return () => {};
   }, []);
 
-  const formatDate = (dateString: string): string => {
+  function formatDate(dateString: string): string {
     const options = {
       year: "numeric",
       month: "numeric",
@@ -35,7 +36,19 @@ const About: NextPage = () => {
     };
     const date = new Date(dateString);
     return new Intl.DateTimeFormat("ja-JP", options).format(date);
-  };
+  }
+
+  function commitSizeStyle(size: number): React.CSSProperties {
+    const rangedSize = normalizeNumber(1, 10, Math.min(size, 10));
+    const fontSize = scaleNumber(1.0, 2.0, rangedSize);
+    return {
+      fontSize: fontSize + "em"
+    };
+  }
+
+  function parseRepoUrl(url: string): string {
+    return url.replace("api.", "").replace("/repos", "");
+  }
 
   return (
     <Layout title="About | Kurogoma4D">
@@ -69,9 +82,16 @@ const About: NextPage = () => {
         <div className={style.activityWrap}>
           {events.map(event => (
             <div className={style.activityContainer} key={event.id}>
-              <p>{formatDate(event.created_at)}</p>
-              <span>{event.payload.size}</span>
-              <span>{event.repo.name}</span>
+              <p className={style.activityDate}>
+                {formatDate(event.created_at)}
+              </p>
+              <a href={parseRepoUrl(event.repo.url)}>
+                <p className={style.activityRepoName}>{event.repo.name}</p>
+              </a>
+              <span style={commitSizeStyle(event.payload.size as number)}>
+                {event.payload.size}
+              </span>
+              <span> コミット</span>
             </div>
           ))}
         </div>
