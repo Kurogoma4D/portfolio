@@ -1,0 +1,28 @@
+@import "./colors.scss";
+
+@font-face {
+  font-family: "M PLUS 1p";
+  src: local("M PLUS 1p"),
+    url("https://fonts.googleapis.com/css?family=M+PLUS+1p:400,700&display=swap&text=%E4%BA%BA%E4%BD%9C%E5%93%81%E6%8A%80%E8%A1%93");
+  font-display: swap;
+}
+
+body {
+  margin: 0;
+  background-color: #fffcf4;
+  font-family: "M PLUS 1p Rounded 1c", "Noto Sans", sans-serif;
+}
+
+footer {
+  margin: 60px 20px 20px;
+  text-align: right;
+  font-size: 6px;
+  border-top: 1px solid #84848467;
+}
+
+h1,
+h2,
+h3,
+a {
+  color: $title-color;
+}

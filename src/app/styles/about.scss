@@ -1,0 +1,49 @@
+.personalContainer {
+  margin: 32px 0;
+  display: flex;
+  align-items: center;
+}
+
+.personalContainer img {
+  height: 160px;
+  transform: translateX(-20px);
+  border-radius: 80px;
+  box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.2);
+}
+
+.content {
+  padding: 0 24px;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 400;
+}
+
+.content p {
+  line-height: 1.6em;
+}
+
+.carrier {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto;
+}
+
+.carrier p {
+  margin: 4px 0;
+}
+
+.activityContainer {
+  padding: 12px;
+  margin-bottom: 16px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.2);
+}
+
+.activityDate {
+  font-size: 0.8em;
+  margin: 0 0 4px;
+}
+
+.activityRepoName {
+  margin: 0 0 4px;
+}
