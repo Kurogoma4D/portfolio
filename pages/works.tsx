@@ -1,18 +1,16 @@
 import * as React from "react";
-import Link from "next/link";
 import Layout from "../components/LayoutComp/Layout";
 import { NextPage } from "next";
 import * as style from "../styles/works.scss";
+import ImageHeader from "../components/ImageHeader/ImageHeader";
 
 const WorksPage: NextPage = () => (
   <Layout title="Works | Kurogoma4D">
-    <h1 className={style.title}>Works</h1>
-    <p>準備中…</p>
-    <p>
-      <Link href="/">
-        <a>Go home</a>
-      </Link>
-    </p>
+    <ImageHeader
+      imagePath={require("./images/about-header.webp")}
+      text="作品"
+    />
+    <div className={style.contentsWrap}></div>
   </Layout>
 );
 
