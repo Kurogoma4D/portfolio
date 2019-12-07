@@ -18,7 +18,7 @@ class MyApp extends NextApp {
   };
 
   render() {
-    const { Component } = this.props;
+    const { Component, pageProps } = this.props;
 
     library.add(faTwitter, faEnvelope);
 
@@ -32,7 +32,7 @@ class MyApp extends NextApp {
             }
           }}
         >
-          <Component />
+          <Component {...pageProps} />
           <Header />
         </AppContext.Provider>
       </>

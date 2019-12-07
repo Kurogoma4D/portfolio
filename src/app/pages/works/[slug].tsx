@@ -23,10 +23,10 @@ export default WorkDetail;
 
 WorkDetail.getInitialProps = async ({ query }): Promise<Props> => {
   const { slug } = query;
-  const content = await require(`../../posts/${slug}.md`);
+  const content = await import(`../../posts/${slug}.md`);
   const raw = matter(content.default);
   const datas = { ...raw };
-  console.log(datas.content);
+  console.log(datas.data);
 
   return { data: datas.data, content: datas.content };
 };
