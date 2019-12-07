@@ -4,6 +4,13 @@ const images = require("next-images");
 
 const nextConfig = {
   distDir: "../../dist/functions/next",
+  exportPathMap: function() {
+    return {
+      "/": { page: "/" },
+      "/about": { page: "/about" },
+      "/skills": { page: "/skills" }
+    };
+  },
   webpack: (config, {}) => {
     config.module.rules.push(
       {
