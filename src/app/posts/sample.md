@@ -1,5 +1,6 @@
 ---
 title: "The coastal red giants"
+image: "static/images/sushi.png"
 ---
 
 # hello
