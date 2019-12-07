@@ -2,6 +2,7 @@
   "functions": {
     "source": "dist/functions",
     "predeploy": [
+      "yarn clean",
       "yarn lint-functions",
       "yarn lint-app",
       "yarn typecheck-app",
