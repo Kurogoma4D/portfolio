@@ -25,7 +25,10 @@ const WorksPage: NextPage<Props> = (props: Props) => (
           <Link href={`/works/${post.slug}`}>
             <a>
               <div className={style.workCard}>
-                <img src={post.document.data.image}></img>
+                <img
+                  src={post.document.data.image}
+                  alt={post.document.data.title}
+                ></img>
                 <span className={style.workTitle}>
                   {post.document.data.title}
                 </span>
