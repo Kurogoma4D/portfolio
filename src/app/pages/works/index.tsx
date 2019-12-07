@@ -22,9 +22,15 @@ const WorksPage: NextPage<Props> = (props: Props) => (
     <div className={style.contentsWrap}>
       {props.posts.map(post => (
         <div key={post.slug}>
-          <img src={post.document.data.image}></img>
           <Link href={`/works/${post.slug}`}>
-            <a>{post.document.data.title}</a>
+            <a>
+              <div className={style.workCard}>
+                <img src={post.document.data.image}></img>
+                <span className={style.workTitle}>
+                  {post.document.data.title}
+                </span>
+              </div>
+            </a>
           </Link>
         </div>
       ))}

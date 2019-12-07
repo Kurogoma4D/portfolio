@@ -1,4 +1,48 @@
-.title {
-  margin: 0;
-  padding: 0.67em 0;
+.contentsWrap {
+  display: flex;
+  margin: 16px;
+}
+
+.contentsWrap a {
+  text-decoration: none;
+}
+
+.workCard {
+  width: 256px;
+  height: 256px;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 280ms ease-out;
+}
+
+.workCard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: filter 350ms ease-out;
+}
+
+.workCard img:hover,
+.workCard img:focus {
+  filter: blur(2px) brightness(0.6);
+}
+
+.workCard:hover {
+  transform: scale(0.95);
+}
+
+.workTitle {
+  opacity: 0;
+  color: #ffffff;
+  display: block;
+  position: absolute;
+  width: 100%;
+  top: 45%;
+}
+
+.workCard:hover .workTitle {
+  opacity: 1;
 }
