@@ -1,8 +1,8 @@
 import * as React from "react";
-// import Link from "next/link";
 import Head from "next/head";
 import { NextPage } from "next";
 import * as style from "./Layout.scss";
+import Header from "../Header/Header";
 
 type Props = {
   children?: React.ReactNode;
@@ -21,6 +21,7 @@ const Layout: NextPage<Props> = ({ children, title = "title" }) => {
       <footer>
         <p>Favicon made by Freepik from www.flaticon.com</p>
       </footer>
+      <Header />
     </div>
   );
 };
