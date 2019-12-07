@@ -20,4 +20,4 @@ jobs:
     - name: yarn install, deploy
       run: |
         yarn
-        yarn deploy --token=$FIREBASE_TOKEN
+        yarn deploy --token=${{ secrets.FIREBASE_TOKEN }}
