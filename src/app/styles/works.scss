@@ -1,6 +1,11 @@
 .contentsWrap {
   display: flex;
   margin: 16px;
+  flex-wrap: wrap;
+  @media screen and (max-width: 480px) {
+    flex-wrap: nowrap;
+    overflow: scroll;
+  }
 }
 
 .contentsWrap a {
@@ -15,7 +20,7 @@
   overflow: hidden;
   text-align: center;
   transition: transform 280ms ease-out;
-  margin-right: 16px;
+  margin: 0 16px 16px 0;
 }
 
 .workCard img {

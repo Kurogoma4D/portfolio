@@ -9,5 +9,4 @@ image: "/static/images/gionfes_showcase.webp"
 
 企画・実装・運用全てを同校学生団体の prane 様協力のもとほとんど一人で行った．実装には Processing を用い，背景に流れる映像には Cinema4D を用いた．
 
-ソースコード：
-https://github.com/Kurogoma4D/gionfes_showcase
+[ソースコード](https://github.com/Kurogoma4D/gionfes_showcase)
