@@ -6,13 +6,13 @@
     "node": "12"
   },
   "scripts": {
-    "dev": "next src/app",
-    "preserve": "yarn build-public && yarn build-functions && yarn build-app && yarn copy-deps && yarn install-deps",
+    "dev": "yarn clean && next src/app",
+    "preserve": "yarn clean && yarn build-public && yarn build-functions && yarn build-app && yarn copy-deps && yarn install-deps",
     "serve": "cross-env NODE_ENV=production firebase serve",
     "deploy": "firebase deploy",
     "clean": "rimraf \"dist/functions\" && rimraf \"dist/public\"",
     "build-app": "next build \"src/app\"",
-    "build-public": "cpx \"src/public/**/*.*\" \"dist/public\" -C",
+    "build-public": "cpx \"src/public/**/*.*\" \"dist/public\" -C && cpx \"src/app/public/**/*.*\" \"dist/public\"",
     "build-functions": "tsc --project src/functions",
     "lint-app": "tslint --project src/app",
     "typecheck-app": "tsc --project src/app",
