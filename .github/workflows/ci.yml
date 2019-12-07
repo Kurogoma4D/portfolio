@@ -9,5 +9,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: GitHub Action for Firebase
-      uses: w9jds/firebase-action@v1.1.0
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: yarn install, build and deploy
+      run: |
+        yarn install
+        yarn deploy --token=${{ secrets.FIREBASE_TOKEN }}
