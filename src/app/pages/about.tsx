@@ -1,11 +1,10 @@
 import { NextPage } from "next";
 import * as style from "../styles/about.scss";
-import Layout from "../components/LayoutComp/Layout";
-import ImageHeader from "../components/ImageHeader/ImageHeader";
 import axios from "axios";
 import { GitHubEvents, Type } from "../interfaces/GitHubEvents";
 import * as React from "react";
 import { normalizeNumber, scaleNumber } from "../utils/functions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const About: NextPage = () => {
   const [events, setEvents] = React.useState<GitHubEvents[]>([]);
@@ -51,14 +50,30 @@ const About: NextPage = () => {
   }
 
   return (
-    <Layout title="About | Kurogoma4D">
-      <ImageHeader
-        imagePath={require("./images/about-header.webp")}
-        text="人"
-      />
+    <>
       <div className={style.personalContainer}>
         <img src={require("./images/profile.webp")} alt="アイコン" />
         <h2>Kurogoma4D</h2>
+      </div>
+      <div className={style.contactLink}>
+        <a href="https://twitter.com/Krgm4D">
+          <FontAwesomeIcon
+            icon={["fab", "twitter"]}
+            size="2x"
+            className={style.twitter}
+          />
+          @Krgm4D
+        </a>
+      </div>
+      <div className={style.contactLink}>
+        <a href="mailto:contact&#64;krgm4d.dev">
+          <FontAwesomeIcon
+            icon={["fas", "envelope"]}
+            size="2x"
+            className={style.mail}
+          />
+          contact&#64;krgm4d.dev
+        </a>
       </div>
       <div className={style.content}>
         <p>
@@ -96,7 +111,7 @@ const About: NextPage = () => {
           ))}
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 

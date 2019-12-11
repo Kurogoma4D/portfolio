@@ -16,12 +16,12 @@ const Layout: NextPage<Props> = ({ children, title = "title" }) => {
         <title>{title}</title>
       </Head>
       <header></header>
+      <Header />
       <div className={style.spacer}>{children}</div>
 
       <footer>
         <p>Favicon made by Freepik from www.flaticon.com</p>
       </footer>
-      <Header />
     </div>
   );
 };

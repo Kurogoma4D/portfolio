@@ -1,13 +1,12 @@
 import * as React from "react";
 import * as style from "./Header.scss";
-import { Router, useRouter } from "next/router";
+import { Router } from "next/router";
 import AppContext from "../../utils/AppContext";
 import { menuItemProps } from "../../utils/menuItemProps";
 import Link from "next/link";
 
 const Header: React.FC = () => {
   const { state } = React.useContext(AppContext);
-  const { pathname } = useRouter();
 
   React.useEffect(() => {
     function onChangeRoute(url: string) {
@@ -41,21 +40,13 @@ const Header: React.FC = () => {
     }
   }
 
-  function getTitle() {
-    var path = pathname.substring(1).toUpperCase();
-    if (path === "") {
-      path = "TOP";
-    }
-    return path;
-  }
-
   const theme = appBarThemeSwitch();
-
-  const title = getTitle();
 
   return (
     <div className={style.appBar} style={theme}>
-      <h1 className={style.title}>{title}</h1>
+      <Link href="/">
+        <h1 className={style.title}>TOP</h1>
+      </Link>
       <nav className={style.menuContainer}>
         {menuItemProps.map((item, index) => (
           <Link href={item.linkTo} key={index}>
