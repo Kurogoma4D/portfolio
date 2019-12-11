@@ -54,27 +54,33 @@ const About: NextPage = () => {
       <div className={style.personalContainer}>
         <img src={require("./images/profile.webp")} alt="アイコン" />
         <h2>Kurogoma4D</h2>
+        <div className={style.contacts}>
+          <div className={style.contactLink}>
+            <a href="https://twitter.com/Krgm4D">
+              <FontAwesomeIcon
+                icon={["fab", "twitter"]}
+                size="lg"
+                className={style.contactIcon}
+              />
+            </a>
+            <a href="mailto:contact&#64;krgm4d.dev">
+              <FontAwesomeIcon
+                icon={["fas", "envelope"]}
+                size="lg"
+                className={style.contactIcon}
+              />
+            </a>
+            <a href="https://github.com/Kurogoma4D">
+              <FontAwesomeIcon
+                icon={["fab", "github"]}
+                size="lg"
+                className={style.contactIcon}
+              />
+            </a>
+          </div>
+        </div>
       </div>
-      <div className={style.contactLink}>
-        <a href="https://twitter.com/Krgm4D">
-          <FontAwesomeIcon
-            icon={["fab", "twitter"]}
-            size="2x"
-            className={style.twitter}
-          />
-          @Krgm4D
-        </a>
-      </div>
-      <div className={style.contactLink}>
-        <a href="mailto:contact&#64;krgm4d.dev">
-          <FontAwesomeIcon
-            icon={["fas", "envelope"]}
-            size="2x"
-            className={style.mail}
-          />
-          contact&#64;krgm4d.dev
-        </a>
-      </div>
+
       <div className={style.content}>
         <p>
           自主制作として主にwebやアプリの開発をしたり、3DCGで静止画を制作したりしています。高専生活の過程でX-R技術やデザインに興味を持ち、メディアデザインを対象とする研究室に所属しました。

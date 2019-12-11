@@ -2,7 +2,7 @@ import NextApp from "next/app";
 import "../styles/global.scss";
 import AppContext from "../utils/AppContext";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 class MyApp extends NextApp {
@@ -19,7 +19,7 @@ class MyApp extends NextApp {
   render() {
     const { Component, pageProps } = this.props;
 
-    library.add(faTwitter, faEnvelope, faArrowLeft);
+    library.add(faTwitter, faEnvelope, faArrowLeft, faGithub);
 
     return (
       <>
