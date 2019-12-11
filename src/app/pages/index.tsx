@@ -25,6 +25,11 @@ const IndexPage: NextPage = () => {
     };
   }, []);
 
+  const stageLine: React.ReactElement[] = [];
+  for (var i = 0; i < 24; i++) {
+    stageLine.push(<div className={style.stageLine} key={i} />);
+  }
+
   return (
     <Layout title="Kurogoma4D">
       <div className={style.topWrapper}>
@@ -32,7 +37,8 @@ const IndexPage: NextPage = () => {
           It is never too late to be what you might have been.
         </p>
         <p className={style.author}>George Eliot</p>
-        <p>工事中 なんか後ろにアニメーションとかいれたい</p>
+        <div className={style.stageTop} />
+        <div className={style.stage}>{stageLine}</div>
       </div>
       <About />
     </Layout>

@@ -1,7 +1,9 @@
 .topWrapper {
   width: 100%;
-  height: 100vh;
+  height: 95vh;
   background: #424242;
+  position: relative;
+  overflow-x: hidden;
 }
 
 .topWrapper p {
@@ -9,7 +11,6 @@
   font-family: "M PLUS 1p", "Franklin Gothic Medium", sans-serif;
   font-weight: 700;
   color: white;
-  transform: skewY(-8deg);
 }
 
 .quote {
@@ -23,22 +24,36 @@
   line-height: 5vh;
 }
 
-.personWrapper {
+.stage {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(24, 1fr);
+  bottom: 0;
+  left: 0;
+  width: 1800px;
+  height: 80px;
+  background: #6d3f22;
+  border: 0px solid #834b26;
+  border-top-width: 12px;
+}
+
+.stageLine {
+  width: 6px;
+  border-radius: 3px 3px 0 0;
+  background: rgba(0, 0, 0, 0.2);
+  margin: 8px 0 0;
+}
+
+.stageTop {
+  position: absolute;
+  bottom: 80px;
+  left: 0;
   width: 100%;
-  height: 80vh;
-  padding-top: 20vh;
-}
-
-.personWrapper h2 {
-  margin-left: 24px;
-  font-family: "M PLUS Rounded 1c", sans-serif;
-}
-
-.personWrapper section {
-  margin: 24px;
-}
-
-.personWrapper span {
-  font-size: 18px;
-  margin-left: 12px;
+  height: 60px;
+  background: linear-gradient(
+    0deg,
+    rgb(128, 78, 40) 0%,
+    rgba(109, 63, 34, 0.8) 50%,
+    rgba(106, 45, 16, 0.6) 100%
+  );
 }
