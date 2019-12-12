@@ -7,18 +7,12 @@
   },
   "scripts": {
     "dev": "yarn clean && next src/app",
-    "preserve": "yarn clean && yarn build-public && yarn build-functions && yarn build-app && yarn copy-deps && yarn install-deps",
-    "serve": "cross-env NODE_ENV=production firebase serve",
     "deploy": "cross-env NODE_ENV=production firebase deploy",
-    "clean": "rimraf \"dist/functions\" && rimraf \"dist/public\"",
-    "build-app": "next build \"src/app\"",
-    "build-public": "cpx \"src/public/**/*.*\" \"dist/public\" -C && cpx \"src/app/public/**/*.*\" \"dist/public\"",
-    "build-functions": "tsc --project src/functions",
-    "lint-app": "tslint --project src/app",
+    "clean": "rimraf \"dist/\"",
+    "build-app": "cd \"src/app\" && next build",
+    "export": "cd \"src/app\" && next export -o \"../../dist/\"",
     "typecheck-app": "tsc --project src/app",
-    "lint-functions": "tslint --project src/functions",
-    "copy-deps": "cpx \"*{package.json,package-lock.json,yarn.lock}\" \"dist/functions\" -C",
-    "install-deps": "cd \"dist/functions\" && yarn"
+    "export-test": "yarn clean && yarn typecheck-app && yarn build-app && yarn export"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
@@ -41,6 +35,7 @@
     "react-markdown": "^4.2.2",
     "react-svg": "^11.0.3",
     "react-svg-loader": "^3.0.3",
+    "require-context": "^1.1.0",
     "webpack": "^4.41.2"
   },
   "devDependencies": {

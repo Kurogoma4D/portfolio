@@ -1,25 +1,12 @@
 {
-  "functions": {
-    "source": "dist/functions",
+  "hosting": {
+    "public": "dist",
     "predeploy": [
       "yarn clean",
-      "yarn lint-functions",
-      "yarn lint-app",
       "yarn typecheck-app",
-      "yarn build-functions",
       "yarn build-app",
-      "yarn copy-deps",
-      "yarn install-deps"
-    ]
-  },
-  "hosting": {
-    "public": "dist/public",
-    "rewrites": [
-      {
-        "source": "**/**",
-        "function": "nextApp"
-      }
+      "yarn export"
     ],
-    "predeploy": "yarn build-public"
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
   }
 }
