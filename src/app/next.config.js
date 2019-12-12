@@ -28,7 +28,7 @@ const nextConfig = {
       "/": { page: "/" },
       "/about": { page: "/about" },
       "/skills": { page: "/skills" },
-      "/works": { page: "/works" }
+      "/works": { page: "/works/index" }
     });
   },
   webpack: (config, {}) => {
