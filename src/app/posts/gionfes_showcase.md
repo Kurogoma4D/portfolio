@@ -1,6 +1,6 @@
 ---
 title: "木更津高専祗園祭 ツイート展示"
-image: "/static/images/gionfes_showcase.webp"
+image: "/static/images/works/gionfes_showcase.webp"
 ---
 
 # 木更津高専祗園祭 2019 ツイート展示
