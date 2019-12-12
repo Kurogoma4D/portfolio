@@ -4,6 +4,7 @@ const images = require("next-images");
 const requireContext = require("require-context");
 
 const nextConfig = {
+  exportTrailingSlash: true,
   exportPathMap: function() {
     const context = requireContext("../../src/app/posts", true, /\.md$/);
     const keys = context.keys();
