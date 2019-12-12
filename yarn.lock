@@ -823,6 +823,13 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
+"@babel/runtime@^7.6.3", "@babel/runtime@^7.7.2":
+  version "7.7.6"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.7.6.tgz#d18c511121aff1b4f2cd1d452f1bac9601dd830f"
+  integrity sha512-BWAJxpNVa0QlE5gZdWjSxXtemZyZ9RmrmVozxt3NUXeZhVIJ5ANyqmMc0JDrivBZyxUuQvFxlvH4OWWOogGfUw==
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
 "@babel/template@^7.6.0", "@babel/template@^7.7.4":
   version "7.7.4"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.7.4.tgz#428a7d9eecffe27deac0a98e23bf8e3675d2a77b"
@@ -1109,6 +1116,13 @@
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-1.2.0.tgz#63ce3638cb85231f3704164c90a18ef816da3fb7"
   integrity sha512-mwhXGkRV5dlvQc4EgPDxDxO6WuMBVymGFd1CA+2Y+z5dG9MNspoQ+AWjl/Ld1MnpCL8AKbosZlDVohqcIwuWsw==
+
+"@tanem/svg-injector@^8.0.35":
+  version "8.0.35"
+  resolved "https://registry.yarnpkg.com/@tanem/svg-injector/-/svg-injector-8.0.35.tgz#91e177add726265ec5ad6d81c9b6a2a62c1120f8"
+  integrity sha512-aDiTinv2l2WCMNzbmq+W0aTf/uFPR24OD4xgSNPemUI/9yfGtfxgSuK3fdisvSLqnBl0M3Br6ifZHWCjWZKadQ==
+  dependencies:
+    "@babel/runtime" "^7.6.3"
 
 "@types/body-parser@*":
   version "1.17.1"
@@ -7954,6 +7968,15 @@ react-svg-loader@^3.0.3:
   dependencies:
     loader-utils "^1.2.3"
     react-svg-core "^3.0.3"
+
+react-svg@^11.0.3:
+  version "11.0.3"
+  resolved "https://registry.yarnpkg.com/react-svg/-/react-svg-11.0.3.tgz#2666de8e60326c4f7d382ce9c77cde8a4ef5cecb"
+  integrity sha512-h/jwiITU/rn7YhChNxbejAkUPDwbJxp0oeupC2OHbcYFymamHaL5D+bJALxktlA76xoEAnxdsUO867INp8KwwQ==
+  dependencies:
+    "@babel/runtime" "^7.7.2"
+    "@tanem/svg-injector" "^8.0.35"
+    prop-types "^15.7.2"
 
 react@^16.10.1:
   version "16.12.0"
