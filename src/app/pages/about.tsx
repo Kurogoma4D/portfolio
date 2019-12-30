@@ -52,7 +52,7 @@ const About: NextPage = () => {
   return (
     <>
       <div className={style.personalContainer}>
-        <img src="/static/images/profile.png" alt="アイコン" />
+        <img src="/static/images/profile.jpg" alt="アイコン" />
         <h2>Kurogoma4D</h2>
         <div className={style.contacts}>
           <div className={style.contactLink}>
