@@ -24,6 +24,7 @@
     "firebase-admin": "^8.0.0",
     "firebase-functions": "^3.1.0",
     "gray-matter": "^4.0.2",
+    "ismobilejs": "^1.0.3",
     "isomorphic-unfetch": "3.0.0",
     "next": "latest",
     "next-compose-plugins": "^2.2.0",

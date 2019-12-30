@@ -42,7 +42,7 @@ const WorksPage: NextPage = () => {
   return (
     <Layout title="Works | Kurogoma4D">
       <ImageHeader
-        imagePath={require("../images/about-header.webp")}
+        imagePath="/static/images/works/gionfes_showcase.png"
         text="作品"
       />
       <div className={style.contentsWrap}>

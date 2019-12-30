@@ -8,10 +8,7 @@ import SkillPanel from "../components/SkillPanel/SkillPanel";
 
 const SkillsPage: NextPage = () => (
   <Layout title="Skills | Kurogoma4D">
-    <ImageHeader
-      imagePath={require("./images/about-header.webp")}
-      text="技術"
-    />
+    <ImageHeader imagePath="/static/images/works/cg_kirameki.png" text="技術" />
     <div className={style.titleWrap}>
       <h2>プログラミング</h2>
       <h3>そこそこできる</h3>
