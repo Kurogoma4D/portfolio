@@ -32,11 +32,12 @@
   transition: opacity 350ms ease-out;
 }
 
-.workCard img:hover,
-.workCard img:focus {
+.workCard:focus img,
+.workCard:hover img {
   opacity: 0.4;
 }
 
+.workCard:focus,
 .workCard:hover {
   transform: scale(0.95);
 }
