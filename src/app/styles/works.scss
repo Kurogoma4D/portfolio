@@ -21,6 +21,7 @@
   text-align: center;
   transition: transform 280ms ease-out;
   margin: 0 16px 16px 0;
+  background: black;
 }
 
 .workCard img {
@@ -28,12 +29,12 @@
   height: 100%;
   object-fit: cover;
   border-radius: 8px;
-  transition: filter 350ms ease-out;
+  transition: opacity 350ms ease-out;
 }
 
 .workCard img:hover,
 .workCard img:focus {
-  filter: blur(2px) brightness(0.6);
+  opacity: 0.4;
 }
 
 .workCard:hover {
