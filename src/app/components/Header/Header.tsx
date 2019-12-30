@@ -47,6 +47,7 @@ const Header: React.FC = () => {
       <Link href="/">
         <h1 className={style.title}>TOP</h1>
       </Link>
+      <div className={style.spacer}></div>
       <nav className={style.menuContainer}>
         {menuItemProps.map((item, index) => (
           <Link href={item.linkTo} key={index}>
