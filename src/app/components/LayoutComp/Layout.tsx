@@ -1,8 +1,6 @@
 import * as React from "react";
 import Head from "next/head";
 import { NextPage } from "next";
-import * as style from "./Layout.scss";
-import Header from "../Header/Header";
 
 type Props = {
   children?: React.ReactNode;
@@ -16,8 +14,7 @@ const Layout: NextPage<Props> = ({ children, title = "title" }) => {
         <title>{title}</title>
       </Head>
       <header></header>
-      <Header />
-      <div className={style.spacer}>{children}</div>
+      {children}
 
       <footer>
         <p>Favicon made by Freepik from www.flaticon.com</p>

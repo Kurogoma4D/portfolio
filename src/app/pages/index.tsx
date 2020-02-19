@@ -5,6 +5,7 @@ import * as style from "../styles/index.scss";
 import AppContext from "../utils/AppContext";
 import About from "./about";
 import { ReactSVG } from "react-svg";
+import SkillsPage from "../components/skills";
 
 const IndexPage: NextPage = () => {
   const { state } = React.useContext(AppContext);
@@ -80,6 +81,7 @@ const IndexPage: NextPage = () => {
         <div className={style.stage}>{stageLine}</div>
       </div>
       <About />
+      <SkillsPage />
       <style jsx global>{`
         .quote--animation {
           animation: 3s ease-in-out 50ms infinite alternate quote-move;

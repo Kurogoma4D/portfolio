@@ -16,7 +16,7 @@ const About: NextPage = () => {
       const pushEvents = response.data.filter(
         item => item.type === Type.PushEvent
       );
-      setEvents(pushEvents);
+      setEvents(pushEvents.slice(0, 3));
     };
     getEvents();
     return () => {};
