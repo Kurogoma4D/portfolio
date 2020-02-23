@@ -1,9 +1,9 @@
 import { NextPage } from "next";
-import * as style from "../styles/about.scss";
+import * as style from "./about.scss";
 import axios from "axios";
-import { GitHubEvents, Type } from "../interfaces/GitHubEvents";
+import { GitHubEvents, Type } from "../../interfaces/GitHubEvents";
 import * as React from "react";
-import { normalizeNumber, scaleNumber } from "../utils/functions";
+import { normalizeNumber, scaleNumber } from "../../utils/functions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const About: NextPage = () => {

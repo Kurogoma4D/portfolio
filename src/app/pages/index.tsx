@@ -3,9 +3,9 @@ import { NextPage } from "next";
 import Layout from "../components/LayoutComp/Layout";
 import * as style from "../styles/index.scss";
 import AppContext from "../utils/AppContext";
-import About from "./about";
+import About from "../components/about/about";
 import { ReactSVG } from "react-svg";
-import SkillsPage from "../components/skills";
+import Skills from "../components/skills/skills";
 
 const IndexPage: NextPage = () => {
   const { state } = React.useContext(AppContext);
@@ -81,7 +81,7 @@ const IndexPage: NextPage = () => {
         <div className={style.stage}>{stageLine}</div>
       </div>
       <About />
-      <SkillsPage />
+      <Skills />
       <style jsx global>{`
         .quote--animation {
           animation: 3s ease-in-out 50ms infinite alternate quote-move;

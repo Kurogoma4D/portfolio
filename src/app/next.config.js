@@ -27,8 +27,6 @@ const nextConfig = {
 
     return Object.assign({}, pages, {
       "/": { page: "/" },
-      "/about": { page: "/about" },
-      "/skills": { page: "/skills" },
       "/works": { page: "/works/index" }
     });
   },
