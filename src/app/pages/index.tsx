@@ -5,6 +5,7 @@ import * as style from "../styles/index.scss";
 import AppContext from "../utils/AppContext";
 import About from "../components/about/about";
 import Skills from "../components/skills/skills";
+import CreateCanvas from "../utils/create_canvas";
 
 const IndexPage: NextPage = () => {
   const { state } = React.useContext(AppContext);
@@ -28,7 +29,9 @@ const IndexPage: NextPage = () => {
 
   return (
     <Layout title="Kurogoma4D">
-      <div className={style.topWrapper}></div>
+      <div className={style.topWrapper}>
+        <CreateCanvas />
+      </div>
       <About />
       <Skills />
     </Layout>

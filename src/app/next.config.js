@@ -46,6 +46,11 @@ const nextConfig = {
         use: "raw-loader"
       }
     );
+
+    config.externals = config.externals || [];
+    config.externals.push({
+      createjs: "createjs"
+    });
     return config;
   }
 };
