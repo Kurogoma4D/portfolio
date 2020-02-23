@@ -82,7 +82,7 @@ const About: NextPage = () => {
         </div>
       </div>
       <div className={style.content}>
-        <Reveal animation={Animation.SlideInRight} debugName="content">
+        <Reveal animation={Animation.FadeInUp} debugName="content">
           <p>
             自主制作として主にwebやアプリの開発をしたり、3DCGで静止画を制作したりしています。高専生活の過程でX-R技術やデザインに興味を持ち、メディアデザインを対象とする研究室に所属しました。
           </p>
@@ -94,7 +94,7 @@ const About: NextPage = () => {
             趣味はPCゲーム、ポータブルオーディオなどです。音楽は世界を救う。
           </p>
         </Reveal>
-        <Reveal animation={Animation.SlideInLeft}>
+        <Reveal animation={Animation.FadeInUp}>
           <h3>経歴</h3>
           <div className={style.carrier}>
             <p>2013/4~</p>
