@@ -93,12 +93,14 @@ export const buildAuthor = (canvas: HTMLCanvasElement): createjs.Container => {
   );
 
   const linesNumber = Math.round(canvas.height / size + 1);
+  const offsetX = size * 4;
 
   for (let i = 0; i < linesNumber; i++) {
     let s = author.clone();
+    s.x = -offsetX;
     s.y = i * size;
     createjs.Tween.get(s, { loop: -1 }).to(
-      { x: -authorString.length * size },
+      { x: -authorString.length * size - offsetX },
       Math.random() * 4500 + 2500
     );
     authors.addChild(s);

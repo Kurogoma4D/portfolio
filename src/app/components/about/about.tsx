@@ -54,7 +54,7 @@ const About: NextPage = () => {
     <>
       <div className={style.personalContainer}>
         <img src="/static/images/profile.jpg" alt="アイコン" />
-        <h2>Kurogoma4D</h2>
+        <h2>Kurogoma4D | Suzuki Takafumi</h2>
         <div className={style.contacts}>
           <div className={style.contactLink}>
             <a href="https://twitter.com/Krgm4D">
@@ -82,7 +82,7 @@ const About: NextPage = () => {
         </div>
       </div>
       <div className={style.content}>
-        <Reveal animation={Animation.FadeInUp} debugName="content">
+        <Reveal animation={Animation.FadeInUp}>
           <p>
             自主制作として主にwebやアプリの開発をしたり、3DCGで静止画を制作したりしています。高専生活の過程でX-R技術やデザインに興味を持ち、メディアデザインを対象とする研究室に所属しました。
           </p>
