@@ -1,7 +1,7 @@
 /// <reference types="../../../node_modules/@types/createjs/" />
 
 import React, { useEffect, useRef } from "react";
-import { buildLoading } from "./splash_animation";
+import { buildLoading, buildAuthor } from "./splash_animation";
 import SimplexNoise from "simplex-noise";
 
 export type Coord = {
@@ -38,6 +38,11 @@ const CreateCanvas: React.FC = () => {
       .wait(70 * 12 + 2200)
       .to({ alpha: 0 }, 500);
 
+    const author = buildAuthor(canvas);
+    author.rotation = -20;
+    author.y = 100;
+
+    s.addChild(author);
     s.addChild(background);
     s.addChild(text);
 

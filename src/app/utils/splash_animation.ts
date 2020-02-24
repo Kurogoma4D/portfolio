@@ -52,7 +52,7 @@ export const buildLoading = (canvas: HTMLCanvasElement): createjs.Container => {
 
   const first = buildTextline(
     canvas.width,
-    "クリエイターなら、",
+    "なりたかった自分になるのに",
     canvas.height / 2.2,
     500,
     "#F78E8A"
@@ -60,7 +60,7 @@ export const buildLoading = (canvas: HTMLCanvasElement): createjs.Container => {
 
   const second = buildTextline(
     canvas.width,
-    "つくり続けた奴が正義だ。",
+    "遅すぎるということはない。",
     canvas.height / 2.2,
     1700,
     "#754342"
@@ -80,4 +80,29 @@ export const buildLoading = (canvas: HTMLCanvasElement): createjs.Container => {
     .to({ scale: 1 }, 460, createjs.Ease.cubicInOut);
 
   return text;
+};
+
+export const buildAuthor = (canvas: HTMLCanvasElement): createjs.Container => {
+  const authors = new createjs.Container();
+  const authorString = "ジョージ・エリオット";
+  const size = (canvas.width / authorString.length) * 1.2;
+  const author = new createjs.Text(
+    authorString + authorString,
+    `bold ${size}px Helvetica`,
+    "#F78E8A33"
+  );
+
+  const linesNumber = Math.round(canvas.height / size + 1);
+
+  for (let i = 0; i < linesNumber; i++) {
+    let s = author.clone();
+    s.y = i * size;
+    createjs.Tween.get(s, { loop: -1 }).to(
+      { x: -authorString.length * size },
+      Math.random() * 4500 + 2500
+    );
+    authors.addChild(s);
+  }
+
+  return authors;
 };
