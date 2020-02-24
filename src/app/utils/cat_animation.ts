@@ -1,5 +1,3 @@
-/// <reference types="../../../node_modules/@types/createjs/" />
-
 export const buildCatwalk = (height: number): createjs.Bitmap[] => {
   const shapes = Array<number>(12)
     .fill(0)

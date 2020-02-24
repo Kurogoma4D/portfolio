@@ -1,5 +1,3 @@
-/// <reference types="../../../node_modules/@types/createjs/" />
-
 export const buildTextline = (
   width: number,
   text: string,

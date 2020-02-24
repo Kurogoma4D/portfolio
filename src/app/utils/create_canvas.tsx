@@ -1,5 +1,3 @@
-/// <reference types="../../../node_modules/@types/createjs/" />
-
 import React, { useEffect, useRef } from "react";
 import { buildLoading, buildAuthor } from "./splash_animation";
 import SimplexNoise from "simplex-noise";

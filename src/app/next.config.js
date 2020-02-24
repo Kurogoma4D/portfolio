@@ -6,25 +6,6 @@ const requireContext = require("require-context");
 const nextConfig = {
   exportTrailingSlash: true,
   exportPathMap: function() {
-    const context = requireContext("../../src/app/posts", true, /\.md$/);
-    const keys = context.keys();
-    const data = keys.map(key => {
-      const slug = key
-        .replace(/^.*[\\\/]/, "")
-        .split(".")
-        .slice(0, -1)
-        .join(".");
-      return slug;
-    });
-
-    const pages = data.reduce(
-      (pages, slug) =>
-        Object.assign({}, pages, {
-          [`/works/${slug}`]: { page: "/works/[slug]" }
-        }),
-      {}
-    );
-
     return Object.assign({}, pages, {
       "/": { page: "/" },
       "/works": { page: "/works/index" }
