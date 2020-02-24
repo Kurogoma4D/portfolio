@@ -2,8 +2,12 @@ const withPlugins = require("next-compose-plugins");
 const sass = require("@zeit/next-sass");
 const images = require("next-images");
 const requireContext = require("require-context");
+require("dotenv").config();
 
 const nextConfig = {
+  env: {
+    cms_api_key: process.env.CMS_API_KEY
+  },
   webpack: (config, {}) => {
     config.module.rules.push(
       {
