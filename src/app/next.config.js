@@ -4,13 +4,6 @@ const images = require("next-images");
 const requireContext = require("require-context");
 
 const nextConfig = {
-  exportTrailingSlash: true,
-  exportPathMap: function() {
-    return Object.assign({}, pages, {
-      "/": { page: "/" },
-      "/works": { page: "/works/index" }
-    });
-  },
   webpack: (config, {}) => {
     config.module.rules.push(
       {
