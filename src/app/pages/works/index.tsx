@@ -6,7 +6,8 @@ import ImageHeader from "../../components/ImageHeader/ImageHeader";
 import axios from "axios";
 import { Post, Content } from "interfaces/Posts";
 import { useState } from "react";
-import Link from "next/link";
+import Popup from "reactjs-popup";
+import WorkDetail from "../../components/workDetail/workDetail";
 
 type Props = {
   contents: Content[];
@@ -14,7 +15,25 @@ type Props = {
 };
 
 const WorksPage: NextPage<Props> = (props: Props) => {
-  const [posts, setPosts] = useState<Content[]>(props.contents);
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentId, setCurrentId] = useState("");
+
+  const handleModalOpen = (id: string): void => {
+    setCurrentId(id);
+    setIsOpen(true);
+  };
+
+  const handleModalClose = (): void => {
+    setIsOpen(false);
+  };
+
+  const test = Array(100)
+    .fill({})
+    .map<Content>(() => ({
+      id: Math.random().toString(),
+      title: Math.random().toString()
+    }));
+  const [posts, setPosts] = useState<Content[]>(props.contents.concat(test));
 
   const onReload = async () => {
     const offset = posts.length;
@@ -37,30 +56,36 @@ const WorksPage: NextPage<Props> = (props: Props) => {
   return (
     <Layout title="Works | Kurogoma4D">
       <ImageHeader
-        imagePath="/static/images/works/gionfes_showcase.png"
+        imagePath="/static/images/works/cg_kirameki.png"
         text="作品"
       />
       <button onClick={onReload}>reload</button>
       <div className={style.contentsWrap}>
         {posts.map(content => (
-          <div key={content.id}>
-            <Link href={`/works/${content.id}`}>
-              <a>
-                <div className={style.workCard}>
-                  <img
-                    src={
-                      content.cover_image?.url ??
-                      "/static/images/no_image256.png"
-                    }
-                    alt={content.title}
-                  ></img>
-                  <span className={style.workTitle}>{content.title}</span>
-                </div>
-              </a>
-            </Link>
-          </div>
+          <a key={content.id} onClick={() => handleModalOpen(content.id)}>
+            <div className={style.workCard}>
+              <img
+                src={
+                  content.cover_image?.url ?? "/static/images/no_image256.png"
+                }
+                alt={content.title}
+              ></img>
+              <span className={style.workTitle}>{content.title}</span>
+            </div>
+          </a>
         ))}
       </div>
+      <Popup
+        open={isOpen}
+        closeOnDocumentClick
+        onClose={handleModalClose}
+        contentStyle={{
+          width: "90%",
+          height: "70%"
+        }}
+      >
+        <WorkDetail id={currentId}></WorkDetail>
+      </Popup>
     </Layout>
   );
 };

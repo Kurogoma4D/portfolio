@@ -9,11 +9,11 @@ export interface Post {
 
 export interface Content {
   id: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
   title: string;
-  body: string;
-  category: Category[];
+  body?: string;
+  category?: Category[];
   image_first?: string;
   image_second?: string;
   image_third?: string;
