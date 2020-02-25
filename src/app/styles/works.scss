@@ -92,3 +92,26 @@
     opacity: 1;
   }
 }
+
+.chipsWrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  margin: 12px 10px;
+}
+
+.categoryChip p {
+  padding: 4px 18px;
+  font-size: medium;
+  box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 700;
+  background: #aaaaaa;
+  color: white;
+  margin: 0 8px 18px;
+}
+
+.active p {
+  background: #f78e8a;
+}
