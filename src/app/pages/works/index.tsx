@@ -6,6 +6,7 @@ import ImageHeader from "../../components/ImageHeader/ImageHeader";
 import axios from "axios";
 import { Post, Content } from "interfaces/Posts";
 import { useState } from "react";
+import Link from "next/link";
 
 type Props = {
   contents: Content[];
@@ -43,8 +44,20 @@ const WorksPage: NextPage<Props> = (props: Props) => {
       <div className={style.contentsWrap}>
         {posts.map(content => (
           <div key={content.id}>
-            <p>{content.title}</p>
-            <img src={content.cover_image?.url} />
+            <Link href={`/works/${content.id}`}>
+              <a>
+                <div className={style.workCard}>
+                  <img
+                    src={
+                      content.cover_image?.url ??
+                      "/static/images/no_image256.png"
+                    }
+                    alt={content.title}
+                  ></img>
+                  <span className={style.workTitle}>{content.title}</span>
+                </div>
+              </a>
+            </Link>
           </div>
         ))}
       </div>
