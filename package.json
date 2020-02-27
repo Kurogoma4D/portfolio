@@ -26,6 +26,7 @@
     "dotenv": "^8.2.0",
     "firebase-admin": "^8.0.0",
     "firebase-functions": "^3.1.0",
+    "framer-motion": "^1.8.4",
     "gray-matter": "^4.0.2",
     "isomorphic-unfetch": "3.0.0",
     "next": "^9.2.2",

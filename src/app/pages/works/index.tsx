@@ -6,9 +6,9 @@ import ImageHeader from "../../components/ImageHeader/ImageHeader";
 import axios from "axios";
 import { Post, Content, Category } from "interfaces/Posts";
 import { useState, useCallback } from "react";
-import Popup from "reactjs-popup";
-import WorkDetail from "../../components/workDetail/workDetail";
 import { Waypoint } from "react-waypoint";
+import Link from "next/link";
+import { AnimatePresence } from "framer-motion";
 
 type Props = {
   contents: Content[];
@@ -17,8 +17,6 @@ type Props = {
 };
 
 const WorksPage: NextPage<Props> = (props: Props) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [currentId, setCurrentId] = useState("");
   const [posts, setPosts] = useState<Content[]>(props.contents);
   const [selectedCategory, setCategory] = useState<Object>(() => {
     let entries = {};
@@ -27,15 +25,6 @@ const WorksPage: NextPage<Props> = (props: Props) => {
     });
     return entries;
   });
-
-  const handleModalOpen = (id: string): void => {
-    setCurrentId(id);
-    setIsOpen(true);
-  };
-
-  const handleModalClose = (): void => {
-    setIsOpen(false);
-  };
 
   const handleChipClicked = useCallback((id: string): void => {
     setCategory(selectedCategory => {
@@ -84,48 +73,41 @@ const WorksPage: NextPage<Props> = (props: Props) => {
         imagePath="/static/images/works/cg_kirameki.png"
         text="作品"
       />
-      <div className={style.chipsWrap}>
-        {props.categories.map(item => (
-          <a
-            key={item.id}
-            onClick={() => handleChipClicked(item.id)}
-            className={switchChipStyle(selectedCategory[item.id])}
-          >
-            <p>{item.name}</p>
-          </a>
-        ))}
-      </div>
-      <div className={style.contentsWrap}>
-        {posts.map(
-          content =>
-            isActiveCategory(content.category) && (
-              <a key={content.id} onClick={() => handleModalOpen(content.id)}>
-                <div className={style.workCard}>
-                  <img
-                    src={
-                      content.cover_image?.url ??
-                      "/static/images/no_image256.png"
-                    }
-                    alt={content.title}
-                  ></img>
-                  <span className={style.workTitle}>{content.title}</span>
-                </div>
-              </a>
-            )
-        )}
-        <Waypoint onEnter={onReload}></Waypoint>
-      </div>
-      <Popup
-        open={isOpen}
-        closeOnDocumentClick
-        onClose={handleModalClose}
-        contentStyle={{
-          width: "90%",
-          height: "70%"
-        }}
-      >
-        <WorkDetail id={currentId}></WorkDetail>
-      </Popup>
+      <AnimatePresence exitBeforeEnter>
+        <div className={style.chipsWrap}>
+          {props.categories.map(item => (
+            <a
+              key={item.id}
+              onClick={() => handleChipClicked(item.id)}
+              className={switchChipStyle(selectedCategory[item.id])}
+            >
+              <p>{item.name}</p>
+            </a>
+          ))}
+        </div>
+        <div className={style.contentsWrap}>
+          {posts.map(
+            content =>
+              isActiveCategory(content.category) && (
+                <Link key={content.id} href={`/works/${content.id}`}>
+                  <a>
+                    <div className={style.workCard}>
+                      <img
+                        src={
+                          content.cover_image?.url ??
+                          "/static/images/no_image256.png"
+                        }
+                        alt={content.title}
+                      ></img>
+                      <span className={style.workTitle}>{content.title}</span>
+                    </div>
+                  </a>
+                </Link>
+              )
+          )}
+          <Waypoint onEnter={onReload}></Waypoint>
+        </div>
+      </AnimatePresence>
     </Layout>
   );
 };
