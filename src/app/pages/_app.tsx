@@ -4,6 +4,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope, faHome } from "@fortawesome/free-solid-svg-icons";
 import { RevealGlobalStyles } from "react-genie";
+import { AnimatePresence } from "framer-motion";
 
 class MyApp extends NextApp {
   render() {
@@ -14,7 +15,9 @@ class MyApp extends NextApp {
     return (
       <>
         <RevealGlobalStyles />
-        <Component {...pageProps} />
+        <AnimatePresence>
+          <Component {...pageProps} />
+        </AnimatePresence>
       </>
     );
   }

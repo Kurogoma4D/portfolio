@@ -1,14 +1,13 @@
 import * as React from "react";
-import Layout from "../../components/LayoutComp/Layout";
 import { NextPage } from "next";
 import * as style from "../../styles/works.scss";
-import ImageHeader from "../../components/ImageHeader/ImageHeader";
 import axios from "axios";
 import { Post, Content, Category } from "interfaces/Posts";
 import { useState, useCallback } from "react";
 import { Waypoint } from "react-waypoint";
-import Link from "next/link";
-import { AnimatePresence } from "framer-motion";
+import AnimatedLayout from "../../components/AnimatedLayout/AnimatedLayout";
+import { motion } from "framer-motion";
+import { useRouter } from "next/dist/client/router";
 
 type Props = {
   contents: Content[];
@@ -25,6 +24,7 @@ const WorksPage: NextPage<Props> = (props: Props) => {
     });
     return entries;
   });
+  const router = useRouter();
 
   const handleChipClicked = useCallback((id: string): void => {
     setCategory(selectedCategory => {
@@ -67,29 +67,48 @@ const WorksPage: NextPage<Props> = (props: Props) => {
       });
   };
 
+  const variants = {
+    initial: {
+      opacity: 0
+    },
+    animate: {
+      opacity: 1
+    },
+    exit: {
+      opacity: 0
+    }
+  };
   return (
-    <Layout title="Works | Kurogoma4D">
-      <ImageHeader
-        imagePath="/static/images/works/cg_kirameki.png"
-        text="作品"
-      />
-      <AnimatePresence exitBeforeEnter>
+    <AnimatedLayout title="Works | Kurogoma4D">
+      <motion.div
+        key="index"
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        variants={{ exit: { transition: { staggerChildren: 0.1 } } }}
+      >
         <div className={style.chipsWrap}>
           {props.categories.map(item => (
-            <a
+            <motion.div
               key={item.id}
-              onClick={() => handleChipClicked(item.id)}
+              variants={variants}
+              onTap={() => handleChipClicked(item.id)}
               className={switchChipStyle(selectedCategory[item.id])}
             >
               <p>{item.name}</p>
-            </a>
+            </motion.div>
           ))}
         </div>
         <div className={style.contentsWrap}>
           {posts.map(
             content =>
               isActiveCategory(content.category) && (
-                <Link key={content.id} href={`/works/${content.id}`}>
+                <motion.div
+                  positionTransition
+                  key={content.id}
+                  variants={variants}
+                  onTap={() => router.push(`/works/${content.id}`)}
+                >
                   <a>
                     <div className={style.workCard}>
                       <img
@@ -102,13 +121,13 @@ const WorksPage: NextPage<Props> = (props: Props) => {
                       <span className={style.workTitle}>{content.title}</span>
                     </div>
                   </a>
-                </Link>
+                </motion.div>
               )
           )}
           <Waypoint onEnter={onReload}></Waypoint>
         </div>
-      </AnimatePresence>
-    </Layout>
+      </motion.div>
+    </AnimatedLayout>
   );
 };
 

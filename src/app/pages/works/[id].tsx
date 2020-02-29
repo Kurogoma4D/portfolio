@@ -4,8 +4,7 @@ import * as style from "../../styles/workDetail.scss";
 import axios from "axios";
 import { Content } from "interfaces/Posts";
 import { motion } from "framer-motion";
-import ImageHeader from "components/ImageHeader/ImageHeader";
-import Layout from "components/LayoutComp/Layout";
+import AnimatedLayout from "../../components/AnimatedLayout/AnimatedLayout";
 
 type Props = {
   post: Content;
@@ -13,20 +12,24 @@ type Props = {
 
 const WorkDetail: NextPage<Props> = (props: Props) => {
   return (
-    <Layout title="Works | Kurogoma4D">
-      <ImageHeader
-        imagePath="/static/images/works/cg_kirameki.png"
-        text="作品"
-      />
-      <div className={style.background}>
-        <p>{props.post?.id ?? ""}</p>
-        <p>{props.post?.body ?? ""}</p>
-        <p>{props.post?.cover_image?.url ?? ""}</p>
-        <p>{props.post?.createdAt ?? ""}</p>
-        <p>{props.post?.image_first ?? ""}</p>
-        <motion.div animate={{}}></motion.div>
-      </div>
-    </Layout>
+    <AnimatedLayout title="Works | Kurogoma4D">
+      <motion.div
+        key="detail"
+        className={style.contentsWrap}
+        initial={{ y: "150%" }}
+        animate={{ y: 0 }}
+        exit={{ y: "150%" }}
+        transition={{ duration: 0.4 }}
+      >
+        <div className={style.background}>
+          <p>{props.post?.id ?? ""}</p>
+          <p>{props.post?.body ?? ""}</p>
+          <p>{props.post?.cover_image?.url ?? ""}</p>
+          <p>{props.post?.createdAt ?? ""}</p>
+          <p>{props.post?.image_first ?? ""}</p>
+        </div>
+      </motion.div>
+    </AnimatedLayout>
   );
 };
 
