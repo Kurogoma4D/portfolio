@@ -5,14 +5,34 @@ import axios from "axios";
 import { Post, Content, Category } from "interfaces/Posts";
 import { useState, useCallback } from "react";
 import { Waypoint } from "react-waypoint";
-import AnimatedLayout from "../../components/AnimatedLayout/AnimatedLayout";
 import { motion } from "framer-motion";
-import { useRouter } from "next/dist/client/router";
+import ImageHeader from "../../components/ImageHeader/ImageHeader";
+import Link from "next/link";
 
 type Props = {
   contents: Content[];
   categories: Category[];
   totalCount: number;
+};
+
+const transition = {
+  duration: 0.6,
+  ease: [0, 0.68, 0.53, 0.99]
+};
+
+const variants = {
+  initial: {
+    scale: 0,
+    transition: transition
+  },
+  animate: {
+    scale: 1,
+    transition: transition
+  },
+  exit: {
+    scale: 0,
+    transition: transition
+  }
 };
 
 const WorksPage: NextPage<Props> = (props: Props) => {
@@ -24,7 +44,6 @@ const WorksPage: NextPage<Props> = (props: Props) => {
     });
     return entries;
   });
-  const router = useRouter();
 
   const handleChipClicked = useCallback((id: string): void => {
     setCategory(selectedCategory => {
@@ -54,7 +73,7 @@ const WorksPage: NextPage<Props> = (props: Props) => {
       return;
     }
     const parameters = {
-      headers: { "X-API-KEY": process.env.cms_api_key },
+      headers: { "X-API-KEY": process.env.CMS_API_KEY },
       params: {
         offset: offset,
         fields: "id,title,cover_image,category"
@@ -66,49 +85,29 @@ const WorksPage: NextPage<Props> = (props: Props) => {
         setPosts(posts.concat(res.data.contents as Content[]));
       });
   };
-
-  const variants = {
-    initial: {
-      opacity: 0
-    },
-    animate: {
-      opacity: 1
-    },
-    exit: {
-      opacity: 0
-    }
-  };
   return (
-    <AnimatedLayout title="Works | Kurogoma4D">
-      <motion.div
-        key="index"
-        initial="initial"
-        animate="animate"
-        exit="exit"
-        variants={{ exit: { transition: { staggerChildren: 0.1 } } }}
-      >
-        <div className={style.chipsWrap}>
-          {props.categories.map(item => (
-            <motion.div
-              key={item.id}
-              variants={variants}
-              onTap={() => handleChipClicked(item.id)}
-              className={switchChipStyle(selectedCategory[item.id])}
-            >
-              <p>{item.name}</p>
-            </motion.div>
-          ))}
-        </div>
-        <div className={style.contentsWrap}>
-          {posts.map(
-            content =>
-              isActiveCategory(content.category) && (
-                <motion.div
-                  positionTransition
-                  key={content.id}
-                  variants={variants}
-                  onTap={() => router.push(`/works/${content.id}`)}
-                >
+    <>
+      <ImageHeader
+        imagePath="/static/images/works/cg_kirameki.png"
+        text="作品"
+      />
+      <div className={style.chipsWrap}>
+        {props.categories.map(item => (
+          <a
+            key={item.id}
+            onClick={() => handleChipClicked(item.id)}
+            className={switchChipStyle(selectedCategory[item.id])}
+          >
+            <p>{item.name}</p>
+          </a>
+        ))}
+      </div>
+      <div className={style.contentsWrap}>
+        {posts.map(
+          content =>
+            isActiveCategory(content.category) && (
+              <motion.div key={content.id} variants={variants}>
+                <Link href="/works/[id]" as={`/works/${content.id}`}>
                   <a>
                     <div className={style.workCard}>
                       <img
@@ -121,13 +120,13 @@ const WorksPage: NextPage<Props> = (props: Props) => {
                       <span className={style.workTitle}>{content.title}</span>
                     </div>
                   </a>
-                </motion.div>
-              )
-          )}
-          <Waypoint onEnter={onReload}></Waypoint>
-        </div>
-      </motion.div>
-    </AnimatedLayout>
+                </Link>
+              </motion.div>
+            )
+        )}
+        <Waypoint onEnter={onReload}></Waypoint>
+      </div>
+    </>
   );
 };
 

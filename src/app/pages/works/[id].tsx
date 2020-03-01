@@ -4,7 +4,7 @@ import * as style from "../../styles/workDetail.scss";
 import axios from "axios";
 import { Content } from "interfaces/Posts";
 import { motion } from "framer-motion";
-import AnimatedLayout from "../../components/AnimatedLayout/AnimatedLayout";
+import ImageHeader from "../../components/ImageHeader/ImageHeader";
 
 type Props = {
   post: Content;
@@ -12,7 +12,11 @@ type Props = {
 
 const WorkDetail: NextPage<Props> = (props: Props) => {
   return (
-    <AnimatedLayout title="Works | Kurogoma4D">
+    <>
+      <ImageHeader
+        imagePath="/static/images/works/cg_kirameki.png"
+        text="作品"
+      />{" "}
       <motion.div
         key="detail"
         className={style.contentsWrap}
@@ -29,7 +33,7 @@ const WorkDetail: NextPage<Props> = (props: Props) => {
           <p>{props.post?.image_first ?? ""}</p>
         </div>
       </motion.div>
-    </AnimatedLayout>
+    </>
   );
 };
 

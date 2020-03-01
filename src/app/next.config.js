@@ -2,12 +2,11 @@ const withPlugins = require("next-compose-plugins");
 const sass = require("@zeit/next-sass");
 const images = require("next-images");
 const requireContext = require("require-context");
-require("dotenv").config();
+const path = require("path");
+const Dotenv = require("dotenv-webpack");
 
 const nextConfig = {
-  env: {
-    cms_api_key: process.env.CMS_API_KEY
-  },
+  target: "serverless",
   webpack: (config, {}) => {
     config.module.rules.push(
       {
@@ -24,6 +23,14 @@ const nextConfig = {
         use: "raw-loader"
       }
     );
+
+    config.plugins = [
+      ...config.plugins,
+      new Dotenv({
+        path: path.join(__dirname, ".env"),
+        systemvars: true
+      })
+    ];
 
     config.externals = config.externals || [];
     config.externals.push({
