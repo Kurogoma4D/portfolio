@@ -16,8 +16,8 @@ type Props = {
 };
 
 const transition = {
-  duration: 0.6,
-  ease: [0, 0.68, 0.53, 0.99]
+  duration: 0.4,
+  ease: [0, 0.95, 0.63, 0.99]
 };
 
 const variants = {
