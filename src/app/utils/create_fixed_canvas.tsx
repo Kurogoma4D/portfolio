@@ -31,6 +31,15 @@ const CreateFixedCanvas: React.FC = () => {
     catFeetContainer.x = basePosition;
     s.addChild(catFeetContainer);
 
+    const scrollBubble = new createjs.Bitmap("static/images/scroll.png");
+    scrollBubble.alpha = 0;
+    scrollBubble.x = basePosition - 140;
+    scrollBubble.y = catFeet[catFeet.length - 1].y;
+    scrollBubble.scaleX = scrollBubble.scaleY = 0.4;
+    scrollBubble.regY = 256;
+
+    s.addChild(scrollBubble);
+
     createjs.Ticker.framerate = 60;
     createjs.Ticker.addEventListener("tick", canvasRender);
 
@@ -43,6 +52,9 @@ const CreateFixedCanvas: React.FC = () => {
       catFeet.forEach(foot => {
         foot.y < baseY ? (foot.alpha = 1) : (foot.alpha = 0);
       });
+      scrollBubble.y < baseY
+        ? (scrollBubble.alpha = 1)
+        : (scrollBubble.alpha = 0);
 
       s?.update();
     }
