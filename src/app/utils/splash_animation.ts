@@ -80,29 +80,13 @@ export const buildLoading = (canvas: HTMLCanvasElement): createjs.Container => {
   return text;
 };
 
-export const buildAuthor = (canvas: HTMLCanvasElement): createjs.Container => {
-  const authors = new createjs.Container();
+export const buildAuthor = (canvas: HTMLCanvasElement): createjs.Text => {
   const authorString = "ジョージ・エリオット";
-  const size = (canvas.width / authorString.length) * 1.2;
+  const size = (canvas.width / authorString.length) * 1.1;
   const author = new createjs.Text(
-    authorString + authorString,
+    authorString,
     `bold ${size}px Helvetica`,
     "#F78E8A33"
   );
-
-  const linesNumber = Math.round(canvas.height / size + 1);
-  const offsetX = size * 4;
-
-  for (let i = 0; i < linesNumber; i++) {
-    let s = author.clone();
-    s.x = -offsetX;
-    s.y = i * size;
-    createjs.Tween.get(s, { loop: -1 }).to(
-      { x: -authorString.length * size - offsetX },
-      Math.random() * 4500 + 2500
-    );
-    authors.addChild(s);
-  }
-
-  return authors;
+  return author;
 };

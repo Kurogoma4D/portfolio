@@ -17,6 +17,12 @@
   text-align: center;
 }
 
+@media screen and (max-width: 480px) {
+  .buttonWrap {
+    max-width: 90%;
+  }
+}
+
 .worksLink {
   display: block;
   color: white;
