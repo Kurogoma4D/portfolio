@@ -1,8 +1,16 @@
 {
   "hosting": {
+    "public": "dist",
+    "predeploy": [
+      "yarn clean",
+      "yarn typecheck-app",
+      "yarn build-app",
+      "yarn export"
+    ],
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
-        "source": "**/**",
+        "source": "/works",
         "run": {
           "serviceId": "portfolio",
           "region": "asia-east1"
