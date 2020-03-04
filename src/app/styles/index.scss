@@ -10,3 +10,26 @@
   left: 0;
   z-index: -1;
 }
+
+.buttonWrap {
+  margin: 56px auto;
+  max-width: 375px;
+  text-align: center;
+}
+
+.worksLink {
+  display: block;
+  color: white;
+  font-weight: 700;
+  height: 3.8em;
+  line-height: 3.7em;
+  text-decoration: none;
+  background: #824b49;
+  border-radius: 2em;
+  box-shadow: 0 4px 12px 6px #824b4955;
+  transition: transform 350ms cubic-bezier(0.21, -0.75, 0.27, 0.99);
+}
+
+.worksLink:hover {
+  transform: scale(1.2);
+}
