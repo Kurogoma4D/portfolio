@@ -141,8 +141,7 @@ WorksPage.getInitialProps = async (): Promise<Props> => {
     `https://krgm4d.microcms.io/api/v1/works`,
     {
       params: {
-        fields: "id,title,cover_image,category",
-        limit: 1
+        fields: "id,title,cover_image,category"
       },
       ...key
     }
