@@ -38,7 +38,7 @@ const CreateCanvas: React.FC = () => {
 
     const author = buildAuthor(canvas);
     author.rotation = -20;
-    author.y = 50;
+    author.y = canvas.height / 1.4;
 
     s.addChild(author);
     s.addChild(background);
