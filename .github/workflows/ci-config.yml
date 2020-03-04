@@ -50,4 +50,6 @@ jobs:
             --quiet
 
       - name: Deploy to Firebase Hosting
-        run: yarn deploy --token=${{ secrets.FIREBASE_TOKEN }}
+        run: |
+          yarn
+          yarn deploy --token=${{ secrets.FIREBASE_TOKEN }}

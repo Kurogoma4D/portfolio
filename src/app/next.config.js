@@ -7,6 +7,11 @@ const Dotenv = require("dotenv-webpack");
 
 const nextConfig = {
   target: "serverless",
+  exportPathMap: () => {
+    return {
+      "/": { page: "/" }
+    };
+  },
   webpack: (config, {}) => {
     config.module.rules.push(
       {
