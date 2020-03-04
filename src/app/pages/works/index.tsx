@@ -1,72 +1,162 @@
 import * as React from "react";
-import Layout from "../../components/LayoutComp/Layout";
 import { NextPage } from "next";
 import * as style from "../../styles/works.scss";
+import axios from "axios";
+import { Post, Content, Category } from "interfaces/Posts";
+import { useState, useCallback } from "react";
+import { Waypoint } from "react-waypoint";
+import { motion } from "framer-motion";
 import ImageHeader from "../../components/ImageHeader/ImageHeader";
 import Link from "next/link";
-import matter from "gray-matter";
 
-type Posts = {
-  document: matter.GrayMatterFile<any>;
-  slug: string;
-}[];
+type Props = {
+  contents: Content[];
+  categories: Category[];
+  totalCount: number;
+};
 
-const WorksPage: NextPage = () => {
-  const [posts, setPosts] = React.useState<Posts>([]);
+const transition = {
+  duration: 0.4,
+  ease: [0, 0.95, 0.63, 0.99]
+};
 
-  React.useEffect(() => {
-    const postDatas = (context => {
-      const keys = context.keys();
-      const values = keys.map<any>(context);
-      const data = keys.map((key, index) => {
-        const slug = key
-          .replace(/^.*[\\\/]/, "")
-          .split(".")
-          .slice(0, -1)
-          .join(".");
-        const value = values[index];
-        const document = matter(value.default);
-        return {
-          document,
-          slug
-        };
+const variants = {
+  initial: {
+    scale: 0,
+    transition: transition
+  },
+  animate: {
+    scale: 1,
+    transition: transition
+  },
+  exit: {
+    scale: 0,
+    transition: transition
+  }
+};
+
+const WorksPage: NextPage<Props> = (props: Props) => {
+  const [posts, setPosts] = useState<Content[]>(props.contents);
+  const [selectedCategory, setCategory] = useState<Object>(() => {
+    let entries = {};
+    props.categories.forEach(value => {
+      entries[value.id] = true;
+    });
+    return entries;
+  });
+
+  const handleChipClicked = useCallback((id: string): void => {
+    setCategory(selectedCategory => {
+      const current = JSON.parse(JSON.stringify(selectedCategory));
+      current[id] = !selectedCategory[id];
+      return current;
+    });
+  }, []);
+
+  const switchChipStyle = (isActive: boolean): string => {
+    return isActive
+      ? `${style.categoryChip} ${style.active}`
+      : `${style.categoryChip}`;
+  };
+
+  const isActiveCategory = (categories: Category[]): boolean => {
+    let isActive = false;
+    categories.forEach(category => {
+      if (selectedCategory[category.id]) isActive = true;
+    });
+    return isActive;
+  };
+
+  const onReload = async () => {
+    const offset = posts.length;
+    if (offset >= props.totalCount) {
+      return;
+    }
+    const parameters = {
+      headers: { "X-API-KEY": process.env.CMS_API_KEY },
+      params: {
+        offset: offset,
+        fields: "id,title,cover_image,category"
+      }
+    };
+    await axios
+      .get<Post>(`https://krgm4d.microcms.io/api/v1/works`, parameters)
+      .then(res => {
+        setPosts(posts.concat(res.data.contents as Content[]));
       });
-      return data;
-    })(require.context("../../posts", true, /\.md$/));
-
-    setPosts(postDatas);
-
-    return () => {};
-  }, [setPosts]);
-
+  };
   return (
-    <Layout title="Works | Kurogoma4D">
+    <>
       <ImageHeader
-        imagePath="/static/images/works/gionfes_showcase.png"
+        imagePath="/static/images/works/cg_kirameki.png"
         text="作品"
       />
-      <div className={style.contentsWrap}>
-        {posts &&
-          posts.map(post => (
-            <div key={post.slug}>
-              <Link href={`/works/${post.slug}`}>
-                <a>
-                  <div className={style.workCard}>
-                    <img
-                      src={post.document.data.image}
-                      alt={post.document.data.title}
-                    ></img>
-                    <span className={style.workTitle}>
-                      {post.document.data.title}
-                    </span>
-                  </div>
-                </a>
-              </Link>
-            </div>
-          ))}
+      <div className={style.chipsWrap}>
+        {props.categories.map(item => (
+          <button
+            key={item.id}
+            onClick={() => handleChipClicked(item.id)}
+            className={switchChipStyle(selectedCategory[item.id])}
+          >
+            {item.name}
+          </button>
+        ))}
       </div>
-    </Layout>
+      <div className={style.contentsWrap}>
+        {posts.map(
+          content =>
+            isActiveCategory(content.category) && (
+              <motion.div key={content.id} variants={variants}>
+                <Link href="/works/[id]" as={`/works/${content.id}`}>
+                  <a>
+                    <div className={style.workCard}>
+                      <img
+                        src={
+                          content.cover_image?.url ??
+                          "/static/images/no_image256.png"
+                        }
+                        alt={content.title}
+                      ></img>
+                      <span className={style.workTitle}>{content.title}</span>
+                    </div>
+                  </a>
+                </Link>
+              </motion.div>
+            )
+        )}
+        <Waypoint onEnter={onReload}></Waypoint>
+      </div>
+    </>
   );
 };
 
 export default WorksPage;
+
+WorksPage.getInitialProps = async (): Promise<Props> => {
+  const key = {
+    headers: { "X-API-KEY": process.env.CMS_API_KEY }
+  };
+
+  const contents = await axios.get<Post>(
+    `https://krgm4d.microcms.io/api/v1/works`,
+    {
+      params: {
+        fields: "id,title,cover_image,category"
+      },
+      ...key
+    }
+  );
+
+  const categories = await axios.get<Post>(
+    `https://krgm4d.microcms.io/api/v1/categories`,
+    {
+      ...key
+    }
+  );
+
+  return {
+    contents: contents.data.contents as Content[],
+    categories: categories.data.contents as Category[],
+    totalCount: contents.data.totalCount
+  };
+};

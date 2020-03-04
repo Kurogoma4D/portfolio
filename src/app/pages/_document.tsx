@@ -24,6 +24,7 @@ class MyDocument extends Document {
             sizes="180x180"
             href="static/images/sushi.png"
           ></link>
+          <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
         </Head>
         <body>
           <Main />

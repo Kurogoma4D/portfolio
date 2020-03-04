@@ -16,6 +16,14 @@ https://github.com/Kurogoma4D/portfolio_proto
 
 Generated README by template below.
 
+## build command
+
+`docker build . --tag gcr.io/portfolio-7cf0a/portfolio`
+
+## run command
+
+`PORT=8080 && docker run -p 8080:${PORT} -e PORT=${PORT} gcr.io/portfolio-7cf0a/portfolio`
+
 ---
 
 # TypeScript Next.js example

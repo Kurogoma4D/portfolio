@@ -1,56 +1,118 @@
-.contentsWrap {
-  display: flex;
-  margin: 16px;
-  flex-wrap: wrap;
-  @media screen and (max-width: 480px) {
-    flex-wrap: nowrap;
-    overflow: scroll;
+@media screen and (max-width: 479px) {
+  .contentsWrap {
+    margin: 16px;
+  }
+
+  .contentsWrap a {
+    text-decoration: none;
+  }
+
+  .workCard {
+    width: 100%;
+    height: 80px;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 16px 0;
+    background: #754342;
+    box-shadow: 0px 2px 8px 2px rgba(247, 142, 138, 0.5);
+  }
+
+  .workTitle {
+    display: block;
+    margin-top: 12px;
+    margin-left: 92px;
+    overflow: hidden;
+    font-weight: 700;
+    color: white;
+  }
+
+  .workCard img {
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    position: absolute;
+    max-width: 80px;
+    left: 0;
+    transform: scale(0.8);
   }
 }
 
-.contentsWrap a {
-  text-decoration: none;
+@media screen and (min-width: 480px) {
+  .contentsWrap {
+    display: flex;
+    margin: 16px;
+    flex-wrap: wrap;
+  }
+
+  .contentsWrap a {
+    text-decoration: none;
+  }
+
+  .workCard {
+    width: 128px;
+    height: 128px;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 280ms ease-out;
+    margin: 0 16px 16px 0;
+    background: black;
+  }
+
+  .workTitle {
+    opacity: 0;
+    color: #ffffff;
+    display: block;
+    position: absolute;
+    width: 100%;
+    top: 45%;
+  }
+
+  .workCard img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: opacity 350ms ease-out;
+  }
+
+  .workCard:focus img,
+  .workCard:hover img {
+    opacity: 0.4;
+  }
+
+  .workCard:focus,
+  .workCard:hover {
+    transform: scale(0.95);
+  }
+
+  .workCard:hover .workTitle {
+    opacity: 1;
+  }
 }
 
-.workCard {
-  width: 256px;
-  height: 256px;
-  position: relative;
-  border-radius: 8px;
-  overflow: hidden;
-  text-align: center;
-  transition: transform 280ms ease-out;
-  margin: 0 16px 16px 0;
-  background: black;
+.chipsWrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  margin: 12px 10px;
 }
 
-.workCard img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 8px;
-  transition: opacity 350ms ease-out;
+.categoryChip {
+  margin: 0 8px 12px;
+  padding: 4px 18px;
+  font-size: medium;
+  box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 20px;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 700;
+  background: #aaaaaa;
+  color: white;
 }
 
-.workCard:focus img,
-.workCard:hover img {
-  opacity: 0.4;
-}
-
-.workCard:focus,
-.workCard:hover {
-  transform: scale(0.95);
-}
-
-.workTitle {
-  opacity: 0;
-  color: #ffffff;
-  display: block;
-  position: absolute;
-  width: 100%;
-  top: 45%;
-}
-
-.workCard:hover .workTitle {
-  opacity: 1;
+.active {
+  background: #f78e8a;
 }

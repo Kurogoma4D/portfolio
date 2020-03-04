@@ -1,39 +1,33 @@
 import NextApp from "next/app";
 import "../styles/global.scss";
-import AppContext from "../utils/AppContext";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faHome } from "@fortawesome/free-solid-svg-icons";
+import { RevealGlobalStyles } from "react-genie";
+import { AnimatePresence, motion } from "framer-motion";
+import Layout from "../components/LayoutComp/Layout";
 
 class MyApp extends NextApp {
-  state = {
-    appBarMode: "dark"
-  };
-
-  setAppBarMode = (mode: string) => {
-    if (this.state.appBarMode !== mode) {
-      this.setState({ appBarMode: mode });
-    }
-  };
-
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, router } = this.props;
 
-    library.add(faTwitter, faEnvelope, faArrowLeft, faGithub);
+    library.add(faTwitter, faEnvelope, faGithub, faHome);
 
     return (
-      <>
-        <AppContext.Provider
-          value={{
-            state: {
-              appBarMode: this.state.appBarMode,
-              setAppBarMode: this.setAppBarMode
-            }
-          }}
-        >
-          <Component {...pageProps} />
-        </AppContext.Provider>
-      </>
+      <Layout title="Kurogoma4D">
+        <RevealGlobalStyles />
+        <AnimatePresence exitBeforeEnter>
+          <motion.div
+            key="index"
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            variants={{ exit: { transition: { staggerChildren: 0.1 } } }}
+          >
+            <Component {...pageProps} key={router.route} />
+          </motion.div>
+        </AnimatePresence>
+      </Layout>
     );
   }
 }

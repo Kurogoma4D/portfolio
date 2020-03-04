@@ -1,102 +1,35 @@
 .topWrapper {
   width: 100%;
-  height: 95vh;
-  background: #424242;
-  position: relative;
+  min-height: 100vh;
   overflow-x: hidden;
 }
 
-.topWrapper p {
-  text-align: right;
-  font-family: "M PLUS 1p", "Franklin Gothic Medium", sans-serif;
-  font-weight: 700;
-  color: white;
-}
-
-.quote {
-  font-size: 3vw;
-  position: absolute;
-  bottom: 120px;
-  left: 50%;
-  transform: translate(-50%, 0) scale(1);
-  text-shadow: 0 0 3px white;
-}
-
-.author {
-  display: block;
-  font-size: 2.8vw;
-  line-height: 5vh;
-}
-
-.stage {
-  position: absolute;
-  display: grid;
-  grid-template-columns: repeat(24, 1fr);
-  bottom: 0;
-  left: 0;
-  width: 1800px;
-  height: 80px;
-  background: #6d3f22;
-  border: 0px solid #834b26;
-  border-top-width: 12px;
-}
-
-.stageLine {
-  width: 6px;
-  border-radius: 3px 3px 0 0;
-  background: rgba(0, 0, 0, 0.2);
-  margin: 8px 0 0;
-}
-
-.stageTop {
-  position: absolute;
-  bottom: 80px;
-  left: 0;
-  width: 100%;
-  height: 60px;
-  background: linear-gradient(
-    0deg,
-    rgb(128, 78, 40) 0%,
-    rgba(109, 63, 34, 0.8) 50%,
-    rgba(106, 45, 16, 0.6) 100%
-  );
-}
-
-.spotlight {
-  position: absolute;
-  top: -10vh;
-  left: calc(50% - 160px);
-  width: 0;
-  height: 0;
-  border-left: 160px solid transparent;
-  border-right: 160px solid transparent;
-  border-bottom: 88vh solid rgba(241, 240, 129, 0.6);
-  border-radius: 0 0 80px 80px;
-  filter: blur(1px);
-}
-
-.spotlight::before {
-  content: "";
-  position: absolute;
-  top: 76vh;
-  left: calc(50% - 140px);
-  width: calc(140px * 2);
-  border-radius: 80px;
-  height: 120px;
-  background: rgba(241, 240, 129, 0.6);
-  filter: blur(30px);
-}
-
-.environment {
-  position: absolute;
+.backgroundWrapper {
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  mix-blend-mode: hard-light;
-  background: linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 0.3) 0%,
-    rgba(0, 0, 0, 0.4) 100%
-  );
+  z-index: -1;
+}
+
+.buttonWrap {
+  margin: 56px auto;
+  max-width: 375px;
+  text-align: center;
+}
+
+.worksLink {
+  display: block;
+  color: white;
+  font-weight: 700;
+  height: 3.8em;
+  line-height: 3.7em;
+  text-decoration: none;
+  background: #824b49;
+  border-radius: 2em;
+  box-shadow: 0 4px 12px 6px #824b4955;
+  transition: transform 350ms cubic-bezier(0.53, -0.91, 0.28, 1);
+}
+
+.worksLink:hover {
+  transform: scale(1.2);
 }
