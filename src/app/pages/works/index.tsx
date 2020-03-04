@@ -93,13 +93,13 @@ const WorksPage: NextPage<Props> = (props: Props) => {
       />
       <div className={style.chipsWrap}>
         {props.categories.map(item => (
-          <a
+          <button
             key={item.id}
             onClick={() => handleChipClicked(item.id)}
             className={switchChipStyle(selectedCategory[item.id])}
           >
-            <p>{item.name}</p>
-          </a>
+            {item.name}
+          </button>
         ))}
       </div>
       <div className={style.contentsWrap}>
