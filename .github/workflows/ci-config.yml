@@ -21,8 +21,8 @@ jobs:
 
       - name: Create dotenv file
         run: |
-          touch $GITHUB_WORKSPACE/portfolio/src/app/.env
-          echo CMS_API_KEY=$CMS_API_KEY >> $GITHUB_WORKSPACE/portfolio/src/app/.env
+          touch $GITHUB_WORKSPACE/src/app/.env
+          echo CMS_API_KEY=$CMS_API_KEY >> $GITHUB_WORKSPACE/src/app/.env
 
       - name: GCP Authenticate
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
