@@ -13,7 +13,7 @@
         "source": "/works",
         "run": {
           "serviceId": "portfolio",
-          "region": "asia-east1"
+          "region": "asia-northeast1"
         }
       }
     ]
