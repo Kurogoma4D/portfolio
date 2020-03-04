@@ -16,11 +16,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Create dotenv file
-        run: touch src/app/.env; echo CMS_API_KEY=$CMS_API_KEY >> src/app/.env
-
       - name: Checkout the repository
         uses: actions/checkout@v1
+
+      - name: Create dotenv file
+        run: |
+          touch $GITHUB_WORKSPACE/portfolio/src/app/.env
+          echo CMS_API_KEY=$CMS_API_KEY >> $GITHUB_WORKSPACE/portfolio/src/app/.env
 
       - name: GCP Authenticate
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
