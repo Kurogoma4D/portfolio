@@ -1,5 +1,7 @@
+@import "../../styles/colors.scss";
+
 .personalContainer {
-  margin: 32px 0;
+  margin: 60vh 0 0;
   display: grid;
   grid-template-columns: 160px auto;
   grid-template-rows: 1fr 1fr;
@@ -19,9 +21,10 @@
 }
 
 .content {
-  padding: 0 24px;
+  padding: 40vh 16px 0;
   font-family: "M PLUS Rounded 1c", sans-serif;
   font-weight: 400;
+  color: $body-color;
 }
 
 .content p {
@@ -36,6 +39,10 @@
 
 .carrier p {
   margin: 4px 0;
+}
+
+.activityWrap {
+  margin-top: 40vh;
 }
 
 .activityContainer {
@@ -57,7 +64,7 @@
 }
 
 .contactIcon {
-  color: #464646;
+  color: white;
   vertical-align: middle;
   margin-right: 12px;
 }
