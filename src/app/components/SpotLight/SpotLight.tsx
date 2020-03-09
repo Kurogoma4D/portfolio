@@ -6,7 +6,6 @@ type Props = {
   children: React.ReactNode;
   angle: number;
   invert: boolean;
-  color?: string;
   size?: number;
   offset: number;
 };
@@ -17,12 +16,9 @@ const SpotLight: React.FC<Props> = (props: Props) => {
       ? { left: `-${(props.size ?? 20) * 1.2}vw` }
       : { right: `-${(props.size ?? 20) * 1.2}vw` };
     const style = {
-      top: `max(0vh, min(calc(${props.offset}vh - (100vw - 375px)), 40vh) )`,
-      borderLeft: `${props.size ?? 20}vw solid transparent`,
-      borderRight: `${props.size ?? 20}vw solid transparent`,
-      borderRadius: `0 0 ${(props.size ?? 20) - 20}vw ${props.size ?? 20}vw`,
-      borderBottom: `${(props.size ?? 20) * 5}vw solid ${props.color ??
-        "rgba(231, 218, 174, 0.4)"}`,
+      top: `max(-10vh, min(calc(${props.offset}vh - (100vw - 375px)), 40vh) )`,
+      width: `${(props.size ?? 20) * 2}vw`,
+      height: `${(props.size ?? 20) * 5}vw`,
       transform: `rotate(${props.angle}deg)`
     };
     return { ...style, ...position };
@@ -32,7 +28,20 @@ const SpotLight: React.FC<Props> = (props: Props) => {
     <div className={style.spotLightWrap}>
       {props.children}
       <Reveal delay={600} animation={Animation.FadeIn}>
-        <div className={style.light} style={lightStyle()}></div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 100 100"
+          style={lightStyle()}
+          className={style.light}
+        >
+          <defs>
+            <linearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop stopColor="rgb(255, 105, 102)" stopOpacity="0.4" />
+              <stop offset="88%" stopColor="white" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+          <path d="M50 -100 L10 80 L90 80 Z" />
+        </svg>
       </Reveal>
     </div>
   );
