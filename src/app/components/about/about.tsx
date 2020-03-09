@@ -53,7 +53,13 @@ const About: NextPage = () => {
 
   return (
     <>
-      <SpotLight angle={67} invert={false} offset={40}>
+      <SpotLight
+        angle={62}
+        size={40}
+        offset={38}
+        invert={false}
+        color="#FF696644"
+      >
         <div className={style.personalContainer}>
           <img src="/static/images/profile.jpg" alt="アイコン" />
           <h2>Kurogoma4D | Suzuki Takafumi</h2>
@@ -84,7 +90,13 @@ const About: NextPage = () => {
           </div>
         </div>
       </SpotLight>
-      <SpotLight angle={-38} invert={true} size={52}>
+      <SpotLight
+        angle={-58}
+        invert={true}
+        size={52}
+        offset={80}
+        color="#6E7FFF44"
+      >
         <div className={style.content}>
           <Reveal animation={Animation.FadeInUp}>
             <p>
