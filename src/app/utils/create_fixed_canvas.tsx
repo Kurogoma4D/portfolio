@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from "react";
-import { buildCatwalk } from "./cat_animation";
+import React, { useEffect, useRef, useCallback } from "react";
+import { Application, Sprite } from "pixi.js";
 
 export type Coord = {
   x: number;
@@ -7,66 +7,65 @@ export type Coord = {
 };
 
 const CreateFixedCanvas: React.FC = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const stage = useRef<createjs.Stage>(null);
+  const canvasRef = useRef<HTMLDivElement>(null);
   let baseLine = 0.0;
   let currentScrollY = 0.0;
+  let currentIndex = 0;
+  const feetProp: Sprite[] = [];
+  const FOOT_MAX = 12;
+  const pixiApp = new Application();
 
-  const initialize = () => {
+  const initialize = useCallback(() => {
     const canvas = canvasRef.current!;
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  };
+    pixiApp.view.width = window.innerWidth;
+    pixiApp.view.height = window.innerHeight;
+    pixiApp.renderer.backgroundColor = 0x242424;
+
+    canvas.appendChild(pixiApp.view);
+
+    pixiApp.loader.add("foot", "/static/images/cat.svg").load(buildStage);
+  }, [canvasRef]);
 
   const buildStage = () => {
-    const canvas = canvasRef.current!;
-    let s = stage.current;
-    const basePosition = (canvas.width / 9) * 8;
+    const width = pixiApp.renderer.width;
+    const height = pixiApp.renderer.height;
+    const baseX = (width / 6) * 5;
 
-    s = new createjs.Stage(canvas);
+    const shapes = new Array(FOOT_MAX).fill(0).map((_, i) => (height / 12) * i);
+    const size = width / 14;
+    const feet = shapes.map((v, i) => {
+      let foot = new Sprite(pixiApp.loader.resources.foot.texture);
+      foot.width = foot.height = size;
+      foot.anchor.set(0.5);
+      foot.x = i % 2 === 0 ? baseX : baseX + size;
+      foot.y = v + size / 2;
+      foot.alpha = 0;
+      foot.rotation = Math.PI;
+      return foot;
+    });
 
-    const catFeet = buildCatwalk(canvas.height);
-    const catFeetContainer = new createjs.Container();
-    catFeet.forEach(v => catFeetContainer.addChild(v));
-    catFeetContainer.x = basePosition;
-    s.addChild(catFeetContainer);
+    pixiApp.stage.addChild(...feet);
+    feetProp.push(...feet);
 
-    const scrollBubble = new createjs.Bitmap("static/images/scroll.png");
-    scrollBubble.alpha = 0;
-    scrollBubble.x = basePosition - 140;
-    scrollBubble.y = catFeet[catFeet.length - 1].y;
-    scrollBubble.scaleX = scrollBubble.scaleY = 0.4;
-    scrollBubble.regY = 256;
-
-    s.addChild(scrollBubble);
-
-    createjs.Ticker.framerate = 60;
-    createjs.Ticker.addEventListener("tick", canvasRender);
-
-    function canvasRender() {
-      if (baseLine <= 1.0) {
-        baseLine += 0.002;
+    pixiApp.ticker.add(function(delta) {
+      if (baseLine < 0.99) {
+        baseLine += delta * 0.001;
+        currentIndex = Math.max(Math.floor(baseLine * FOOT_MAX), 0);
+        feet[currentIndex].alpha = 1;
       }
-
-      let baseY = baseLine * canvas.height;
-      catFeet.forEach(foot => {
-        foot.y < baseY ? (foot.alpha = 1) : (foot.alpha = 0);
-      });
-      scrollBubble.y < baseY
-        ? (scrollBubble.alpha = 1)
-        : (scrollBubble.alpha = 0);
-
-      s?.update();
-    }
+    });
   };
 
   useEffect(() => {
     initialize();
-    buildStage();
 
     const changeBaseLine = () => {
-      if (window.scrollY > currentScrollY && baseLine > -0.1) {
-        baseLine -= 0.03;
+      if (window.scrollY > currentScrollY && baseLine > 0) {
+        baseLine -= 0.015;
+
+        if (feetProp.length !== 0) {
+          feetProp[currentIndex].alpha = 0;
+        }
       }
       currentScrollY = window.scrollY;
     };
@@ -79,7 +78,7 @@ const CreateFixedCanvas: React.FC = () => {
 
   return (
     <>
-      <canvas ref={canvasRef}></canvas>
+      <div ref={canvasRef}></div>
     </>
   );
 };
