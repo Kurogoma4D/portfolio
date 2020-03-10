@@ -74,6 +74,7 @@ const WorkDetail: NextPage<Props> = (props: Props) => {
                 <img
                   key={imageUrl}
                   src={imageUrl}
+                  loading="lazy"
                   className={style.image}
                 ></img>
               )

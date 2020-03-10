@@ -115,6 +115,7 @@ const WorksPage: NextPage<Props> = (props: Props) => {
                           content.cover_image?.url ??
                           "/static/images/no_image256.png"
                         }
+                        loading="lazy"
                         alt={content.title}
                       ></img>
                       <span className={style.workTitle}>{content.title}</span>

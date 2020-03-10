@@ -7,6 +7,7 @@ import { normalizeNumber, scaleNumber } from "../../utils/functions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Reveal, Animation } from "react-genie";
 import SpotLight from "../SpotLight/SpotLight";
+import Link from "next/link";
 
 const formatDate = (dateString: string): string => {
   const options = {
@@ -55,7 +56,7 @@ const About: NextPage = () => {
     <>
       <SpotLight angle={62} size={40} offset={38} invert={false}>
         <div className={style.personalContainer}>
-          <img src="/static/images/profile.jpg" alt="アイコン" />
+          <img src="/static/images/profile.jpg" loading="lazy" alt="アイコン" />
           <h2>Kurogoma4D | Suzuki Takafumi</h2>
           <div className={style.contacts}>
             <div className={style.contactLink}>
@@ -112,23 +113,38 @@ const About: NextPage = () => {
         </div>
       </SpotLight>
       <Reveal animation={Animation.FadeInUp}>
-        <div className={style.activityWrap}>
-          <h3>最近の活動</h3>
-          {events.map(event => (
-            <div className={style.activityContainer} key={event.id}>
-              <p className={style.activityDate}>
-                {formatDate(event.created_at)}
-              </p>
-              <a href={parseRepoUrl(event.repo.url)}>
-                <p className={style.activityRepoName}>{event.repo.name}</p>
-              </a>
-              <span style={commitSizeStyle(event.payload.size as number)}>
-                {event.payload.size}
-              </span>
-              <span> コミット</span>
+        <SpotLight angle={62} size={40} offset={60} invert={false}>
+          <div className={style.activityWrap}>
+            <h3 className={style.activityTitle}>最近の活動</h3>
+            <div className={style.activityFlexWrap}>
+              {events.map(event => (
+                <div className={style.activityContainer} key={event.id}>
+                  <p className={style.activityDate}>
+                    {formatDate(event.created_at)}
+                  </p>
+                  <a href={parseRepoUrl(event.repo.url)}>
+                    <span className={style.activityRepoName}>
+                      {event.repo.name}
+                    </span>
+                  </a>
+                  <p>
+                    <span style={commitSizeStyle(event.payload.size as number)}>
+                      {event.payload.size}
+                    </span>
+                    <span> コミット</span>
+                  </p>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+          <Reveal animation={Animation.FadeInUp}>
+            <div className={style.buttonWrap}>
+              <Link href="/works">
+                <a className={style.worksLink}>作品を見る</a>
+              </Link>
+            </div>
+          </Reveal>
+        </SpotLight>
       </Reveal>
     </>
   );
