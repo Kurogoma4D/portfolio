@@ -57,11 +57,17 @@
 }
 
 .activityContainer {
-  position: relative;
   color: $body-color;
   margin: 8px 16px 16px;
   padding: 8px;
-  min-width: 375px;
+  width: 375px;
+}
+
+@media screen and (min-width: 878px) {
+  .activityContainer {
+    box-shadow: 0 0 8px 4px rgba($color: #ffffff, $alpha: 0.2);
+    border-radius: 4px;
+  }
 }
 
 .activityDate {
@@ -69,15 +75,13 @@
   margin: 0 8px 4px 0;
 }
 
-@media screen and (min-width: 480px) {
-  .activityDate {
-    display: inline;
-  }
+.activityRepoName {
+  display: block;
+  text-align: right;
 }
 
-.activityRepoName {
-  position: absolute;
-  right: 8px;
+.activityCommit {
+  margin-bottom: 0;
 }
 
 .contactIcon {

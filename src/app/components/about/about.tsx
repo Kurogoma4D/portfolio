@@ -122,12 +122,13 @@ const About: NextPage = () => {
                   <p className={style.activityDate}>
                     {formatDate(event.created_at)}
                   </p>
-                  <a href={parseRepoUrl(event.repo.url)}>
-                    <span className={style.activityRepoName}>
-                      {event.repo.name}
-                    </span>
+                  <a
+                    href={parseRepoUrl(event.repo.url)}
+                    className={style.activityRepoName}
+                  >
+                    {event.repo.name}
                   </a>
-                  <p>
+                  <p className={style.activityCommit}>
                     <span style={commitSizeStyle(event.payload.size as number)}>
                       {event.payload.size}
                     </span>
