@@ -1,7 +1,7 @@
 @import "../../styles/colors.scss";
 
 .personalContainer {
-  margin: 40vh 0 0;
+  margin: 40vh 0 60vh;
   display: grid;
   grid-template-columns: 160px auto;
   grid-template-rows: 1fr 1fr;
@@ -21,7 +21,7 @@
 }
 
 .content {
-  padding: 40vh 16px 0;
+  padding: 40vh 16px;
   font-family: "M PLUS Rounded 1c", sans-serif;
   font-weight: 400;
   color: $body-color;
@@ -52,8 +52,7 @@
 }
 
 .activityWrap {
-  margin-top: 40vh;
-  padding: 0 16px;
+  padding: 40vh 16px;
 }
 
 .activityContainer {

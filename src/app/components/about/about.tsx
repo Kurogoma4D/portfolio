@@ -5,8 +5,6 @@ import { GitHubEvents, Type } from "../../interfaces/GitHubEvents";
 import * as React from "react";
 import { normalizeNumber, scaleNumber } from "../../utils/functions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Reveal, Animation } from "react-genie";
-import SpotLight from "../SpotLight/SpotLight";
 import Link from "next/link";
 
 const formatDate = (dateString: string): string => {
@@ -54,99 +52,83 @@ const About: NextPage = () => {
 
   return (
     <>
-      <SpotLight angle={62} size={40} offset={38} invert={false}>
-        <div className={style.personalContainer}>
-          <img src="/static/images/profile.jpg" loading="lazy" alt="アイコン" />
-          <h2>Kurogoma4D | Suzuki Takafumi</h2>
-          <div className={style.contacts}>
-            <div className={style.contactLink}>
-              <a href="https://twitter.com/Krgm4D">
-                <FontAwesomeIcon
-                  icon={["fab", "twitter"]}
-                  size="lg"
-                  className={style.contactIcon}
-                />
-              </a>
-              <a href="mailto:contact&#64;krgm4d.dev">
-                <FontAwesomeIcon
-                  icon={["fas", "envelope"]}
-                  size="lg"
-                  className={style.contactIcon}
-                />
-              </a>
-              <a href="https://github.com/Kurogoma4D">
-                <FontAwesomeIcon
-                  icon={["fab", "github"]}
-                  size="lg"
-                  className={style.contactIcon}
-                />
-              </a>
-            </div>
+      <div className={style.personalContainer}>
+        <img src="/static/images/profile.jpg" loading="lazy" alt="アイコン" />
+        <h2>Kurogoma4D | Suzuki Takafumi</h2>
+        <div className={style.contacts}>
+          <div className={style.contactLink}>
+            <a href="https://twitter.com/Krgm4D">
+              <FontAwesomeIcon
+                icon={["fab", "twitter"]}
+                size="lg"
+                className={style.contactIcon}
+              />
+            </a>
+            <a href="mailto:contact&#64;krgm4d.dev">
+              <FontAwesomeIcon
+                icon={["fas", "envelope"]}
+                size="lg"
+                className={style.contactIcon}
+              />
+            </a>
+            <a href="https://github.com/Kurogoma4D">
+              <FontAwesomeIcon
+                icon={["fab", "github"]}
+                size="lg"
+                className={style.contactIcon}
+              />
+            </a>
           </div>
         </div>
-      </SpotLight>
-      <SpotLight angle={-58} invert={true} size={52} offset={80}>
-        <div id="bio" className={style.content}>
-          <Reveal animation={Animation.FadeInUp}>
-            <p>
-              自主制作として主にwebやアプリの開発をしたり、3DCGで静止画を制作したりしています。高専生活の過程でX-R技術やデザインに興味を持ち、メディアデザインを対象とする研究室に所属しました。
-            </p>
-            <p>
-              エンジニアとして働く道を選んでいますが、将来は "UXエンジニア"
-              を目指しています。そのために、開発をしつつ時間を見つけてはUXについてインプットをしたり考えたりしています。UXなんもわからん。
-            </p>
-            <p>
-              趣味はPCゲーム、ポータブルオーディオなどです。音楽は世界を救う。
-            </p>
-          </Reveal>
-          <Reveal animation={Animation.FadeInUp}>
-            <h3>経歴</h3>
-            <div className={style.carrier}>
-              <p>2013/4~</p>
-              <p>木更津工業高等専門学校 情報工学科</p>
-              <p>2016/10~</p>
-              <p>吉澤研究室(メディアデザイン実験室) 所属</p>
-              <p>2018/4~</p>
-              <p>木更津工業高等専門学校 制御・情報システム工学専攻</p>
-            </div>
-          </Reveal>
+      </div>
+      <div id="bio" className={style.content}>
+        <p>
+          自主制作として主にwebやアプリの開発をしたり、3DCGで静止画を制作したりしています。高専生活の過程でX-R技術やデザインに興味を持ち、メディアデザインを対象とする研究室に所属しました。
+        </p>
+        <p>
+          エンジニアとして働く道を選んでいますが、将来は "UXエンジニア"
+          を目指しています。そのために、開発をしつつ時間を見つけてはUXについてインプットをしたり考えたりしています。UXなんもわからん。
+        </p>
+        <p>趣味はPCゲーム、ポータブルオーディオなどです。音楽は世界を救う。</p>
+        <h3>経歴</h3>
+        <div className={style.carrier}>
+          <p>2013/4~</p>
+          <p>木更津工業高等専門学校 情報工学科</p>
+          <p>2016/10~</p>
+          <p>吉澤研究室(メディアデザイン実験室) 所属</p>
+          <p>2018/4~</p>
+          <p>木更津工業高等専門学校 制御・情報システム工学専攻</p>
         </div>
-      </SpotLight>
-      <Reveal animation={Animation.FadeInUp}>
-        <SpotLight angle={62} size={40} offset={60} invert={false}>
-          <div className={style.activityWrap}>
-            <h3 className={style.activityTitle}>最近の活動</h3>
-            <div className={style.activityFlexWrap}>
-              {events.map(event => (
-                <div className={style.activityContainer} key={event.id}>
-                  <p className={style.activityDate}>
-                    {formatDate(event.created_at)}
-                  </p>
-                  <a
-                    href={parseRepoUrl(event.repo.url)}
-                    className={style.activityRepoName}
-                  >
-                    {event.repo.name}
-                  </a>
-                  <p className={style.activityCommit}>
-                    <span style={commitSizeStyle(event.payload.size as number)}>
-                      {event.payload.size}
-                    </span>
-                    <span> コミット</span>
-                  </p>
-                </div>
-              ))}
+      </div>
+      <div className={style.activityWrap}>
+        <h3 className={style.activityTitle}>最近の活動</h3>
+        <div className={style.activityFlexWrap}>
+          {events.map(event => (
+            <div className={style.activityContainer} key={event.id}>
+              <p className={style.activityDate}>
+                {formatDate(event.created_at)}
+              </p>
+              <a
+                href={parseRepoUrl(event.repo.url)}
+                className={style.activityRepoName}
+              >
+                {event.repo.name}
+              </a>
+              <p className={style.activityCommit}>
+                <span style={commitSizeStyle(event.payload.size as number)}>
+                  {event.payload.size}
+                </span>
+                <span> コミット</span>
+              </p>
             </div>
-          </div>
-          <Reveal animation={Animation.FadeInUp}>
-            <div className={style.buttonWrap}>
-              <Link href="/works">
-                <a className={style.worksLink}>作品を見る</a>
-              </Link>
-            </div>
-          </Reveal>
-        </SpotLight>
-      </Reveal>
+          ))}
+        </div>
+        <div className={style.buttonWrap}>
+          <Link href="/works">
+            <a className={style.worksLink}>作品を見る</a>
+          </Link>
+        </div>
+      </div>
     </>
   );
 };

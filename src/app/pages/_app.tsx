@@ -3,7 +3,6 @@ import "../styles/global.scss";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope, faHome } from "@fortawesome/free-solid-svg-icons";
-import { RevealGlobalStyles } from "react-genie";
 import { AnimatePresence, motion } from "framer-motion";
 import Layout from "../components/LayoutComp/Layout";
 
@@ -15,7 +14,6 @@ class MyApp extends NextApp {
 
     return (
       <Layout title="Kurogoma4D">
-        <RevealGlobalStyles />
         <AnimatePresence exitBeforeEnter>
           <motion.div
             key="index"

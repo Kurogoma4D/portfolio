@@ -1,5 +1,11 @@
 import React, { useEffect, useRef, useCallback } from "react";
-import { Application, Sprite } from "pixi.js";
+import {
+  Application,
+  Sprite,
+  ParticleContainer,
+  BLEND_MODES,
+  filters
+} from "pixi.js";
 
 export type Coord = {
   x: number;
@@ -8,10 +14,12 @@ export type Coord = {
 
 const CreateFixedCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLDivElement>(null);
+  const bioRef = useRef<HTMLDivElement>(null);
   let baseLine = 0.0;
   let currentScrollY = 0.0;
   let currentIndex = 0;
   const feetProp: Sprite[] = [];
+  const particleProp = new ParticleContainer();
   const FOOT_MAX = 12;
   const pixiApp = new Application();
 
@@ -23,7 +31,11 @@ const CreateFixedCanvas: React.FC = () => {
 
     canvas.appendChild(pixiApp.view);
 
-    pixiApp.loader.add("foot", "/static/images/cat.svg").load(buildStage);
+    pixiApp.loader
+      .add("foot", "/static/images/cat.svg")
+      .add("star", "/static/images/star.png")
+      .load(buildStage)
+      .load(buildStar);
   }, [canvasRef]);
 
   const buildStage = () => {
@@ -56,10 +68,55 @@ const CreateFixedCanvas: React.FC = () => {
     });
   };
 
+  const buildStar = () => {
+    const width = pixiApp.renderer.width;
+    const height = pixiApp.renderer.height;
+
+    const particles = new Array(32).fill(0).map(() => {
+      let alpha = Math.random();
+      let star = new Sprite(pixiApp.loader.resources.star.texture);
+      let blur = new filters.BlurFilter(16);
+      blur.blur = 16;
+      star.x = Math.random() * width;
+      star.y = Math.random() * height * 6;
+      star.blendMode = BLEND_MODES.ADD;
+      star.alpha = alpha;
+      star.scale.set(1 - alpha);
+      star.filters = [blur];
+      return star;
+    });
+
+    particleProp.addChild(...particles);
+    pixiApp.stage.addChild(particleProp);
+
+    pixiApp.stage.interactive = true;
+  };
+
   useEffect(() => {
     initialize();
 
-    const changeBaseLine = () => {
+    const intersectionHandler = (entries: IntersectionObserverEntry[]) => {
+      for (let entry of entries) {
+        const ratio = entry.intersectionRatio;
+
+        if (ratio > 0) {
+          console.log("YES");
+        } else {
+          console.log("NO");
+        }
+      }
+    };
+
+    let bio = bioRef.current;
+    bio = document.querySelector("#bio");
+    const observer = new IntersectionObserver(intersectionHandler, {
+      threshold: [0, 1]
+    });
+    observer.observe(bio!);
+
+    const changeBaseLine = (event: WheelEvent) => {
+      particleProp.y -= event.deltaY * 0.2;
+
       if (window.scrollY > currentScrollY && baseLine > 0) {
         baseLine -= 0.015;
 
@@ -69,10 +126,12 @@ const CreateFixedCanvas: React.FC = () => {
       }
       currentScrollY = window.scrollY;
     };
-    addEventListener("scroll", changeBaseLine);
+    addEventListener("wheel", event => changeBaseLine(event as WheelEvent));
 
     return () => {
-      removeEventListener("scroll", changeBaseLine);
+      removeEventListener("wheel", event =>
+        changeBaseLine(event as WheelEvent)
+      );
     };
   }, []);
 
