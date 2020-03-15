@@ -86,7 +86,7 @@ const About: NextPage = () => {
         </div>
       </SpotLight>
       <SpotLight angle={-58} invert={true} size={52} offset={80}>
-        <div className={style.content}>
+        <div id="bio" className={style.content}>
           <Reveal animation={Animation.FadeInUp}>
             <p>
               自主制作として主にwebやアプリの開発をしたり、3DCGで静止画を制作したりしています。高専生活の過程でX-R技術やデザインに興味を持ち、メディアデザインを対象とする研究室に所属しました。
