@@ -21,6 +21,8 @@ const CreateFixedCanvas: React.FC = () => {
   let baseLine = 0.0;
   let currentScrollY = 0.0;
   let currentIndex = 0;
+  let currentLight = "";
+  let decreaseLight = "";
   const spotLightMap: { [key: string]: Sprite } = {};
   const feetProp: Sprite[] = [];
   const particleProp = new ParticleContainer();
@@ -127,6 +129,23 @@ const CreateFixedCanvas: React.FC = () => {
     spotLightMap["person"] = rightLight;
     spotLightMap["bio"] = leftLight;
     spotLightMap["activity"] = rightLight;
+    currentLight = "person";
+
+    pixiApp.ticker.add(function() {
+      if (currentLight !== "") {
+        spotLightMap[currentLight].alpha += 0.05;
+        if (spotLightMap[currentLight].alpha > 1.0) {
+          currentLight = "";
+        }
+      }
+
+      if (decreaseLight !== "") {
+        spotLightMap[decreaseLight].alpha -= 0.05;
+        if (spotLightMap[decreaseLight].alpha < 0) {
+          decreaseLight = "";
+        }
+      }
+    });
   };
 
   useEffect(() => {
@@ -136,12 +155,10 @@ const CreateFixedCanvas: React.FC = () => {
       for (let entry of entries) {
         const ratio = entry.intersectionRatio;
 
-        if (spotLightMap[entry.target.id]) {
-        }
         if (ratio > 0) {
-          spotLightMap[entry.target.id].alpha = 1;
+          currentLight = entry.target.id;
         } else {
-          spotLightMap[entry.target.id].alpha = 0;
+          decreaseLight = entry.target.id;
         }
       }
     };

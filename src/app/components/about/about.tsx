@@ -6,6 +6,7 @@ import * as React from "react";
 import { normalizeNumber, scaleNumber } from "../../utils/functions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import { Spacer } from "../../components/spacer/spacer";
 
 const formatDate = (dateString: string): string => {
   const options = {
@@ -52,6 +53,7 @@ const About: NextPage = () => {
 
   return (
     <>
+      <Spacer height="40vh" />
       <div id="person" className={style.personalContainer}>
         <img src="/static/images/profile.jpg" loading="lazy" alt="アイコン" />
         <h2>Kurogoma4D | Suzuki Takafumi</h2>
@@ -81,6 +83,7 @@ const About: NextPage = () => {
           </div>
         </div>
       </div>
+      <Spacer height="100vh" />
       <div id="bio" className={style.content}>
         <p>
           自主制作として主にwebやアプリの開発をしたり、3DCGで静止画を制作したりしています。高専生活の過程でX-R技術やデザインに興味を持ち、メディアデザインを対象とする研究室に所属しました。
@@ -100,6 +103,7 @@ const About: NextPage = () => {
           <p>木更津工業高等専門学校 制御・情報システム工学専攻</p>
         </div>
       </div>
+      <Spacer height="100vh" />
       <div id="activity" className={style.activityWrap}>
         <h3 className={style.activityTitle}>最近の活動</h3>
         <div className={style.activityFlexWrap}>
@@ -129,6 +133,7 @@ const About: NextPage = () => {
           </Link>
         </div>
       </div>
+      <Spacer height="40vh" />
     </>
   );
 };
