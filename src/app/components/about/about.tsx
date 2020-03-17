@@ -52,7 +52,7 @@ const About: NextPage = () => {
 
   return (
     <>
-      <div className={style.personalContainer}>
+      <div id="person" className={style.personalContainer}>
         <img src="/static/images/profile.jpg" loading="lazy" alt="アイコン" />
         <h2>Kurogoma4D | Suzuki Takafumi</h2>
         <div className={style.contacts}>
@@ -100,7 +100,7 @@ const About: NextPage = () => {
           <p>木更津工業高等専門学校 制御・情報システム工学専攻</p>
         </div>
       </div>
-      <div className={style.activityWrap}>
+      <div id="activity" className={style.activityWrap}>
         <h3 className={style.activityTitle}>最近の活動</h3>
         <div className={style.activityFlexWrap}>
           {events.map(event => (

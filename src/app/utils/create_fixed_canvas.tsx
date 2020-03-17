@@ -6,6 +6,7 @@ import {
   BLEND_MODES,
   filters
 } from "pixi.js";
+import { buildGradientTriangle } from "./canvas_graphics";
 
 export type Coord = {
   x: number;
@@ -14,10 +15,13 @@ export type Coord = {
 
 const CreateFixedCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLDivElement>(null);
+  const personRef = useRef<HTMLDivElement>(null);
   const bioRef = useRef<HTMLDivElement>(null);
+  const activityRef = useRef<HTMLDivElement>(null);
   let baseLine = 0.0;
   let currentScrollY = 0.0;
   let currentIndex = 0;
+  const spotLightMap: { [key: string]: Sprite } = {};
   const feetProp: Sprite[] = [];
   const particleProp = new ParticleContainer();
   const FOOT_MAX = 12;
@@ -36,6 +40,8 @@ const CreateFixedCanvas: React.FC = () => {
       .add("star", "/static/images/star.png")
       .load(buildStage)
       .load(buildStar);
+
+    buildSpotLight();
   }, [canvasRef]);
 
   const buildStage = () => {
@@ -72,13 +78,13 @@ const CreateFixedCanvas: React.FC = () => {
     const width = pixiApp.renderer.width;
     const height = pixiApp.renderer.height;
 
-    const particles = new Array(32).fill(0).map(() => {
+    const particles = new Array(128).fill(0).map(() => {
       let alpha = Math.random();
       let star = new Sprite(pixiApp.loader.resources.star.texture);
       let blur = new filters.BlurFilter(16);
       blur.blur = 16;
       star.x = Math.random() * width;
-      star.y = Math.random() * height * 6;
+      star.y = Math.random() * height * 12;
       star.blendMode = BLEND_MODES.ADD;
       star.alpha = alpha;
       star.scale.set(1 - alpha);
@@ -86,10 +92,41 @@ const CreateFixedCanvas: React.FC = () => {
       return star;
     });
 
+    particleProp.y = -height * 6;
     particleProp.addChild(...particles);
     pixiApp.stage.addChild(particleProp);
 
     pixiApp.stage.interactive = true;
+  };
+
+  const buildSpotLight = () => {
+    const width = pixiApp.renderer.width;
+    const height = pixiApp.renderer.height;
+    const blur = new filters.BlurFilter(6);
+    const lightCanvas = buildGradientTriangle(
+      Math.max(width, height),
+      height * 0.5
+    );
+
+    const leftLight = Sprite.from(lightCanvas);
+    leftLight.anchor.set(0, 0.5);
+    leftLight.rotation = Math.PI / 6;
+    leftLight.x = -width * 0.2;
+    leftLight.filters = [blur];
+    leftLight.alpha = 0;
+    pixiApp.stage.addChild(leftLight);
+
+    const rightLight = Sprite.from(lightCanvas);
+    rightLight.anchor.set(0, 0.5);
+    rightLight.rotation = Math.PI - Math.PI / 6;
+    rightLight.x = width + width * 0.2;
+    rightLight.filters = [blur];
+    rightLight.alpha = 0;
+    pixiApp.stage.addChild(rightLight);
+
+    spotLightMap["person"] = rightLight;
+    spotLightMap["bio"] = leftLight;
+    spotLightMap["activity"] = rightLight;
   };
 
   useEffect(() => {
@@ -99,20 +136,29 @@ const CreateFixedCanvas: React.FC = () => {
       for (let entry of entries) {
         const ratio = entry.intersectionRatio;
 
+        if (spotLightMap[entry.target.id]) {
+        }
         if (ratio > 0) {
-          console.log("YES");
+          spotLightMap[entry.target.id].alpha = 1;
         } else {
-          console.log("NO");
+          spotLightMap[entry.target.id].alpha = 0;
         }
       }
     };
 
+    let person = personRef.current;
     let bio = bioRef.current;
+    let activity = activityRef.current;
+    person = document.querySelector("#person");
     bio = document.querySelector("#bio");
+    activity = document.querySelector("#activity");
+
     const observer = new IntersectionObserver(intersectionHandler, {
       threshold: [0, 1]
     });
+    observer.observe(person!);
     observer.observe(bio!);
+    observer.observe(activity!);
 
     const changeBaseLine = (event: WheelEvent) => {
       particleProp.y -= event.deltaY * 0.2;
