@@ -12,11 +12,11 @@ const FixedCanvas = dynamic(() => import("../utils/create_fixed_canvas"), {
 const IndexPage: NextPage = () => {
   return (
     <>
+      <About />
+      <Skills />
       <div className={style.backgroundWrapper}>
         <FixedCanvas />
       </div>
-      <About />
-      <Skills />
     </>
   );
 };

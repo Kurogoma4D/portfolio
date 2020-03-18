@@ -27,13 +27,12 @@ const CreateFixedCanvas: React.FC = () => {
   const feetProp: Sprite[] = [];
   const particleProp = new ParticleContainer();
   const FOOT_MAX = 12;
-  const pixiApp = new Application();
+  const pixiApp = new Application({ transparent: true, antialias: true });
 
   const initialize = useCallback(() => {
     const canvas = canvasRef.current!;
     pixiApp.view.width = window.innerWidth;
     pixiApp.view.height = window.innerHeight;
-    pixiApp.renderer.backgroundColor = 0x242424;
 
     canvas.appendChild(pixiApp.view);
 
@@ -110,25 +109,32 @@ const CreateFixedCanvas: React.FC = () => {
       height * 0.5
     );
 
-    const leftLight = Sprite.from(lightCanvas);
-    leftLight.anchor.set(0, 0.5);
-    leftLight.rotation = Math.PI / 6;
-    leftLight.x = -width * 0.2;
-    leftLight.filters = [blur];
-    leftLight.alpha = 0;
-    pixiApp.stage.addChild(leftLight);
+    let light = Sprite.from(lightCanvas);
+    light.anchor.set(0, 0.5);
+    light.rotation = Math.PI / 6;
+    light.x = -width * 0.2;
+    light.filters = [blur];
+    light.alpha = 0;
+    spotLightMap["bio"] = light;
+    pixiApp.stage.addChild(spotLightMap["bio"]);
 
-    const rightLight = Sprite.from(lightCanvas);
-    rightLight.anchor.set(0, 0.5);
-    rightLight.rotation = Math.PI - Math.PI / 6;
-    rightLight.x = width + width * 0.2;
-    rightLight.filters = [blur];
-    rightLight.alpha = 0;
-    pixiApp.stage.addChild(rightLight);
+    light = Sprite.from(lightCanvas);
+    light.anchor.set(0, 0.5);
+    light.rotation = Math.PI - Math.PI / 6;
+    light.x = width + width * 0.2;
+    light.filters = [blur];
+    spotLightMap["person"] = light;
+    pixiApp.stage.addChild(spotLightMap["person"]);
 
-    spotLightMap["person"] = rightLight;
-    spotLightMap["bio"] = leftLight;
-    spotLightMap["activity"] = rightLight;
+    light = Sprite.from(lightCanvas);
+    light.anchor.set(0, 0.5);
+    light.rotation = Math.PI - Math.PI / 6;
+    light.x = width + width * 0.2;
+    light.filters = [blur];
+    light.alpha = 0;
+    spotLightMap["activity"] = light;
+    pixiApp.stage.addChild(spotLightMap["activity"]);
+
     currentLight = "person";
 
     pixiApp.ticker.add(function() {
