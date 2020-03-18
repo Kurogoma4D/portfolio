@@ -79,21 +79,22 @@ const CreateFixedCanvas: React.FC = () => {
     const width = pixiApp.renderer.width;
     const height = pixiApp.renderer.height;
 
-    const particles = new Array(128).fill(0).map(() => {
+    const particles = new Array(24).fill(0).map(() => {
       let alpha = Math.random();
       let star = new Sprite(pixiApp.loader.resources.star.texture);
       let blur = new filters.BlurFilter(16);
       blur.blur = 16;
       star.x = Math.random() * width;
-      star.y = Math.random() * height * 12;
+      star.y = Math.random() * height * 3;
+      star.anchor.set(0.5);
       star.blendMode = BLEND_MODES.ADD;
       star.alpha = alpha;
-      star.scale.set(1 - alpha);
+      star.scale.set((1 - alpha) * 0.4 + 0.1);
       star.filters = [blur];
       return star;
     });
 
-    particleProp.y = -height * 6;
+    particleProp.y = -height;
     particleProp.addChild(...particles);
     pixiApp.stage.addChild(particleProp);
 
@@ -137,7 +138,7 @@ const CreateFixedCanvas: React.FC = () => {
 
     currentLight = "person";
 
-    pixiApp.ticker.add(function() {
+    pixiApp.ticker.add(() => {
       if (currentLight !== "") {
         spotLightMap[currentLight].alpha += 0.05;
         if (spotLightMap[currentLight].alpha > 1.0) {
@@ -149,6 +150,16 @@ const CreateFixedCanvas: React.FC = () => {
         spotLightMap[decreaseLight].alpha -= 0.05;
         if (spotLightMap[decreaseLight].alpha < 0) {
           decreaseLight = "";
+        }
+      }
+
+      for (let p of particleProp.children) {
+        p.y -= 1 - p.alpha;
+
+        if (p.y < height * 0.4) {
+          p.alpha -= 0.06;
+        } else if (p.y < -height / 2) {
+          p.y = height * 1.5;
         }
       }
     });
@@ -183,9 +194,7 @@ const CreateFixedCanvas: React.FC = () => {
     observer.observe(bio!);
     observer.observe(activity!);
 
-    const changeBaseLine = (event: WheelEvent) => {
-      particleProp.y -= event.deltaY * 0.2;
-
+    const changeBaseLine = () => {
       if (window.scrollY > currentScrollY && baseLine > 0) {
         baseLine -= 0.015;
 
@@ -195,12 +204,10 @@ const CreateFixedCanvas: React.FC = () => {
       }
       currentScrollY = window.scrollY;
     };
-    addEventListener("wheel", event => changeBaseLine(event as WheelEvent));
+    addEventListener("wheel", changeBaseLine);
 
     return () => {
-      removeEventListener("wheel", event =>
-        changeBaseLine(event as WheelEvent)
-      );
+      removeEventListener("wheel", changeBaseLine);
     };
   }, []);
 
