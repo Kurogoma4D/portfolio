@@ -14,7 +14,7 @@ export type Coord = {
   y: number;
 };
 
-const CreateFixedCanvas: React.FC = () => {
+const FixedCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLDivElement>(null);
   const personRef = useRef<HTMLDivElement>(null);
   const bioRef = useRef<HTMLDivElement>(null);
@@ -23,7 +23,6 @@ const CreateFixedCanvas: React.FC = () => {
   let currentScrollY = 0.0;
   let currentIndex = 0;
   let currentLight = "";
-  let decreaseLight = "";
   let globalTime = 0;
   const spotLightMap: { [key: string]: Sprite } = {};
   const feetProp: Sprite[] = [];
@@ -146,17 +145,15 @@ const CreateFixedCanvas: React.FC = () => {
     pixiApp.ticker.add(delta => {
       globalTime += delta;
 
-      if (currentLight !== "") {
-        spotLightMap[currentLight].alpha += 0.05;
-        if (spotLightMap[currentLight].alpha > 1.0) {
-          currentLight = "";
-        }
-      }
-
-      if (decreaseLight !== "") {
-        spotLightMap[decreaseLight].alpha -= 0.05;
-        if (spotLightMap[decreaseLight].alpha < 0) {
-          decreaseLight = "";
+      for (const property in spotLightMap) {
+        if (property === currentLight) {
+          if (spotLightMap[property].alpha <= 1.0) {
+            spotLightMap[property].alpha += 0.05;
+          }
+        } else {
+          if (spotLightMap[property].alpha > 0) {
+            spotLightMap[property].alpha -= 0.05;
+          }
         }
       }
 
@@ -181,8 +178,6 @@ const CreateFixedCanvas: React.FC = () => {
 
         if (ratio > 0) {
           currentLight = entry.target.id;
-        } else {
-          decreaseLight = entry.target.id;
         }
       }
     };
@@ -225,4 +220,4 @@ const CreateFixedCanvas: React.FC = () => {
   );
 };
 
-export default CreateFixedCanvas;
+export default FixedCanvas;

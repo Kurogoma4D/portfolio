@@ -5,7 +5,7 @@ import About from "../components/about/about";
 import Skills from "../components/skills/skills";
 import dynamic from "next/dynamic";
 
-const FixedCanvas = dynamic(() => import("../utils/create_fixed_canvas"), {
+const FixedCanvas = dynamic(() => import("../utils/fixed_canvas"), {
   ssr: false
 });
 
