@@ -6,7 +6,7 @@ import { Post, Content, Category } from "interfaces/Posts";
 import { useState, useCallback } from "react";
 import { Waypoint } from "react-waypoint";
 import { motion } from "framer-motion";
-import ImageHeader from "../../components/ImageHeader/ImageHeader";
+import ImageHeader from "../../components/image_header/image_header";
 import Link from "next/link";
 
 type Props = {

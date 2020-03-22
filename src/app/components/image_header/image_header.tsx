@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as style from "./ImageHeader.scss";
+import * as style from "./image_header.scss";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

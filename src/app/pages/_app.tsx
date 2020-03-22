@@ -4,7 +4,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope, faHome } from "@fortawesome/free-solid-svg-icons";
 import { AnimatePresence, motion } from "framer-motion";
-import Layout from "../components/LayoutComp/Layout";
+import Layout from "../components/layout/layout";
 
 class MyApp extends NextApp {
   render() {

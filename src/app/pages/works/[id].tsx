@@ -4,7 +4,7 @@ import * as style from "../../styles/workDetail.scss";
 import axios from "axios";
 import { Content } from "interfaces/Posts";
 import { motion } from "framer-motion";
-import ImageHeader from "../../components/ImageHeader/ImageHeader";
+import ImageHeader from "../../components/image_header/image_header";
 
 type Props = {
   post: Content;

@@ -1,7 +1,11 @@
 import * as React from "react";
 import { NextPage } from "next";
-import { regularSkills, poorSkills, designSkills } from "../../utils/skillData";
-import SkillPanel from "../SkillPanel/SkillPanel";
+import {
+  regularSkills,
+  poorSkills,
+  designSkills
+} from "../../utils/skill_data";
+import SkillPanel from "../skill_panel/skill_panel";
 import * as style from "./skills.scss";
 
 const Skills: NextPage = () => (
