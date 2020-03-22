@@ -6,6 +6,7 @@ import {
   BLEND_MODES,
   filters
 } from "pixi.js";
+import SimplexNoise from "simplex-noise";
 import { buildGradientTriangle } from "./canvas_graphics";
 
 export type Coord = {
@@ -23,11 +24,16 @@ const CreateFixedCanvas: React.FC = () => {
   let currentIndex = 0;
   let currentLight = "";
   let decreaseLight = "";
+  let globalTime = 0;
   const spotLightMap: { [key: string]: Sprite } = {};
   const feetProp: Sprite[] = [];
-  const particleProp = new ParticleContainer();
+  const particleProp = new ParticleContainer(80, {
+    position: true,
+    rotation: true
+  });
   const FOOT_MAX = 12;
   const pixiApp = new Application({ transparent: true, antialias: true });
+  const simplex = new SimplexNoise();
 
   const initialize = useCallback(() => {
     const canvas = canvasRef.current!;
@@ -85,7 +91,7 @@ const CreateFixedCanvas: React.FC = () => {
       let blur = new filters.BlurFilter(16);
       blur.blur = 16;
       star.x = Math.random() * width;
-      star.y = Math.random() * height * 3;
+      star.y = Math.random() * height * 2;
       star.anchor.set(0.5);
       star.blendMode = BLEND_MODES.ADD;
       star.alpha = alpha;
@@ -94,7 +100,6 @@ const CreateFixedCanvas: React.FC = () => {
       return star;
     });
 
-    particleProp.y = -height;
     particleProp.addChild(...particles);
     pixiApp.stage.addChild(particleProp);
 
@@ -138,7 +143,9 @@ const CreateFixedCanvas: React.FC = () => {
 
     currentLight = "person";
 
-    pixiApp.ticker.add(() => {
+    pixiApp.ticker.add(delta => {
+      globalTime += delta;
+
       if (currentLight !== "") {
         spotLightMap[currentLight].alpha += 0.05;
         if (spotLightMap[currentLight].alpha > 1.0) {
@@ -154,11 +161,11 @@ const CreateFixedCanvas: React.FC = () => {
       }
 
       for (let p of particleProp.children) {
-        p.y -= 1 - p.alpha;
+        p.y -= p.scale.x * 0.2;
+        p.x += simplex.noise2D(globalTime * 0.001, p.y * 0.001) * 0.05;
+        p.angle += p.scale.x - 0.5;
 
-        if (p.y < height * 0.4) {
-          p.alpha -= 0.06;
-        } else if (p.y < -height / 2) {
+        if (p.y < -height / 8) {
           p.y = height * 1.5;
         }
       }
