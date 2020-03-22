@@ -14,6 +14,14 @@
   box-shadow: 0 4px 4px 0 rgba($color: #000000, $alpha: 0.2);
 }
 
+.contentTop {
+  border-radius: 4px 4px 0 0;
+}
+
+.contentBottom {
+  border-radius: 0 0 4px 4px;
+}
+
 .noPadding {
   padding: 0;
 }
