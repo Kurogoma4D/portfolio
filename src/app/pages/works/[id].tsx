@@ -5,6 +5,7 @@ import axios from "axios";
 import { Content } from "interfaces/posts";
 import { motion } from "framer-motion";
 import ImageHeader from "../../components/image_header/image_header";
+import ReactPlayer from "react-player";
 
 type Props = {
   post: Content;
@@ -74,14 +75,23 @@ const WorkDetail: NextPage<Props> = (props: Props) => {
             transition={{ duration: 1.2, ease: easeOut }}
             className={`${style.content} ${style.contentBottom}`}
           >
-            {images.map((imageUrl, index) => (
-              <img
-                key={imageUrl + index}
-                src={imageUrl}
-                loading="lazy"
-                className={style.image}
-              ></img>
-            ))}
+            {images.map((imageUrl, index) =>
+              imageUrl.endsWith(".mp4") ? (
+                <ReactPlayer
+                  url={imageUrl}
+                  playing
+                  controls
+                  width="100%"
+                ></ReactPlayer>
+              ) : (
+                <img
+                  key={imageUrl + index}
+                  src={imageUrl}
+                  loading="lazy"
+                  className={style.image}
+                ></img>
+              )
+            )}
           </motion.div>
         )}
       </div>
