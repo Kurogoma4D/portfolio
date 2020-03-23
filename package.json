@@ -46,7 +46,6 @@
     "webpack": "^4.41.2"
   },
   "devDependencies": {
-    "@types/createjs": "^0.0.29",
     "@types/node": "^12.7.8",
     "@types/react": "^16.9.3",
     "@types/react-dom": "^16.9.1",
