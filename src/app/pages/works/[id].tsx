@@ -2,9 +2,10 @@ import * as React from "react";
 import { NextPage } from "next";
 import * as style from "../../styles/workDetail.scss";
 import axios from "axios";
-import { Content } from "interfaces/Posts";
+import { Content } from "interfaces/posts";
 import { motion } from "framer-motion";
-import ImageHeader from "../../components/ImageHeader/ImageHeader";
+import ImageHeader from "../../components/image_header/image_header";
+import ReactPlayer from "react-player";
 
 type Props = {
   post: Content;
@@ -13,17 +14,22 @@ type Props = {
 const easeOut = [0, 0.95, 0.63, 0.99];
 
 const WorkDetail: NextPage<Props> = (props: Props) => {
+  const { post } = props;
+
   const images: string[] = [];
-  images.push(props.post.image_first || "");
-  images.push(props.post.image_second || "");
-  images.push(props.post.image_third || "");
-  images.push(props.post.image_forth || "");
+  post.image_first && images.push(post.image_first);
+  post.image_second && images.push(post.image_second);
+  post.image_third && images.push(post.image_third);
+  post.image_forth && images.push(post.image_forth);
 
   const coverImageStyle = () => {
-    let style: React.CSSProperties = {};
-    if (props.post.cover_image) {
+    let style: React.CSSProperties = {
+      color: "#424242"
+    };
+    if (post.cover_image) {
       style = {
-        background: `#ffffff66 url(${props.post.cover_image.url})`,
+        color: "#242424",
+        background: `#ffffff66 url(${post.cover_image.url})`,
         backgroundSize: "cover",
         backgroundPosition: "center"
       };
@@ -44,41 +50,50 @@ const WorkDetail: NextPage<Props> = (props: Props) => {
           animate={{ y: 0 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.2, ease: easeOut }}
-          className={`${style.content} ${style.noPadding}`}
+          className={`${style.content} ${style.noPadding} ${style.contentTop}`}
         >
           <h1 className={style.title} style={coverImageStyle()}>
-            {props.post?.title ?? ""}
+            {post.title ?? ""}
           </h1>
         </motion.div>
         <motion.div
           key="body"
-          initial={{ y: "150%" }}
+          initial={{ y: "200%" }}
           animate={{ y: 0 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.2, ease: easeOut }}
           className={style.content}
         >
-          <p className={style.body}>{props.post?.body ?? ""}</p>
+          <p className={style.body}>{post.body ?? ""}</p>
         </motion.div>
-        <motion.div
-          key="image"
-          initial={{ y: "150%" }}
-          animate={{ y: 0 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.2, ease: easeOut }}
-          className={style.content}
-        >
-          {images.map(
-            imageUrl =>
-              imageUrl !== "" && (
+        {images.length !== 0 && (
+          <motion.div
+            key="image"
+            initial={{ y: "350%" }}
+            animate={{ y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: easeOut }}
+            className={`${style.content} ${style.contentBottom}`}
+          >
+            {images.map((imageUrl, index) =>
+              imageUrl.endsWith(".mp4") ? (
+                <ReactPlayer
+                  url={imageUrl}
+                  playing
+                  controls
+                  width="100%"
+                ></ReactPlayer>
+              ) : (
                 <img
-                  key={imageUrl}
+                  key={imageUrl + index}
                   src={imageUrl}
+                  loading="lazy"
                   className={style.image}
                 ></img>
               )
-          )}
-        </motion.div>
+            )}
+          </motion.div>
+        )}
       </div>
     </>
   );

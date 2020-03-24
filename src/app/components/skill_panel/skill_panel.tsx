@@ -1,5 +1,5 @@
-import * as style from "./SkillPanel.scss";
-import { SkillItem } from "../../utils/skillData";
+import * as style from "./skill_panel.scss";
+import { SkillItem } from "../../utils/skill_data";
 
 type Props = {
   item: SkillItem;
