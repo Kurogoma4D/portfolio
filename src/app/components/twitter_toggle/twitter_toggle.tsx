@@ -1,15 +1,14 @@
 import * as React from "react";
 import * as style from "./twitter_toggle.scss";
-import { Category } from "interfaces/posts";
 
 type Props = {
   isActive: boolean;
-  item: Category;
+  itemId: string;
   onClick: (event: any) => void;
 };
 
 const TwitterToggle: React.FC<Props> = (props: Props) => {
-  const { isActive, item, onClick } = props;
+  const { isActive, itemId, onClick } = props;
 
   const switchChipStyle = (isActive: boolean): string => {
     return isActive
@@ -19,7 +18,7 @@ const TwitterToggle: React.FC<Props> = (props: Props) => {
 
   return (
     <button
-      key={item.id}
+      key={itemId}
       onClick={onClick}
       className={switchChipStyle(isActive)}
     >

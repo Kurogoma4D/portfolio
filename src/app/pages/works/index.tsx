@@ -110,7 +110,7 @@ const WorksPage: NextPage<Props> = (props: Props) => {
       <TwitterToggle
         isActive={selectedCategory[categories[0].id]}
         onClick={() => handleChipClicked(categories[0].id)}
-        item={categories[0]}
+        itemId={categories[0].id}
       ></TwitterToggle>
       <div className={style.chipsWrap}>
         {categories.slice(1).map(item => (
