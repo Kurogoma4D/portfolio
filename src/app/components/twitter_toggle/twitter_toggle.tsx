@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as style from "./twitter_toggle.scss";
-import { Category } from "interfaces/posts";
+import { Category } from "../../interfaces/posts";
 
 type Props = {
   isActive: boolean;
