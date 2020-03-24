@@ -2,9 +2,9 @@ import * as React from "react";
 import { NextPage } from "next";
 import * as style from "../../styles/workDetail.scss";
 import axios from "axios";
-import { Content } from "../../interfaces/posts";
 import { motion } from "framer-motion";
 import ImageHeader from "../../components/image_header/image_header";
+import { Content } from "../../interfaces/posts";
 import ReactPlayer from "react-player";
 
 type Props = {
