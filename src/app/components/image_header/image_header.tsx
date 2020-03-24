@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as style from "./ImageHeader.scss";
+import * as style from "./image_header.scss";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -15,7 +15,7 @@ const ImageHeader: React.FC<Props> = (props: Props) => {
     <>
       <div className={style.wrap}>
         <div className={style.headerWrap}>
-          <img src={imagePath} alt="ヘッダー"></img>
+          <img src={imagePath} loading="lazy" alt="ヘッダー"></img>
           <span>{text}</span>
         </div>
       </div>

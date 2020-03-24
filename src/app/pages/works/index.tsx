@@ -2,17 +2,19 @@ import * as React from "react";
 import { NextPage } from "next";
 import * as style from "../../styles/works.scss";
 import axios from "axios";
-import { Post, Content, Category } from "interfaces/Posts";
+import { Post, Content, Category } from "interfaces/posts";
 import { useState, useCallback } from "react";
 import { Waypoint } from "react-waypoint";
 import { motion } from "framer-motion";
-import ImageHeader from "../../components/ImageHeader/ImageHeader";
+import ImageHeader from "../../components/image_header/image_header";
 import Link from "next/link";
+import TwitterToggle from "../../components/twitter_toggle/twitter_toggle";
 
 type Props = {
   contents: Content[];
   categories: Category[];
   totalCount: number;
+  twitterCategoryId: string;
 };
 
 const transition = {
@@ -36,11 +38,15 @@ const variants = {
 };
 
 const WorksPage: NextPage<Props> = (props: Props) => {
-  const [posts, setPosts] = useState<Content[]>(props.contents);
+  const { contents, categories, totalCount, twitterCategoryId } = props;
+
+  const [posts, setPosts] = useState<Content[]>(contents);
   const [selectedCategory, setCategory] = useState<Object>(() => {
     let entries = {};
-    props.categories.forEach(value => {
-      entries[value.id] = true;
+    categories.forEach(value => {
+      value.id === twitterCategoryId
+        ? (entries[value.id] = false)
+        : (entries[value.id] = true);
     });
     return entries;
   });
@@ -61,15 +67,25 @@ const WorksPage: NextPage<Props> = (props: Props) => {
 
   const isActiveCategory = (categories: Category[]): boolean => {
     let isActive = false;
+    let isTwitter = false;
     categories.forEach(category => {
-      if (selectedCategory[category.id]) isActive = true;
+      if (category.name === "twitter") {
+        isTwitter = true;
+      } else if (selectedCategory[category.id]) {
+        isActive = true;
+      }
     });
-    return isActive;
+
+    if (isTwitter) {
+      return isActive && selectedCategory[twitterCategoryId];
+    } else {
+      return isActive && !selectedCategory[twitterCategoryId];
+    }
   };
 
   const onReload = async () => {
     const offset = posts.length;
-    if (offset >= props.totalCount) {
+    if (offset >= totalCount) {
       return;
     }
     const parameters = {
@@ -91,8 +107,13 @@ const WorksPage: NextPage<Props> = (props: Props) => {
         imagePath="/static/images/works/cg_kirameki.png"
         text="作品"
       />
+      <TwitterToggle
+        isActive={selectedCategory[categories[0].id]}
+        onClick={() => handleChipClicked(categories[0].id)}
+        item={categories[0]}
+      ></TwitterToggle>
       <div className={style.chipsWrap}>
-        {props.categories.map(item => (
+        {categories.slice(1).map(item => (
           <button
             key={item.id}
             onClick={() => handleChipClicked(item.id)}
@@ -115,6 +136,7 @@ const WorksPage: NextPage<Props> = (props: Props) => {
                           content.cover_image?.url ??
                           "/static/images/no_image256.png"
                         }
+                        loading="lazy"
                         alt={content.title}
                       ></img>
                       <span className={style.workTitle}>{content.title}</span>
@@ -154,9 +176,19 @@ WorksPage.getInitialProps = async (): Promise<Props> => {
     }
   );
 
+  const categoriesData = categories.data.contents as Category[];
+  const twitter = categoriesData.find(category => category.name === "twitter")!;
+  const twitterIndex = categoriesData.findIndex(
+    category => category.name === "twitter"
+  )!;
+
+  categoriesData.splice(twitterIndex);
+  categoriesData.unshift(twitter);
+
   return {
     contents: contents.data.contents as Content[],
-    categories: categories.data.contents as Category[],
-    totalCount: contents.data.totalCount
+    categories: categoriesData,
+    totalCount: contents.data.totalCount,
+    twitterCategoryId: twitter.id
   };
 };

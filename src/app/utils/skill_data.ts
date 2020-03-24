@@ -13,7 +13,8 @@ export const regularSkills: SkillItem[] = [
   },
   {
     name: "HTML/CSS/JS",
-    relation: "Sass, TypeScript, enchant.js，three.js，React，AR.js，jQuery",
+    relation:
+      "Sass, TypeScript, PixiJS, CreateJS，three.js，React，AR.js，jQuery",
     description: "個人開発，業務開発で使用．"
   },
   {

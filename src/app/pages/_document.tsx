@@ -10,21 +10,13 @@ class MyDocument extends Document {
             name="viewport"
             content="initial-scale=1.0, width=device-width"
           />
-          <link
-            href="https://fonts.googleapis.com/css?family=M+PLUS+1p:400,700&display=swap&text=%E4%BA%BA%E4%BD%9C%E5%93%81%E6%8A%80%E8%A1%93"
-            rel="stylesheet"
-          ></link>
-          <link
-            href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c:400,700&display=swap"
-            rel="stylesheet"
-          ></link>
+
           <link rel="icon" href="static/images/favicon.ico"></link>
           <link
             rel="apple-touch-icon"
             sizes="180x180"
             href="static/images/sushi.png"
           ></link>
-          <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
         </Head>
         <body>
           <Main />
