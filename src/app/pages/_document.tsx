@@ -17,6 +17,14 @@ class MyDocument extends Document {
             sizes="180x180"
             href="static/images/sushi.png"
           ></link>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=M+PLUS+1p:400,700&display=swap&text=%E4%BD%9C%E5%93%81"
+          ></link>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c:400,700&display=swap&subset=japanese"
+          ></link>
         </Head>
         <body>
           <Main />
