@@ -37,6 +37,11 @@ const nextConfig = {
       })
     ];
 
+    config.resolve = {
+      ...config.resolve,
+      modules: ["node_modules", "/"]
+    };
+
     return config;
   }
 };
