@@ -2,7 +2,7 @@ import * as React from "react";
 import { NextPage } from "next";
 import * as style from "../../styles/works.scss";
 import axios from "axios";
-import { Post, Content, Category } from "Types/posts";
+import { Post, Content, Category } from "Types/post";
 import { useState, useCallback } from "react";
 import { Waypoint } from "react-waypoint";
 import { motion } from "framer-motion";
