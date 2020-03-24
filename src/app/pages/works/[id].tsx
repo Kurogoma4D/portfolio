@@ -4,7 +4,7 @@ import * as style from "../../styles/workDetail.scss";
 import axios from "axios";
 import { motion } from "framer-motion";
 import ImageHeader from "../../components/image_header/image_header";
-import { Content } from "../../interfaces/posts";
+import { Content } from "Types/posts";
 import ReactPlayer from "react-player";
 
 type Props = {

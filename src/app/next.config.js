@@ -42,6 +42,11 @@ const nextConfig = {
       modules: ["node_modules", "/"]
     };
 
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      Types: path.resolve(__dirname, "interfaces/")
+    };
+
     return config;
   }
 };
