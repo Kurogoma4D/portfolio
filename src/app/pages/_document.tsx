@@ -19,7 +19,7 @@ class MyDocument extends Document {
           <meta property="og:type" content="website" />
           <meta
             property="og:url"
-            content="https://drive.google.com/open?id=19J53LKIE0gMv3RDN_SYp00L96REdBCDf"
+            content="https://drive.google.com/uc?export=view&id=19J53LKIE0gMv3RDN_SYp00L96REdBCDf"
           />
           <meta property="og:image" content="サムネイル画像の URL" />
           <meta property="og:site_name" content="Kurogoma4D" />
@@ -28,7 +28,8 @@ class MyDocument extends Document {
             content="Kurogoma4Dのポートフォリオです。エンジニアっぽいこととCG屋っぽいことをしています。"
           />
 
-          <meta name="twitter:card" content="summary" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content="@Krgm4D" />
 
           <link rel="icon" href="static/images/favicon.ico"></link>
           <link
