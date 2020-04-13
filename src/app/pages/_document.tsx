@@ -17,11 +17,11 @@ class MyDocument extends Document {
 
           <meta property="og:title" content="Kurogoma4D" />
           <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://krgm4d.dev" />
           <meta
-            property="og:url"
+            property="og:image"
             content="https://drive.google.com/uc?export=view&id=19J53LKIE0gMv3RDN_SYp00L96REdBCDf"
           />
-          <meta property="og:image" content="サムネイル画像の URL" />
           <meta property="og:site_name" content="Kurogoma4D" />
           <meta
             property="og:description"
