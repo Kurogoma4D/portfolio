@@ -10,6 +10,22 @@ class MyDocument extends Document {
             name="viewport"
             content="initial-scale=1.0, width=device-width"
           />
+          <meta
+            name="description"
+            content="Kurogoma4Dのポートフォリオです。エンジニアっぽいこととCG屋っぽいことをしています。"
+          />
+
+          <meta property="og:title" content="Kurogoma4D" />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="static/images/portfolio-ogp.png" />
+          <meta property="og:image" content="サムネイル画像の URL" />
+          <meta property="og:site_name" content="Kurogoma4D" />
+          <meta
+            property="og:description"
+            content="Kurogoma4Dのポートフォリオです。エンジニアっぽいこととCG屋っぽいことをしています。"
+          />
+
+          <meta name="twitter:card" content="summary" />
 
           <link rel="icon" href="static/images/favicon.ico"></link>
           <link
