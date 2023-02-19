@@ -47,7 +47,7 @@ class _Contents extends StatelessWidget {
                   url: 'https://scrapbox.io/kurogoma4d-lab/',
                   child: Assets.icons.scrapbox.svg(height: 32),
                 ),
-                const Gap(24),
+                const Gap(16),
                 _PreferredSizeIcon(
                   url: 'https://twitter.com/Krgm4D',
                   child: Assets.icons.twitter.svg(
@@ -58,7 +58,7 @@ class _Contents extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Gap(24),
+                const Gap(16),
                 _PreferredSizeIcon(
                   url: 'https://github.com/Kurogoma4D',
                   child: Assets.icons.github.svg(height: 32),
@@ -72,7 +72,7 @@ class _Contents extends StatelessWidget {
   }
 }
 
-class _PreferredSizeIcon extends StatelessWidget {
+class _PreferredSizeIcon extends StatefulWidget {
   const _PreferredSizeIcon({
     required this.child,
     required this.url,
@@ -82,18 +82,40 @@ class _PreferredSizeIcon extends StatelessWidget {
   final String url;
 
   @override
+  State<_PreferredSizeIcon> createState() => _PreferredSizeIconState();
+}
+
+class _PreferredSizeIconState extends State<_PreferredSizeIcon> {
+  final _focus = FocusNode();
+
+  @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => launchUrlString(url),
-      borderRadius: BorderRadius.circular(32),
-      child: SizedBox(
-        height: 32,
-        width: 32,
-        child: FittedBox(
-          fit: BoxFit.contain,
-          child: child,
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: InkWell(
+        onHover: (value) =>
+            value ? _focus.requestFocus() : FocusScope.of(context).unfocus(),
+        focusNode: _focus,
+        onTap: () => launchUrlString(widget.url),
+        borderRadius: BorderRadius.circular(8),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SizedBox(
+            height: 32,
+            width: 32,
+            child: FittedBox(
+              fit: BoxFit.contain,
+              child: widget.child,
+            ),
+          ),
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _focus.dispose();
+    super.dispose();
   }
 }
