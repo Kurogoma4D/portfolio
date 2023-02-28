@@ -5,6 +5,7 @@ import 'package:collection/collection.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:gap/gap.dart';
 import 'package:portfolio/gen/assets.gen.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -37,6 +38,7 @@ final _deadPaint = Paint()..color = const Color(0xffEEF3E3);
 final _alivePaint = Paint()..color = const Color(0xffB8D9CC);
 
 void main() {
+  usePathUrlStrategy();
   runApp(const MyApp());
 }
 
@@ -83,7 +85,7 @@ class _Contents extends StatelessWidget {
                         vertical: 16,
                         horizontal: 24,
                       ),
-                      child: Text(
+                      child: SelectableText(
                         'Kurogoma4D',
                         style:
                             Theme.of(context).textTheme.headlineLarge?.copyWith(
