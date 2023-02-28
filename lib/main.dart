@@ -64,6 +64,13 @@ class _Contents extends StatelessWidget {
       body: Stack(
         children: [
           GameWidget(game: BaseGame()),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: IconButton(
+              onPressed: () => showLicensePage(context: context),
+              icon: const Icon(Icons.my_library_books_outlined),
+            ),
+          ),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
