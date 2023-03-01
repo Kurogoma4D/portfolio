@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/foundation.dart';
 
 @immutable
@@ -7,9 +9,19 @@ class Coordinate {
 
   const Coordinate(this.x, this.y);
 
-  factory Coordinate.zero() => const Coordinate(0, 0);
+  const Coordinate.zero()
+      : x = 0,
+        y = 0;
 
-  operator +(Coordinate other) => Coordinate(x + other.x, y + other.y);
+  Coordinate operator +(Coordinate other) =>
+      Coordinate(x + other.x, y + other.y);
+
+  Coordinate operator -(Coordinate other) =>
+      Coordinate(x - other.x, y - other.y);
+
+  Coordinate get positive => Coordinate(max(x, 0), max(y, 0));
+
+  Coordinate get negative => Coordinate(min(x, 0), min(y, 0));
 
   @override
   bool operator ==(Object other) {
@@ -18,4 +30,7 @@ class Coordinate {
 
   @override
   int get hashCode => Object.hash(x, y);
+
+  @override
+  String toString() => '($x, $y)';
 }
