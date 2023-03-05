@@ -6,7 +6,7 @@ import 'package:portfolio/logic/blocs/blocs.dart';
 import 'package:portfolio/logic/constants.dart';
 import 'package:portfolio/logic/entities/entities.dart';
 
-final _deadPaint = Paint()..color = const Color(0xffEEF3E3);
+final _deadPaint = Paint()..color = deadLifeColor;
 final _alivePaint = Paint()..color = const Color(0xffB8D9CC);
 
 class Life extends PositionComponent

@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flame/game.dart';
 import 'package:flame_bloc/flame_bloc.dart';
 import 'package:portfolio/game_components/game_components.dart';
 import 'package:portfolio/logic/blocs/blocs.dart';
+import 'package:portfolio/logic/constants.dart';
 import 'package:portfolio/logic/entities/entities.dart';
 
 class BaseGame extends FlameGame {
@@ -52,6 +54,9 @@ class GameCanvas extends FlameGame
 class LifesRoot extends FlameGame
     with FlameBlocReader<LifesBloc, Map<Coordinate, LifeState>> {
   final Set<Coordinate> _addedCoordinates = {};
+
+  @override
+  Color backgroundColor() => deadLifeColor;
 
   @override
   Future<void> onLoad() async {
