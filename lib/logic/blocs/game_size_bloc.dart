@@ -12,7 +12,7 @@ class OnGameResize extends GameSizeEvent {
 }
 
 class GameSizeBloc extends Bloc<GameSizeEvent, Coordinate> {
-  GameSizeBloc() : super(Coordinate.zero()) {
+  GameSizeBloc() : super(const Coordinate.zero()) {
     on<OnGameResize>((event, emit) {
       final resolution = event.canvasSize / lifeSizeFactor;
       final gameSize = Coordinate(

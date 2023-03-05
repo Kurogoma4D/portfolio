@@ -6,7 +6,7 @@ import 'package:portfolio/logic/blocs/blocs.dart';
 import 'package:portfolio/logic/entities/entities.dart';
 
 class TimerComponent extends Component
-    with FlameBlocReader<LifesBloc, Set<LifeState>> {
+    with FlameBlocReader<LifesBloc, Map<Coordinate, LifeState>> {
   late Timer _timer;
 
   @override

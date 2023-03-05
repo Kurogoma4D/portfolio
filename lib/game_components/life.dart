@@ -1,8 +1,5 @@
-import 'dart:async';
-import 'dart:math';
 import 'dart:ui';
 
-import 'package:collection/collection.dart';
 import 'package:flame/components.dart';
 import 'package:flame_bloc/flame_bloc.dart';
 import 'package:portfolio/logic/blocs/blocs.dart';
@@ -12,7 +9,8 @@ import 'package:portfolio/logic/entities/entities.dart';
 final _deadPaint = Paint()..color = const Color(0xffEEF3E3);
 final _alivePaint = Paint()..color = const Color(0xffB8D9CC);
 
-class Life extends PositionComponent {
+class Life extends PositionComponent
+    with FlameBlocListenable<LifesBloc, Map<Coordinate, LifeState>> {
   Life({required this.state}) {
     position = Vector2(state.offset.x.toDouble(), state.offset.y.toDouble()) *
         lifeSizeFactor;
@@ -22,16 +20,12 @@ class Life extends PositionComponent {
   late LifeState state;
 
   @override
-  FutureOr<void> onLoad() async {
-    await add(FlameBlocListener<LifesBloc, Set<LifeState>>(
-      onNewState: (newState) {
-        final selfState = newState.firstWhereOrNull((e) => e.key == state.key);
-        if (selfState != null) {
-          state = selfState;
-        }
-      },
-    ));
-    return super.onLoad();
+  void onNewState(Map<Coordinate, LifeState> state) {
+    final selfState = state[this.state.offset];
+    if (selfState != null) {
+      this.state = selfState;
+    }
+    super.onNewState(state);
   }
 
   @override
