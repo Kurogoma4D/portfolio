@@ -19,7 +19,9 @@ dependencies:
   flame: ^1.6.0
   flutter_riverpod: ^2.2.0
   collection:
+  bloc: ^8.1.1
   flutter_bloc: ^8.1.2
+  flame_bloc: ^1.8.2
   flutter_launcher_icons: ^0.12.0
 
 dev_dependencies:
