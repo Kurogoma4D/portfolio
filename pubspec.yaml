@@ -46,4 +46,4 @@ flutter_launcher_icons:
   ios: false
   web:
     generate: true
-    image_path: "assets/images/avatar.png"
+    image_path: "assets/images/avatar.webp"

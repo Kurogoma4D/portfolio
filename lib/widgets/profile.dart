@@ -17,7 +17,7 @@ class Profile extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(16),
-            child: Assets.images.avatar.image(width: 120, height: 120),
+            child: Assets.images.avatar.image(width: 240, height: 240),
           ),
           const Gap(32),
           ClipRRect(
