@@ -7,6 +7,7 @@ class Base extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      backgroundColor: Color(0xff424242),
       body: Stack(
         children: [
           BackgroundCanvas(),

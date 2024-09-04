@@ -17,7 +17,7 @@ class Profile extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(16),
-            child: Assets.images.avatar.image(width: 120, height: 120),
+            child: Assets.images.avatar.image(width: 240, height: 240),
           ),
           const Gap(32),
           ClipRRect(
@@ -36,7 +36,7 @@ class Profile extends StatelessWidget {
                   'Kurogoma4D',
                   style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: Colors.black87,
+                        color: Colors.white,
                       ),
                 ),
               ),
@@ -49,15 +49,15 @@ class Profile extends StatelessWidget {
             children: [
               PreferredSizeIcon(
                 url: 'https://scrapbox.io/kurogoma4d-lab/',
-                child: Assets.icons.scrapbox.svg(height: 32),
+                child: Assets.icons.cosense.image(height: 32),
               ),
               const Gap(16),
               PreferredSizeIcon(
                 url: 'https://twitter.com/Krgm4D',
-                child: Assets.icons.twitter.svg(
+                child: Assets.icons.x.svg(
                   height: 32,
                   colorFilter: const ColorFilter.mode(
-                    Color(0xff1D9BF0),
+                    Colors.white,
                     BlendMode.srcIn,
                   ),
                 ),
@@ -68,7 +68,7 @@ class Profile extends StatelessWidget {
                 child: Assets.icons.github.svg(
                   height: 32,
                   colorFilter: const ColorFilter.mode(
-                    Color(0xff242424),
+                    Colors.white,
                     BlendMode.srcIn,
                   ),
                 ),
