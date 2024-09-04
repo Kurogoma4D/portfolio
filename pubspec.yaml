@@ -41,7 +41,7 @@ flutter_gen:
   integrations:
     flutter_svg: true
 
-flutter_icons:
+flutter_launcher_icons:
   android: false
   ios: false
   web:
