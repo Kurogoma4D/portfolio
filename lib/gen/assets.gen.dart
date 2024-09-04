@@ -15,17 +15,17 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/cosense.png
+  AssetGenImage get cosense => const AssetGenImage('assets/icons/cosense.png');
+
   /// File path: assets/icons/github.svg
   SvgGenImage get github => const SvgGenImage('assets/icons/github.svg');
 
-  /// File path: assets/icons/scrapbox.svg
-  SvgGenImage get scrapbox => const SvgGenImage('assets/icons/scrapbox.svg');
-
-  /// File path: assets/icons/twitter.svg
-  SvgGenImage get twitter => const SvgGenImage('assets/icons/twitter.svg');
+  /// File path: assets/icons/x.svg
+  SvgGenImage get x => const SvgGenImage('assets/icons/x.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [github, scrapbox, twitter];
+  List<dynamic> get values => [cosense, github, x];
 }
 
 class $AssetsImagesGen {
