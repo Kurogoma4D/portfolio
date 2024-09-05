@@ -1,1 +1,27 @@
 name: CI
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Obtain Flutter version
+        run: |
+          version=$(cat ./.fvm/fvm_config.json | jq -r .flutterSdkVersion) | sed 's/@beta//'
+          echo "FLUTTER_VERSION=${version}" >> $GITHUB_ENV
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: beta
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+      - run: flutter --version
+      - run: flutter pub get
+      - run: flutter build web --wasm
+
+      - name: Install dependencies
+        run: flutter pub get
