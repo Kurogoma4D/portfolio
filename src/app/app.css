@@ -107,12 +107,24 @@
   }
 }
 
+/* ==================== Section Title ==================== */
+.section-title {
+  font-size: 1.5rem; /* 24sp - M3 Headline Small */
+  font-weight: 400;
+  line-height: 2rem; /* 32sp */
+  letter-spacing: 0;
+  color: #1c1b1f;
+  text-align: center;
+  margin: 0 0 2.5rem;
+}
+
 /* ==================== Social Section ==================== */
 .social-section {
   padding: 4rem 2rem 5rem;
   background: white;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .social-grid {
@@ -246,6 +258,126 @@
   text-align: center;
 }
 
+/* ==================== Articles Section ==================== */
+.articles-section {
+  padding: 4rem 2rem 5rem;
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.articles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 800px;
+  width: 100%;
+}
+
+/* Article Card */
+.article-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 12px; /* M3 Medium shape */
+  text-decoration: none;
+  color: #1c1b1f;
+  position: relative;
+  overflow: hidden;
+
+  /* M3 Elevation */
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  transition:
+    box-shadow 300ms cubic-bezier(0.2, 0, 0, 1),
+    transform 300ms cubic-bezier(0.05, 0.7, 0.1, 1.0);
+
+  /* Border accent */
+  border-left: 3px solid transparent;
+
+  /* Staggered entrance */
+  opacity: 0;
+  animation: articleEntrance 400ms cubic-bezier(0.05, 0.7, 0.1, 1.0) forwards;
+}
+
+.article-card:nth-child(1) { animation-delay: 100ms; }
+.article-card:nth-child(2) { animation-delay: 200ms; }
+.article-card:nth-child(3) { animation-delay: 300ms; }
+.article-card:nth-child(4) { animation-delay: 400ms; }
+
+@keyframes articleEntrance {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* M3 State layer */
+.article-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #6750a4;
+  opacity: 0;
+  transition: opacity 200ms cubic-bezier(0.2, 0, 0, 1);
+  border-radius: 12px;
+}
+
+.article-card:hover {
+  box-shadow:
+    0px 1px 3px 1px rgba(0, 0, 0, 0.08),
+    0px 1px 2px rgba(0, 0, 0, 0.12);
+  transform: translateX(4px);
+  border-left-color: #6750a4;
+}
+
+.article-card:hover::before {
+  opacity: 0.04;
+}
+
+.article-card:active {
+  transform: translateX(2px);
+}
+
+.article-card:active::before {
+  opacity: 0.08;
+}
+
+/* Focus indicator */
+.article-card:focus-visible {
+  outline: 2px solid #6750a4;
+  outline-offset: 2px;
+}
+
+/* M3 Typography: Title Medium */
+.article-title {
+  font-size: 1rem; /* 16sp */
+  font-weight: 500;
+  line-height: 1.5rem; /* 24sp */
+  letter-spacing: 0.15px;
+  color: #1c1b1f;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* M3 Typography: Label Small */
+.article-date {
+  font-size: 0.6875rem; /* 11sp */
+  font-weight: 400;
+  line-height: 1rem; /* 16sp */
+  letter-spacing: 0.5px;
+  color: #49454f; /* M3 on-surface-variant */
+  position: relative;
+  z-index: 1;
+}
+
 /* ==================== Footer ==================== */
 .footer {
   padding: 2rem;
@@ -308,6 +440,14 @@
     width: 1.75rem;
     height: 1.75rem;
   }
+
+  .articles-section {
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  .article-card {
+    padding: 1.25rem;
+  }
 }
 
 /* Mobile */
@@ -334,6 +474,19 @@
     grid-template-columns: 1fr;
     max-width: 320px;
   }
+
+  .articles-section {
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  .section-title {
+    font-size: 1.25rem; /* 20sp */
+    margin-bottom: 2rem;
+  }
+
+  .article-card {
+    padding: 1rem;
+  }
 }
 
 /* ==================== Accessibility ==================== */
@@ -344,16 +497,19 @@
   .hero-avatar,
   .hero-name,
   .social-card,
-  .social-icon-wrapper {
+  .social-icon-wrapper,
+  .article-card {
     animation: none;
     transition: none;
   }
 
-  .social-card {
+  .social-card,
+  .article-card {
     opacity: 1;
   }
 
-  .social-card:hover {
+  .social-card:hover,
+  .article-card:hover {
     transform: none;
   }
 

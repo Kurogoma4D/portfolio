@@ -7,6 +7,7 @@
 
   <!-- Social Links Section -->
   <section class="social-section">
+    <h2 class="section-title">Links</h2>
     <div class="social-grid">
       @for (link of socialLinks; track link.name) {
         <a
@@ -39,6 +40,26 @@
       }
     </div>
   </section>
+
+  <!-- Zenn Articles Section -->
+  @if (zennArticles().length > 0) {
+    <section class="articles-section">
+      <h2 class="section-title">Latest Articles</h2>
+      <div class="articles-list">
+        @for (article of zennArticles(); track article.url) {
+          <a
+            [href]="article.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="article-card"
+          >
+            <h3 class="article-title">{{ article.title }}</h3>
+            <time class="article-date">{{ article.publishedAt | date: 'yyyy/MM/dd' }}</time>
+          </a>
+        }
+      </div>
+    </section>
+  }
 
   <!-- Footer -->
   <footer class="footer">
