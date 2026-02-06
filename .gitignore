@@ -42,4 +42,14 @@ __screenshots__/
 .DS_Store
 Thumbs.db
 
+# Generated files
 zenn-articles.json
+
+# Firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+*-debug.log
+firebase-service-account*.json
+service-account*.json
