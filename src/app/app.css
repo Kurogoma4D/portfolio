@@ -1,0 +1,612 @@
+/* Material Design 3 inspired Landing Page */
+
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.lp-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==================== Hero Section ==================== */
+.hero-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #f8f7fa 0%, #fefefe 50%, #f5f3f7 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle background decoration */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 60%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(103, 80, 164, 0.06) 0%, transparent 70%);
+  animation: floatBackground 20s ease-in-out infinite;
+}
+
+@keyframes floatBackground {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-10%, -5%) scale(1.05);
+  }
+}
+
+/* Hero Avatar */
+.hero-avatar {
+  width: 9rem;
+  /* 144px */
+  height: 9rem;
+  border-radius: 50%;
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+
+  /* M3 Elevation level 2 */
+  box-shadow:
+    0px 2px 4px rgba(0, 0, 0, 0.14),
+    0px 3px 8px rgba(0, 0, 0, 0.12);
+
+  /* Subtle border */
+  border: 4px solid rgba(255, 255, 255, 0.8);
+
+  /* M3 Expressive: emphasized entrance */
+  animation: heroAvatarEntrance 800ms cubic-bezier(0.05, 0.7, 0.1, 1.0) 100ms both;
+}
+
+@keyframes heroAvatarEntrance {
+  from {
+    opacity: 0;
+    transform: scale(0.6) translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Hero Name - M3 Typography: Display Large */
+.hero-name {
+  font-size: 3.5rem;
+  /* 56sp */
+  font-weight: 400;
+  line-height: 4rem;
+  /* 64sp */
+  letter-spacing: -0.25px;
+  color: #1c1b1f;
+  /* M3 on-surface */
+  margin: 2rem 0 0;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+
+  /* Gradient text effect */
+  background: linear-gradient(135deg, #1c1b1f 0%, #6750a4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  animation: heroNameEntrance 600ms cubic-bezier(0.05, 0.7, 0.1, 1.0) 300ms both;
+}
+
+@keyframes heroNameEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* ==================== Section Title ==================== */
+.section-title {
+  font-size: 1.5rem;
+  /* 24sp - M3 Headline Small */
+  font-weight: 400;
+  line-height: 2rem;
+  /* 32sp */
+  letter-spacing: 0;
+  color: #1c1b1f;
+  text-align: center;
+  margin: 0 0 2.5rem;
+}
+
+/* ==================== Social Section ==================== */
+.social-section {
+  padding: 4rem 2rem 5rem;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  max-width: 900px;
+  width: 100%;
+}
+
+/* Social Card - M3 Surface */
+.social-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 1.5rem;
+  border-radius: 16px;
+  /* M3 Large shape */
+  text-decoration: none;
+  color: #1c1b1f;
+  background: #fafafa;
+  position: relative;
+  overflow: hidden;
+
+  /* M3 Elevation level 0 → 1 on hover */
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  transition:
+    box-shadow 300ms cubic-bezier(0.2, 0, 0, 1),
+    transform 300ms cubic-bezier(0.05, 0.7, 0.1, 1.0);
+
+  /* Staggered entrance */
+  opacity: 0;
+  animation: cardEntrance 500ms cubic-bezier(0.05, 0.7, 0.1, 1.0) forwards;
+}
+
+.social-card:nth-child(1) {
+  animation-delay: 200ms;
+}
+
+.social-card:nth-child(2) {
+  animation-delay: 300ms;
+}
+
+.social-card:nth-child(3) {
+  animation-delay: 400ms;
+}
+
+.social-card:nth-child(4) {
+  animation-delay: 500ms;
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* M3 State layer background */
+.social-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #6750a4;
+  opacity: 0;
+  transition: opacity 200ms cubic-bezier(0.2, 0, 0, 1);
+  border-radius: 16px;
+}
+
+.social-card:hover {
+  box-shadow:
+    0px 1px 3px 1px rgba(0, 0, 0, 0.08),
+    0px 1px 2px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+}
+
+.social-card:hover::before {
+  opacity: 0.04;
+}
+
+.social-card:active {
+  transform: translateY(-2px);
+}
+
+.social-card:active::before {
+  opacity: 0.08;
+}
+
+/* Focus indicator */
+.social-card:focus-visible {
+  outline: 2px solid #6750a4;
+  outline-offset: 2px;
+}
+
+.social-icon-wrapper {
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 50%;
+  position: relative;
+  z-index: 1;
+
+  /* Subtle shadow */
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
+
+  transition: transform 250ms cubic-bezier(0.05, 0.7, 0.1, 1.0);
+}
+
+.social-card:hover .social-icon-wrapper {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.social-icon {
+  width: 2rem;
+  height: 2rem;
+  color: #6750a4;
+}
+
+.social-icon-image {
+  /* For SVG/image files, preserve original colors */
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
+}
+
+/* M3 Typography: Title Medium */
+.social-label {
+  font-size: 1rem;
+  /* 16sp */
+  font-weight: 500;
+  line-height: 1.5rem;
+  /* 24sp */
+  letter-spacing: 0.15px;
+  color: #1c1b1f;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+/* ==================== Articles Section ==================== */
+.articles-section {
+  padding: 4rem 2rem 5rem;
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.articles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 800px;
+  width: 100%;
+}
+
+/* Article Card */
+.article-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 12px;
+  /* M3 Medium shape */
+  text-decoration: none;
+  color: #1c1b1f;
+  position: relative;
+  overflow: hidden;
+
+  /* M3 Elevation */
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  transition:
+    box-shadow 300ms cubic-bezier(0.2, 0, 0, 1),
+    transform 300ms cubic-bezier(0.05, 0.7, 0.1, 1.0);
+
+  /* Border accent */
+  border-left: 12px solid transparent;
+
+  /* Staggered entrance */
+  opacity: 0;
+  animation: articleEntrance 400ms cubic-bezier(0.05, 0.7, 0.1, 1.0) forwards;
+}
+
+.article-card:nth-child(1) {
+  animation-delay: 100ms;
+}
+
+.article-card:nth-child(2) {
+  animation-delay: 200ms;
+}
+
+.article-card:nth-child(3) {
+  animation-delay: 300ms;
+}
+
+.article-card:nth-child(4) {
+  animation-delay: 400ms;
+}
+
+@keyframes articleEntrance {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* M3 State layer */
+.article-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #6750a4;
+  opacity: 0;
+  transition: opacity 200ms cubic-bezier(0.2, 0, 0, 1);
+  border-radius: 12px;
+}
+
+.article-card:hover {
+  box-shadow:
+    0px 1px 3px 1px rgba(0, 0, 0, 0.08),
+    0px 1px 2px rgba(0, 0, 0, 0.12);
+  transform: translateX(4px);
+  border-left-color: #6750a4;
+}
+
+.article-card:hover::before {
+  opacity: 0.04;
+}
+
+.article-card:active {
+  transform: translateX(2px);
+}
+
+.article-card:active::before {
+  opacity: 0.08;
+}
+
+/* Focus indicator */
+.article-card:focus-visible {
+  outline: 2px solid #6750a4;
+  outline-offset: 2px;
+}
+
+/* M3 Typography: Title Medium */
+.article-title {
+  font-size: 1rem;
+  /* 16sp */
+  font-weight: 500;
+  line-height: 1.5rem;
+  /* 24sp */
+  letter-spacing: 0.15px;
+  color: #1c1b1f;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* M3 Typography: Label Small */
+.article-date {
+  font-size: 0.6875rem;
+  /* 11sp */
+  font-weight: 400;
+  line-height: 1rem;
+  /* 16sp */
+  letter-spacing: 0.5px;
+  color: #49454f;
+  /* M3 on-surface-variant */
+  position: relative;
+  z-index: 1;
+}
+
+/* ==================== Footer ==================== */
+.footer {
+  padding: 2rem;
+  background: #fafafa;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* M3 Typography: Label Medium */
+.email {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  /* 12sp */
+  font-weight: 500;
+  line-height: 1rem;
+  /* 16sp */
+  letter-spacing: 0.5px;
+  color: #6750a4;
+  /* M3 primary */
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 200ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.email:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.email-icon {
+  width: 1rem;
+  height: 1rem;
+  color: #6750a4;
+}
+
+/* M3 Typography: Label Small */
+.location {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.6875rem;
+  /* 11sp */
+  font-weight: 400;
+  line-height: 1rem;
+  /* 16sp */
+  letter-spacing: 0.5px;
+  color: #79747e;
+  /* M3 on-surface-variant, more subtle */
+  margin: 0;
+  opacity: 0.7;
+}
+
+.location-icon {
+  width: 0.875rem;
+  height: 0.875rem;
+  color: #79747e;
+  opacity: 0.6;
+}
+
+/* ==================== Responsive Design ==================== */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .hero-avatar {
+    width: 7.5rem;
+    /* 120px */
+    height: 7.5rem;
+  }
+
+  .hero-name {
+    font-size: 2.5rem;
+    /* 40sp */
+    line-height: 3rem;
+  }
+
+  .social-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+
+  .social-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .social-icon-wrapper {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .social-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .articles-section {
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  .article-card {
+    padding: 1.25rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 3rem 1.5rem;
+  }
+
+  .hero-avatar {
+    width: 6rem;
+    /* 96px */
+    height: 6rem;
+  }
+
+  .hero-name {
+    font-size: 2rem;
+    /* 32sp */
+    line-height: 2.5rem;
+  }
+
+  .social-section {
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  .social-grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+  }
+
+  .articles-section {
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  .section-title {
+    font-size: 1.25rem;
+    /* 20sp */
+    margin-bottom: 2rem;
+  }
+
+  .article-card {
+    padding: 1rem;
+  }
+}
+
+/* ==================== Accessibility ==================== */
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+
+  .hero-section::before,
+  .hero-avatar,
+  .hero-name,
+  .social-card,
+  .social-icon-wrapper,
+  .article-card {
+    animation: none;
+    transition: none;
+  }
+
+  .social-card,
+  .article-card {
+    opacity: 1;
+  }
+
+  .social-card:hover,
+  .article-card:hover {
+    transform: none;
+  }
+
+  .social-card:hover .social-icon-wrapper {
+    transform: none;
+  }
+}

@@ -1,25 +1,20 @@
 {
-  // IntelliSense を使用して利用可能な属性を学べます。
-  // 既存の属性の説明をホバーして表示します。
-  // 詳細情報は次を確認してください: https://go.microsoft.com/fwlink/?linkid=830387
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "portfolio",
+      "name": "ng serve",
+      "type": "chrome",
       "request": "launch",
-      "type": "dart"
+      "preLaunchTask": "npm: start",
+      "url": "http://localhost:4200/"
     },
     {
-      "name": "portfolio (profile mode)",
+      "name": "ng test",
+      "type": "chrome",
       "request": "launch",
-      "type": "dart",
-      "flutterMode": "profile"
-    },
-    {
-      "name": "portfolio (release mode)",
-      "request": "launch",
-      "type": "dart",
-      "flutterMode": "release"
+      "preLaunchTask": "npm: test",
+      "url": "http://localhost:9876/debug.html"
     }
   ]
 }
