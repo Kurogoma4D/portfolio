@@ -26,6 +26,7 @@ export class App implements OnInit {
   private http = inject(HttpClient);
 
   protected readonly name = 'Kurogoma4D';
+  protected readonly email = 'contact@krgm4d.dev';
   protected readonly location = '東京都渋谷区渋谷2-19-15宮益坂ビルディング609';
   protected readonly avatarUrl = '/kurogoma_chan_3.webp';
   protected readonly zennArticles = signal<ZennArticle[]>([]);
